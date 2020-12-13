@@ -16,5 +16,14 @@ export default {
   // Saves a User to the database
   saveUser: function(userData) {
     return axios.post("/api/user", userData);
+  },
+  getSunset: function(search){
+    return axios.get("https://api.sunrise-sunset.org/json" + search)
+  },
+  getCity: function(search){
+    return axios({
+      method: "GET",
+      url: `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=ddb7dc274b3d157577d5acb1cd78e0a6`
+    })
   }
 };
