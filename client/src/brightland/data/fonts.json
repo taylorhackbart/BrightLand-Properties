@@ -1,0 +1,469 @@
+{
+  "dsp_spec_version": "0.0.1",
+  "last_updated_by": "",
+  "last_updated": "2020-12-29T20:51:40.055Z",
+  "entities": [
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "9210ca6d-024b-43ab-99a1-e0ab7085f715",
+      "name": "Futura PT — 16pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "c56f51e1-dcbd-4c06-82fb-bd2698775cec",
+        "last_sync": "2020-12-29T20:51:40.053Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "9210ca6d-024b-43ab-99a1-e0ab7085f715",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "9210ca6d-024b-43ab-99a1-e0ab7085f715",
+          "type": "custom",
+          "value": "Heavy",
+          "key": "weight"
+        },
+        {
+          "id": "9210ca6d-024b-43ab-99a1-e0ab7085f715",
+          "type": "size",
+          "value": "16",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "a67414fa-b811-4b43-b1e9-5e859baa7deb",
+      "name": "Futura PT — 20pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "24e2c60a-0b43-4e35-88f3-899b4426c68c",
+        "last_sync": "2020-12-29T20:51:40.053Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "a67414fa-b811-4b43-b1e9-5e859baa7deb",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "a67414fa-b811-4b43-b1e9-5e859baa7deb",
+          "type": "custom",
+          "value": "Heavy",
+          "key": "weight"
+        },
+        {
+          "id": "a67414fa-b811-4b43-b1e9-5e859baa7deb",
+          "type": "size",
+          "value": "20",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "bde25a94-e1c1-4269-ba51-76eefbd8c0cc",
+      "name": "Futura PT — 50pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "8255c90c-3a7d-4936-a9a6-a66e3109e2c0",
+        "last_sync": "2020-12-29T20:51:40.053Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "bde25a94-e1c1-4269-ba51-76eefbd8c0cc",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "bde25a94-e1c1-4269-ba51-76eefbd8c0cc",
+          "type": "custom",
+          "value": "Bold",
+          "key": "weight"
+        },
+        {
+          "id": "bde25a94-e1c1-4269-ba51-76eefbd8c0cc",
+          "type": "size",
+          "value": "50",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "972d1ffe-51ed-465e-8799-a4cec14aee8c",
+      "name": "Futura PT — 16pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "21ba83d9-600e-4243-8b5e-57dfbe8059c3",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "972d1ffe-51ed-465e-8799-a4cec14aee8c",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "972d1ffe-51ed-465e-8799-a4cec14aee8c",
+          "type": "custom",
+          "value": "Heavy",
+          "key": "weight"
+        },
+        {
+          "id": "972d1ffe-51ed-465e-8799-a4cec14aee8c",
+          "type": "size",
+          "value": "16",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "42f919ce-e382-4b26-8e31-5bf836bcee2f",
+      "name": "Futura PT — 30pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "8d1bb91c-36f5-4623-8d77-fd994e386f9d",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "42f919ce-e382-4b26-8e31-5bf836bcee2f",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "42f919ce-e382-4b26-8e31-5bf836bcee2f",
+          "type": "custom",
+          "value": "Heavy",
+          "key": "weight"
+        },
+        {
+          "id": "42f919ce-e382-4b26-8e31-5bf836bcee2f",
+          "type": "size",
+          "value": "30",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "9a013269-1bc2-4dc0-b4e4-a61f8d126ce6",
+      "name": "Futura PT — 65pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "aa7c6347-0bcf-4b96-b4c5-012b6cc22a8b",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "9a013269-1bc2-4dc0-b4e4-a61f8d126ce6",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "9a013269-1bc2-4dc0-b4e4-a61f8d126ce6",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "9a013269-1bc2-4dc0-b4e4-a61f8d126ce6",
+          "type": "size",
+          "value": "65",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "e9c435b6-034e-4094-87d4-a22b04598652",
+      "name": "Futura PT — 18pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "8d2d5a25-f912-4649-9384-5a65e32958dd",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "e9c435b6-034e-4094-87d4-a22b04598652",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "e9c435b6-034e-4094-87d4-a22b04598652",
+          "type": "custom",
+          "value": "Heavy",
+          "key": "weight"
+        },
+        {
+          "id": "e9c435b6-034e-4094-87d4-a22b04598652",
+          "type": "size",
+          "value": "18",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "f2222119-1fcf-4ce1-85f4-f55655d99de7",
+      "name": "Futura PT — 37pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "dc0db062-913a-4eef-b144-34951db9e97d",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "f2222119-1fcf-4ce1-85f4-f55655d99de7",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "f2222119-1fcf-4ce1-85f4-f55655d99de7",
+          "type": "custom",
+          "value": "Bold",
+          "key": "weight"
+        },
+        {
+          "id": "f2222119-1fcf-4ce1-85f4-f55655d99de7",
+          "type": "size",
+          "value": "37",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "c7e27d7c-168e-4400-9947-33988ec659e8",
+      "name": "Futura PT — 26pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "d299b100-e744-4518-9a86-ee15a24185dc",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "c7e27d7c-168e-4400-9947-33988ec659e8",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "c7e27d7c-168e-4400-9947-33988ec659e8",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "c7e27d7c-168e-4400-9947-33988ec659e8",
+          "type": "size",
+          "value": "26",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "37271100-8f18-4212-88df-405051fc160a",
+      "name": "Futura PT — 50pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "9bce5823-633b-47da-b5eb-b903832e6498",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "37271100-8f18-4212-88df-405051fc160a",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "37271100-8f18-4212-88df-405051fc160a",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "37271100-8f18-4212-88df-405051fc160a",
+          "type": "size",
+          "value": "50",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "34a5f434-c78c-4110-bd49-439e94d696c5",
+      "name": "Futura PT — 20pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "6e24f957-17b6-4339-bedb-6791bc6aeaf6",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "34a5f434-c78c-4110-bd49-439e94d696c5",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "34a5f434-c78c-4110-bd49-439e94d696c5",
+          "type": "custom",
+          "value": "Bold",
+          "key": "weight"
+        },
+        {
+          "id": "34a5f434-c78c-4110-bd49-439e94d696c5",
+          "type": "size",
+          "value": "20",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "bfa1289f-7034-4fe8-b18e-d439c1337ea3",
+      "name": "Futura PT — 35pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "8327a0b2-2d25-44a2-8f5a-0b77cbd5dd30",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "bfa1289f-7034-4fe8-b18e-d439c1337ea3",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "bfa1289f-7034-4fe8-b18e-d439c1337ea3",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "bfa1289f-7034-4fe8-b18e-d439c1337ea3",
+          "type": "size",
+          "value": "35",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "cd549627-4b12-4922-9da0-e9419ded0810",
+      "name": "Futura PT — 20pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "aa734706-88a6-4fd0-ac18-e6e000d63030",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "cd549627-4b12-4922-9da0-e9419ded0810",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "cd549627-4b12-4922-9da0-e9419ded0810",
+          "type": "custom",
+          "value": "Book",
+          "key": "weight"
+        },
+        {
+          "id": "cd549627-4b12-4922-9da0-e9419ded0810",
+          "type": "size",
+          "value": "20",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "2a60086a-1c89-45db-9fec-b13c8aa3fc82",
+      "name": "Futura PT — 20pt",
+      "tags": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/a973a80f-72c0-4baf-7a99-177039aa521b",
+        "id": "c1babaa7-6553-48bf-a306-8209be9231e9",
+        "last_sync": "2020-12-29T20:51:40.054Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "2a60086a-1c89-45db-9fec-b13c8aa3fc82",
+          "type": "custom",
+          "value": "Futura PT",
+          "key": "family"
+        },
+        {
+          "id": "2a60086a-1c89-45db-9fec-b13c8aa3fc82",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "2a60086a-1c89-45db-9fec-b13c8aa3fc82",
+          "type": "size",
+          "value": "20",
+          "key": "size"
+        }
+      ]
+    }
+  ]
+}

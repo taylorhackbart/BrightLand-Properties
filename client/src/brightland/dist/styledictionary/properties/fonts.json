@@ -1,0 +1,107 @@
+{
+  "font": {
+    "Futura PT — 16pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Heavy"
+      }
+    },
+    "Futura PT — 20pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Medium"
+      }
+    },
+    "Futura PT — 50pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Medium"
+      }
+    },
+    "Futura PT — 30pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Heavy"
+      }
+    },
+    "Futura PT — 65pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Medium"
+      }
+    },
+    "Futura PT — 18pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Heavy"
+      }
+    },
+    "Futura PT — 37pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Bold"
+      }
+    },
+    "Futura PT — 26pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Medium"
+      }
+    },
+    "Futura PT — 35pt": {
+      "family": {
+        "value": "Futura PT"
+      },
+      "weight": {
+        "value": "Medium"
+      }
+    }
+  },
+  "size": {
+    "font": {
+      "Futura PT — 16pt": {
+        "value": "16"
+      },
+      "Futura PT — 20pt": {
+        "value": "20"
+      },
+      "Futura PT — 50pt": {
+        "value": "50"
+      },
+      "Futura PT — 30pt": {
+        "value": "30"
+      },
+      "Futura PT — 65pt": {
+        "value": "65"
+      },
+      "Futura PT — 18pt": {
+        "value": "18"
+      },
+      "Futura PT — 37pt": {
+        "value": "37"
+      },
+      "Futura PT — 26pt": {
+        "value": "26"
+      },
+      "Futura PT — 35pt": {
+        "value": "35"
+      }
+    }
+  }
+}

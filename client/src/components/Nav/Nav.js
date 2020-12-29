@@ -1,13 +1,14 @@
 import React from "react";
 import "./nav.css"
+import logo from "./logo.png"
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar ">
       <a className="navbar-brand" href="/">
-        BRIGHTLAND 
+        <img className="logo" src={logo}></img>
       </a>
-      <div className= "nav-bar-buttons" style={{float:"right"}}>
+      <div className= "nav-bar-buttons" >
       <a className="navbar-brand" href="/login">
          Employee Login
       </a>

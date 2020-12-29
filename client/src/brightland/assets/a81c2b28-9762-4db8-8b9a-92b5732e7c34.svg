@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="328.603" height="29.431" viewBox="0 0 328.603 29.431">
+  <g id="Share_and_back_arrow" data-name="Share and back arrow" transform="translate(0 0)">
+    <path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back" d="M15.321,18l8.937-8.93a1.688,1.688,0,0,0-2.391-2.384L11.742,16.8a1.685,1.685,0,0,0-.049,2.327L21.86,29.32a1.688,1.688,0,0,0,2.391-2.384Z" transform="translate(-11.251 -0.382)" fill="#fffbfb"/>
+    <g id="Icon_ionic-ios-share" data-name="Icon ionic-ios-share" transform="translate(299.353 -3.382)">
+      <path id="Path_8" data-name="Path 8" d="M26.438,12.375H18.914V22.683a.939.939,0,0,1-.872.942.909.909,0,0,1-.956-.914V12.375H9.563A2.821,2.821,0,0,0,6.75,15.188V29.813a2.821,2.821,0,0,0,2.813,2.813H26.438a2.821,2.821,0,0,0,2.813-2.812V15.188A2.821,2.821,0,0,0,26.438,12.375Z" fill="#f9f6f6"/>
+      <path id="Path_9" data-name="Path 9" d="M18.914,6.476l3.368,3.319a.915.915,0,0,0,1.287-1.3L18.647,3.642a.929.929,0,0,0-.64-.26.872.872,0,0,0-.352.07.977.977,0,0,0-.288.19h0L12.445,8.494a.915.915,0,0,0,1.287,1.3l3.354-3.319v5.9h1.828Z" fill="#f9f6f6"/>
+    </g>
+  </g>
+</svg>

@@ -9,6 +9,9 @@ import LosCerritos from "./images/LosCerritos.png"
 import MtHood from "./images/MtHood.png"
 import Portland from "./images/Portland.png"
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import "./home.css";
+
+
 
 class Home extends Component {
   state = {
@@ -45,7 +48,7 @@ class Home extends Component {
       <div className="container-fluid">
         <div className="row">
           <div>
-           <img src={this.state.imagesArr[this.state.index]} alt="Bend"></img>
+           <img src={this.state.imagesArr[this.state.index]} alt="Bend" className="large-photo"></img>
            <div className='button-container'> 
         <button className='prev-btn' onClick={this.prevPhoto}>
           <FaChevronLeft />
@@ -60,13 +63,13 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-6 col-sm-12">
               <a href="/Bend" >
-                <img src={Bend} ></img>
+                <img className="home-image" src={Bend} ></img>
                 Bend, OR
                 </a>
             </div>
             <div className="col-md-6 col-sm-12">
               <a href="/Cabo" >
-              <img src={Cabo} ></img>
+              <img className="home-image" src={Cabo} ></img>
               Cabo, MX
               </a>
             </div>
@@ -74,12 +77,12 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-6 col-sm-12">
               <a href="/MtHood" >
-              <img src={MtHood} ></img>
+              <img className="home-image" src={MtHood} ></img>
               Mt Hood, OR  </a>
             </div>
             <div className="col-md-6 col-sm-12">
              < a href="/Indio">
-             <img src={Indio} ></img>
+             <img className="home-image" src={Indio} ></img>
               Indio, CA
              </a>
             </div>
@@ -87,13 +90,13 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-6 col-sm-12">
              < a href="/Cerritos">
-             <img src={LosCerritos} ></img>
+             <img className="home-image" src={LosCerritos} ></img>
               Los Cerritos, MX
              </a>
             </div>
             <div className="col-md-6 col-sm-12">
              <a href="/Portland">
-             <img src={Portland} ></img>
+             <img className="home-image" src={Portland} ></img>
               Portland, OR
              </a>
             </div>
@@ -101,13 +104,13 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-6 col-sm-12">
               <a href="/Lapine">
-              <img src={Lapine} ></img>
+              <img className="home-image" src={Lapine} ></img>
               Lapine, OR
               </a>
             </div>
             <div className="col-md-6 col-sm-12">
              <a href="/camping">
-             <img src={Glambing} ></img>
+             <img className="home-image" src={Glambing} ></img>
               Camping in Lapine, OR
              </a>
             </div>
@@ -115,7 +118,7 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-6 col-sm-12">
               <a href="/IndianPalms">
-              <img src={IndianPalms} ></img>
+              <img className="home-image" src={IndianPalms} ></img>
               Indian Palms, CA
               </a>
             </div>

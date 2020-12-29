@@ -1,0 +1,8 @@
+.container-fluid{
+  justify-content: center;
+}
+img{
+  display: block;
+  justify-content: center;
+  align-items: center;
+}

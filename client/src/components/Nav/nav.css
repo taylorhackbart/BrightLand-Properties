@@ -1,3 +1,11 @@
 nav{
   margin-bottom: 30px;
 }
+.logo {
+  height:auto;
+  width: auto;
+}
+.navbar-brand {
+  /* float: right; */
+  color: black
+}

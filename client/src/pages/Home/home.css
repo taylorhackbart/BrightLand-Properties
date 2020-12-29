@@ -1,0 +1,14 @@
+.large-photo{
+  /* width: 200%; */
+  height: 700px; 
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+.home-image {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
