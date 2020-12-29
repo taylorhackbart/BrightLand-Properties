@@ -1,9 +1,7 @@
-.large-photo{
-  /* width: 200%; */
-  height: 700px; 
-  object-fit: cover;
+.center-me{
   display: block;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .home-image {
   height: 150px;

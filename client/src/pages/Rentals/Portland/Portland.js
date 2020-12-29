@@ -43,11 +43,12 @@ class Portland extends Component {
       <>
         <div className="container-fluid">
           <div className="row">
-            <div>
+           <div className="center-me">
               <img
                 src={this.state.imagesArr[this.state.index]}
                 alt="Bend"
               ></img>
+              </div>
               <div className="button-container">
                 <button className="prev-btn" onClick={this.prevPhoto}>
                   <FaChevronLeft />
@@ -55,9 +56,10 @@ class Portland extends Component {
                 <button className="next-btn" onClick={this.nextPhoto}>
                   <FaChevronRight />
                 </button>
-              </div>
+          
             </div>
           </div>
+          <div className="content">
           <Tabs defaultActiveKey="space">
             <Tab eventKey="space" title="The Space">
               Toggle between "The Space" and "Activities" tabs Will have all
@@ -83,6 +85,7 @@ class Portland extends Component {
               block away should you not want a car
             </Tab>
           </Tabs>
+          </div>
         </div>
         <button>Contact</button>
         <button>Book</button>

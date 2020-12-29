@@ -46,11 +46,11 @@ class IndianPalms extends Component {
       <>
         <div className="container-fluid">
           <div className="row">
-            <div>
+            <div className="center-me">
               <img
                 src={this.state.imagesArr[this.state.index]}
                 alt="Bend"
-              ></img>
+              ></img>  </div>
               <div className="button-container">
                 <button className="prev-btn" onClick={this.prevPhoto}>
                   <FaChevronLeft />
@@ -58,7 +58,7 @@ class IndianPalms extends Component {
                 <button className="next-btn" onClick={this.nextPhoto}>
                   <FaChevronRight />
                 </button>
-              </div>
+            
             </div>
           </div>
           <Tabs defaultActiveKey="space">

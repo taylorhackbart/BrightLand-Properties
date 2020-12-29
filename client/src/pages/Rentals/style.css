@@ -1,8 +1,8 @@
-.container-fluid{
+.content{
   justify-content: center;
 }
-img{
+.center-me{
   display: block;
-  justify-content: center;
-  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }

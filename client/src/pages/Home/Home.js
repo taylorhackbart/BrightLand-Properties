@@ -47,8 +47,8 @@ class Home extends Component {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div>
-           <img src={this.state.imagesArr[this.state.index]} alt="Bend" className="large-photo"></img>
+          <div className="center-me">
+           <img src={this.state.imagesArr[this.state.index]} alt="Bend" className="large-photo"></img> </div>
            <div className='button-container'> 
         <button className='prev-btn' onClick={this.prevPhoto}>
           <FaChevronLeft />
@@ -57,7 +57,7 @@ class Home extends Component {
           <FaChevronRight />
         </button>
       </div>
-          </div>
+         
         </div>
         <div className="container">
           <div className="row">
