@@ -1,6 +1,7 @@
 import React from "react";
 import "./nav.css"
 import logo from "./logo.png"
+import {Dropdown, SplitButton} from "react-bootstrap"
 
 function Nav() {
   return (
@@ -15,9 +16,18 @@ function Nav() {
       <a className="navbar-brand" href="/signup">
         SIGN-UP
       </a>
-      <a className="navbar-brand" href="/properties">
-        Properties
-      </a>
+      <SplitButton className="navbar-dropdown" href="/properties" variant="primary" title="Properties">
+        <Dropdown.Item eventKey="1" href="/Bend">Bend, OR</Dropdown.Item>
+        <Dropdown.Item eventKey="2" href="/Cabo">Cabo, MX</Dropdown.Item>
+        <Dropdown.Item eventKey="3" href="/Camping">Camping, OR</Dropdown.Item>
+        <Dropdown.Item eventKey="4" href="/Cerritos">Los Cerritos, MX</Dropdown.Item>
+        <Dropdown.Item eventKey="5" href="/IndianPalms">Indian Palms, CA</Dropdown.Item>
+        <Dropdown.Item eventKey="6" href="/Indio">Indio, CA</Dropdown.Item>
+        <Dropdown.Item eventKey="7" href="/Lapine">La Pine, OR</Dropdown.Item>
+        <Dropdown.Item eventKey="8" href="/MtHood">Mt Hood, OR</Dropdown.Item>
+        <Dropdown.Item eventKey="9" href="/Portland">Portland, OR</Dropdown.Item>
+        
+      </SplitButton>
       <a className="navbar-brand" href="/about">
         About BrightLand
       </a>
