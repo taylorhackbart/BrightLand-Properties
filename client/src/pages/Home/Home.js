@@ -1,137 +1,194 @@
-import React, {Component} from "react";
-import Bend from "./images/Bend.png"
-import Cabo from "./images/Cabo.png"
-import Glambing from "./images/Glambing.png"
-import IndianPalms from "./images/IndianPalms.png"
-import Indio from "./images/Indio.png"
-import Lapine from "./images/Lapine.png"
-import LosCerritos from "./images/LosCerritos.png"
-import MtHood from "./images/MtHood.png"
-import Portland from "./images/Portland.png"
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { Component } from "react";
+import Bend from "./images/Bend.jpg";
+import Cabo from "./images/Cabo.jpg";
+import Glambing from "./images/Glambing.jpg";
+import IndianPalms from "./images/IndianPalms.jpg";
+import Indio from "./images/Indio.jpg";
+import Lapine from "./images/Lapine.png";
+import LosCerritos from "./images/LosCerritos.jpg";
+import MtHood from "./images/MtHood.jpg";
+import Portland from "./images/Portland.jpg";
 import "./home.css";
-
-
 
 class Home extends Component {
   state = {
-   imagesArr : [Bend, Cabo, Glambing, IndianPalms, Indio, Lapine, LosCerritos, MtHood, Portland],
-   index: 0
+    imagesArr: [
+      Bend,
+      Cabo,
+      Glambing,
+      IndianPalms,
+      Indio,
+      Lapine,
+      LosCerritos,
+      MtHood,
+      Portland,
+    ],
+    index: 0,
+    descriptionArr:[
+      "BEND, OR",
+      "CABO, MX",
+      "GLAMBING IN OREGON",
+      "INDIAN PALMS, CA",
+      "INDIO, CA",
+      "LA PINE, CA",
+      "LOS CERRITOS, MX",
+      "MT HOOD, OR",
+      "PORTLAND, OR"
+    ]
+  };
+  handleClick =()=>{
+    this.setState({index: this.state.index})
   }
-
- nextPhoto = () => {
-    if (this.state.index +1 === this.state.imagesArr.length) {
+  nextPhoto = (e) => {
+    e.preventDefault()
+    if (this.state.index + 1 === this.state.imagesArr.length) {
       this.setState({
-        index:0
-      })
+        index: 0,
+      });
     } else {
       this.setState({
-        index: this.state.index +1
-      })
+        index: this.state.index + 1,
+      });
     }
-    }
-  
-  prevPhoto = () => {
+  };
+
+  prevPhoto = (e) => {
+    e.preventDefault()
     if (this.state.index - 1 === -1) {
       this.setState({
-        index: this.state.imagesArr.length - 1
-      })
+        index: this.state.imagesArr.length - 1,
+      });
     } else {
       this.setState({
-        index: this.state.index - 1
-      })
+        index: this.state.index - 1,
+      });
     }
-  }
-  render(){
-  return (
-    <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="center-me">
-           <img src={this.state.imagesArr[this.state.index]} alt="Bend" className="large-photo"></img> </div>
-           <div className='button-container'> 
-        <button className='prev-btn' onClick={this.prevPhoto}>
-          <FaChevronLeft />
-        </button>
-        <button className='next-btn' onClick={this.nextPhoto}>
-          <FaChevronRight />
-        </button>
-      </div>
-         
-        </div>
-        <div className="container">
+  };
+  render() {
+    return (
+      <>
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-6 col-sm-12">
-              <a href="/Bend" >
-                <img className="home-image" src={Bend} ></img>
-                Bend, OR
+            <div className="col-md-12 center-me">
+              <div
+                id="carouselExampleIndicators"
+                className="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                    <img
+                      src={this.state.imagesArr[this.state.index]}
+                      className="d-block w-100 large-photo"
+                      alt="..."
+                      
+                    />
+                    <h2 className="descriptionArr"> {this.state.descriptionArr[this.state.index]}</h2>
+                  </div>
+                </div>
+
+                <a
+                  className="carousel-control-prev"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-bs-slide="prev"
+                  onClick={this.prevPhoto}
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
                 </a>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <a href="/Cabo" >
-              <img className="home-image" src={Cabo} ></img>
-              Cabo, MX
-              </a>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 col-sm-12">
-              <a href="/MtHood" >
-              <img className="home-image" src={MtHood} ></img>
-              Mt Hood, OR  </a>
-            </div>
-            <div className="col-md-6 col-sm-12">
-             < a href="/Indio">
-             <img className="home-image" src={Indio} ></img>
-              Indio, CA
-             </a>
+                <a
+                  className="carousel-control-next"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-bs-slide="next"
+                  onClick={this.nextPhoto}
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
+                </a>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-6 col-sm-12">
-             < a href="/Cerritos">
-             <img className="home-image" src={LosCerritos} ></img>
-              Los Cerritos, MX
-             </a>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <a href="/Bend">
+                  <span>
+                    <img className="home-image" src={Bend}></img>
+                    <h2 className="smallDesc">Bend, OR</h2>
+                  </span>
+                </a>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <a href="/Cabo">
+                  <img className="home-image" src={Cabo}></img>
+                  <h2 className="smallDesc">Cabo, MX</h2>
+                </a>
+              </div>
             </div>
-            <div className="col-md-6 col-sm-12">
-             <a href="/Portland">
-             <img className="home-image" src={Portland} ></img>
-              Portland, OR
-             </a>
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <a href="/MtHood">
+                  <img className="home-image" src={MtHood}></img>
+                  <h2 className="smallDesc">Mt. Hood, OR</h2>
+                </a>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <a href="/Indio">
+                  <img className="home-image" src={Indio}></img>
+                  <h2 className="smallDesc">Indio, CA</h2>
+                </a>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <a href="/Cerritos">
+                  <img className="home-image" src={LosCerritos}></img>
+                  <h2 className="smallDesc">Los Cerritos, MX</h2>
+                </a>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <a href="/Portland">
+                  <img className="home-image" src={Portland}></img>
+                  <h2 className="smallDesc">Portland, OR</h2>
+                </a>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <a href="/Lapine">
+                  <img className="home-image" src={Lapine}></img>
+                  <h2 className="smallDesc">La Pine, OR</h2>
+                </a>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <a href="/camping">
+                  <img className="home-image" src={Glambing}></img>
+                  <h2 className="smallDesc">Glamping in Oregon</h2>
+                </a>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6 col-sm-12">
+                <a href="/IndianPalms">
+                  <img className="home-image" src={IndianPalms}></img>
+                  <h2 className="smallDesc">Indian Palms, CA</h2>
+                </a>
+              </div>
+              <div className="col-md-6 col-sm-12"></div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-6 col-sm-12">
-              <a href="/Lapine">
-              <img className="home-image" src={Lapine} ></img>
-              Lapine, OR
-              </a>
-            </div>
-            <div className="col-md-6 col-sm-12">
-             <a href="/camping">
-             <img className="home-image" src={Glambing} ></img>
-              Camping in Lapine, OR
-             </a>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 col-sm-12">
-              <a href="/IndianPalms">
-              <img className="home-image" src={IndianPalms} ></img>
-              Indian Palms, CA
-              </a>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              
-            </div>
-          </div>
-        
         </div>
-      </div>
-    </>
-  );
-}
+      </>
+    );
+  }
 }
 
 export default Home;

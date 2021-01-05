@@ -14,6 +14,8 @@ import About from "./pages/About"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import { BrowserRouter, Route } from "react-router-dom";
+import Properties from "./pages/Rentals/Properties"
+import NewRental from "./pages/NewRental"
 
 
 function App() {
@@ -32,9 +34,11 @@ function App() {
         {/* <Route exact path="/Rentals" component={Rentals} /> */}
         <Route exact path="/MtHood" component={MtHood} />
         <Route exact path="/Portland" component={Portland} />
+        <Route exact path="/Properties" component={Properties} />
         <Route exact path="/about" component={About} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path= "/new" component={NewRental}/>
       </div>
     </BrowserRouter>
   );

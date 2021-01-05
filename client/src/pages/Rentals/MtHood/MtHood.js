@@ -45,20 +45,52 @@ class MtHood extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="center-me">
-              <img
-                src={this.state.imagesArr[this.state.index]}
-                alt="Bend"
-              ></img>
-              <div className="button-container">
-                <button className="prev-btn" onClick={this.prevPhoto}>
-                  <FaChevronLeft />
-                </button>
-                <button className="next-btn" onClick={this.nextPhoto}>
-                  <FaChevronRight />
-                </button>
+            <div
+               
+                className="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <div className="carousel-item active rental-photo">
+                    <img
+                      src={this.state.imagesArr[this.state.index]}
+                      className="d-block w-100 large-rental-photo"
+                      alt="..."
+                      
+                    />
+                  </div>
+                </div>
+
+                <a
+                  className="carousel-control-prev"
+                  
+                  role="button"
+                  data-bs-slide="prev"
+                  onClick={this.prevPhoto}
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
+                </a>
+                <a
+                  className="carousel-control-next"
+                  
+                  role="button"
+                  data-bs-slide="next"
+                  onClick={this.nextPhoto}
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
+                </a>
               </div>
             </div>
-          </div>
+            </div>
+            <div className="content-box">
           <Tabs defaultActiveKey="space">
             <Tab eventKey="space" title="The Space">
               The room is equipped with a private kitchen and bathroom. The room
@@ -84,9 +116,10 @@ class MtHood extends Component {
               table.
             </Tab>
           </Tabs>
+          </div>
+        <button className="contact-btn">Contact</button>
+        <button className="book-btn"> Book </button>
         </div>
-        <button>Contact</button>
-        <button>Book</button>
       </>
     );
   }

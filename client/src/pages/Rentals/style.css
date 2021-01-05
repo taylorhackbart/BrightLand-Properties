@@ -1,8 +1,43 @@
 .content{
   justify-content: center;
 }
-.center-me{
+.center-me {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.rental-photo{
+  height: 100%;
+  width: 90%;
+  object-fit: cover;
+  margin: auto;
+}
+.content-box{
+  width: 100%;
+  max-height: 300px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin: auto;
+  overflow-y: auto;
+  
+}
+
+.contact-btn{
+  bottom: 0;
+  border-radius: 12px;
+  background-color: white;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.book-btn{
+  border-radius: 10px;
+  float: right;
+  background-color: blue;
+  color: white;
+  font-weight: 150;
+  font-style: bold;
+  border: none;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-top: 10px;
 }

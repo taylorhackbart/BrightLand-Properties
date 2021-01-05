@@ -1,7 +1,12 @@
-.center-me{
+.large-photo{
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
+  position: relative;
+  height: 600px;
+  width: 100%;
+  object-fit: cover;
 }
 .home-image {
   height: 150px;
@@ -9,4 +14,34 @@
   object-fit: cover;
   display: block;
   margin: auto;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0px;
+  border-radius: 15px;
 }
+.overflow-text{
+  position: absolute;
+  top: 0;
+}
+h2.descriptionArr{
+  margin-top: -90px;
+  margin-bottom: 50px;
+  position:absolute;
+  color: white;
+  margin-left: 10px;
+}
+h2.smallDesc{
+  margin-top: -50px;
+  color: white;
+  position: absolute;
+  font-size: 20px;
+  margin-left: 5px;
+
+}
+
+/* li.active::after{
+  background-color: red;
+  bottom: 0;
+  display: block;
+  size: 3in;
+} */

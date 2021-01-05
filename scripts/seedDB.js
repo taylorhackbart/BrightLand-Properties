@@ -13,7 +13,18 @@ const rentalSeed = [
     location: "Bend, OR",
     description: "The Bend Riverside Inn & Suites offers stunning views of the infamous Deschutes River. The property includes a large indoor, heated pool and hot tub, laundry on-site, dozens of walking trails along the Deschutes, and easy access to downtown. Of course, the rooms come with free wifi, and two TVs with cable. The condo comes with two beds, two bathrooms, and a full kitchen.",  
     activities: "Riverside Bend getaway is located right on the Deschutes River in; no better way to start the morning than to look out and enjoy the view of the river. With only a few short blocks you'll be able to walk to some of the Bend’s finest shops and restaurants. Bend is known for a fabulous dinner out, with many cuisine options to choose from. Shops and merchants feature local artists from around the state of Oregon.",
-    images: "none" 
+    images: [
+      "/client/src/pages/Rentals/Cabo/images/img1.png",
+      "/client/src/pages/Rentals/Cabo/images/img2.png",
+      "/client/src/pages/Rentals/Cabo/images/img3.png",
+      "/client/src/pages/Rentals/Cabo/images/img4.png",
+      "/client/src/pages/Rentals/Cabo/images/img5.png",
+      "/client/src/pages/Rentals/Cabo/images/img6.png",
+      "/client/src/pages/Rentals/Cabo/images/img7.png",
+      "/client/src/pages/Rentals/Cabo/images/img8.png",
+      "/client/src/pages/Rentals/Cabo/images/img9.png",
+      "/client/src/pages/Rentals/Cabo/images/img10.png",
+    ]
   },
   {
     location: "Cabo, MX",

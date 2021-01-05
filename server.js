@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.use("/uploads", express.static("uploads"))
 // const jwt = require('express-jwt');
 // const jwtAuthz = require('express-jwt-authz');
 // const jwksRsa = require('jwks-rsa');
@@ -54,7 +55,28 @@ mongoose.connect(
 //   issuer: `https://dev-wsnlulqw/`,
 //   algorithms: ['RS256']
 // });
+// const path = require("path");
+// const multer = require("multer");
 
+// const storage = multer.diskStorage({
+//    destination: "./public/uploads/",
+//    filename: function(req, file, cb){
+//       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+//    }
+// });
+
+// const upload = multer({
+//    storage: storage,
+//    limits:{fileSize: 1000000},
+// }).single("myImage");
+// const router = express.Router();
+// router.post("/upload", upload(req, res => {
+//       console.log("Request ---", req.body);
+//       console.log("Request file ---", req.file)
+//       if(!err)
+//          return res.send(200).end();
+//    })
+// );
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

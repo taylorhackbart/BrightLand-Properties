@@ -11,12 +11,10 @@ function Nav() {
       </a>
       <div className= "nav-bar-buttons" >
       <a className="navbar-brand" href="/login">
-         Employee Login
+         Employee Login (Inicio de sesión del empleado)
       </a>
-      <a className="navbar-brand" href="/signup">
-        SIGN-UP
-      </a>
-      <SplitButton className="navbar-dropdown" href="/properties" variant="primary" title="Properties">
+      <SplitButton className="navbar-dropdown" href="/" variant="primary" title="Properties (
+Alquiler de propiedad)">
         <Dropdown.Item eventKey="1" href="/Bend">Bend, OR</Dropdown.Item>
         <Dropdown.Item eventKey="2" href="/Cabo">Cabo, MX</Dropdown.Item>
         <Dropdown.Item eventKey="3" href="/Camping">Camping, OR</Dropdown.Item>
@@ -28,9 +26,6 @@ function Nav() {
         <Dropdown.Item eventKey="9" href="/Portland">Portland, OR</Dropdown.Item>
         
       </SplitButton>
-      <a className="navbar-brand" href="/about">
-        About BrightLand
-      </a>
       </div>
     </nav>
   );

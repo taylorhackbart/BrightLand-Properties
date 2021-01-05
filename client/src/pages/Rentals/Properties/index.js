@@ -1,45 +1,57 @@
-import React, { Component } from "react";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
-import img3 from "./images/img3.png";
-import img4 from "./images/img4.png";
-import img5 from "./images/img5.png";
+import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
-import HorizontalScroll from "react-scroll-horizontal";
+import API from "../../../utils/API"
+// import HorizontalScroll from "react-scroll-horizontal";
 
-class Bend extends Component {
-  state = {
-    imagesArr: [img1, img2, img3, img4, img5],
-    index: 0,
-  };
+function Properties() {
+  const [property, setProperty] = useState({
+    location: "",
+    description: "",
+    activities: "",
+    images: "",
+  })
+  const [index, setIndex] = useState(0)
 
-  nextPhoto = () => {
-    if (this.state.index + 1 === this.state.imagesArr.length) {
-      this.setState({
-        index: 0,
-      });
-    } else {
-      this.setState({
-        index: this.state.index + 1,
-      });
+  useEffect(()=> {
+    loadRentals();
+  }, []);
+
+  const loadRentals = () => {
+   API.getProperty()
+   .then(resp => {
+     console.log(resp)
+     setProperty(resp.data[0]);
+     setIndex(resp.data[index])
+   })
+   .catch((err) => console.log(err)
+   )}
+
+   const checkNumber = (number) => {
+    if (number > property.length - 1) {
+      return 0;
     }
+    if (number < 0) {
+      return property.length - 1;
+    }
+    return number;
   };
 
-  prevPhoto = () => {
-    if (this.state.index - 1 === -1) {
-      this.setState({
-        index: this.state.imagesArr.length - 1,
-      });
-    } else {
-      this.setState({
-        index: this.state.index - 1,
-      });
-    }
+  const nextPhoto = () => {
+      setIndex((index) => {
+        let newIndex = index + 1
+        return checkNumber(newIndex)
+      })
   };
-  render() {
-    const child = { width: `30em`, height: `100%` };
+
+  const prevPhoto = () => {
+    setIndex((index) => {
+      let newIndex = index - 1;
+      return checkNumber(newIndex);
+    });
+  };
+
  
     return (
       <>
@@ -49,27 +61,26 @@ class Bend extends Component {
 
 
               <img
-                style={child}
-                src={this.state.imagesArr[this.state.index]}
+                src={property.images}
                 alt="Bend"
               ></img>
 
             </div>
             <div className="button-container">
-              <button className="prev-btn" onClick={this.prevPhoto}>
+              <button className="prev-btn" onClick={prevPhoto}>
                 <FaChevronLeft />
               </button>
-              <button className="next-btn" onClick={this.nextPhoto}>
+              <button className="next-btn" onClick={nextPhoto}>
                 <FaChevronRight />
               </button>
             </div>
           </div>
           <Tabs defaultActiveKey="space" id="noanim-tab-example">
             <Tab eventKey="space" title="The Space">
-            
+            {property.description}
             </Tab>
             <Tab eventKey="activities" title="Activities">
-             
+             {property.activities}
             </Tab>
           </Tabs>
         </div>
@@ -78,6 +89,5 @@ class Bend extends Component {
       </>
     );
   }
-}
 
-export default Bend;
+export default Properties;

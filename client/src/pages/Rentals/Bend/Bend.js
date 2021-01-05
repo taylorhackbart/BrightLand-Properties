@@ -7,7 +7,7 @@ import img5 from "./images/img5.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
-import HorizontalScroll from "react-scroll-horizontal";
+
 
 class Bend extends Component {
   state = {
@@ -46,24 +46,52 @@ class Bend extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="center-me">
+            <div
+                id="carouselExampleIndicators"
+                className="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                    <img
+                      src={this.state.imagesArr[this.state.index]}
+                      className="d-block w-100 large-rental-photo"
+                      alt="..."
+                      
+                    />
+                  </div>
+                </div>
 
-
-              <img
-                style={child}
-                src={this.state.imagesArr[this.state.index]}
-                alt="Bend"
-              ></img>
-
+                <a
+                  className="carousel-control-prev"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-bs-slide="prev"
+                  onClick={this.prevPhoto}
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
+                </a>
+                <a
+                  className="carousel-control-next"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-bs-slide="next"
+                  onClick={this.nextPhoto}
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span className="visually-hidden"></span>
+                </a>
+              </div>
             </div>
-            <div className="button-container">
-              <button className="prev-btn" onClick={this.prevPhoto}>
-                <FaChevronLeft />
-              </button>
-              <button className="next-btn" onClick={this.nextPhoto}>
-                <FaChevronRight />
-              </button>
             </div>
-          </div>
+       
           <Tabs defaultActiveKey="space" id="noanim-tab-example">
             <Tab eventKey="space" title="The Space">
               Toggle between "The Space" and "Activities" tabs Will have all
