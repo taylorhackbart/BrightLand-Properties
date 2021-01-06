@@ -1,13 +1,43 @@
 const express = require("express");
-
+// const fileUpload = require("express-fileupload")
+const cors = require("cors")
+const morgan = require("morgan")
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-app.use("/uploads", express.static("uploads"))
-// const jwt = require('express-jwt');
-// const jwtAuthz = require('express-jwt-authz');
-// const jwksRsa = require('jwks-rsa');
+require('dotenv').config()
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// app.use(fileUpload({
+//   createParentPath: true
+// }))
+app.use(cors());
+app.use(morgan("dev"))
+
+// app.post("/picture", async (req, res) => {
+//   try{
+//     if(!req.files){
+//       res.send({
+//         status: false,
+//         message: "No files"
+//       })
+//     } else {
+//       const {picture} = req.files
+//       picture.mv("./upload/s" + picture.name)
+//       res.send({
+//         status: true,
+//         message: "File has been uploaded"
+//       })
+//     }
+//   } catch (e) {
+//     res.status(500).send(e)
+//   }
+// })
+
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -19,64 +49,17 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: true
+}
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/brightland"
+  process.env.MONGODB_URI || "mongodb://localhost/brightland", options
 );
 
-// const { auth } = require('express-openid-connect');
-
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: 'a long, randomly-generated string stored in env',
-//   baseURL: 'http://localhost:3000',
-//   clientID: 'cC144JF9f9R3FPtP9eLCeUk8twmHe6pC',
-//   issuerBaseURL: 'https://dev-wsnlulqw.us.auth0.com'
-// };
-
-// // auth router attaches /login, /logout, and /callback routes to the baseURL
-// app.use(auth(config));
-
-// // req.isAuthenticated is provided from the auth router
-// app.get('/', (req, res) => {
-//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-// });
-
-// const checkJwt = jwt({
-//   secret: jwksRsa.expressJwtSecret({
-//     cache: true,
-//     rateLimit: true,
-//     jwksRequestsPerMinute: 5,
-//     jwksUri: `https://dev-wsnlulqw/.well-known/jwks.json`
-//   }),
-
-//   audience: 'YOUR_API_IDENTIFIER',
-//   issuer: `https://dev-wsnlulqw/`,
-//   algorithms: ['RS256']
-// });
-// const path = require("path");
-// const multer = require("multer");
-
-// const storage = multer.diskStorage({
-//    destination: "./public/uploads/",
-//    filename: function(req, file, cb){
-//       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
-//    }
-// });
-
-// const upload = multer({
-//    storage: storage,
-//    limits:{fileSize: 1000000},
-// }).single("myImage");
-// const router = express.Router();
-// router.post("/upload", upload(req, res => {
-//       console.log("Request ---", req.body);
-//       console.log("Request file ---", req.file)
-//       if(!err)
-//          return res.send(200).end();
-//    })
-// );
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

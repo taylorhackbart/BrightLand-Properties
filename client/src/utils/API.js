@@ -16,5 +16,20 @@ export default {
   // Saves a Property to the database
   saveProperty: function(PropertyData) {
     return axios.post("/api/property", PropertyData);
+  },
+  getImage: function(){
+    return axios.get("/api/image")
+  },
+
+  uploadImage: function(data){
+    return axios.post('/api/image', data)
+  },
+
+  getImages: function(){
+    return axios.get('/api/cloud')
+  },
+
+  sendToCloud: function(formData){
+    return axios.post('/api/cloud', formData)
   }
 };

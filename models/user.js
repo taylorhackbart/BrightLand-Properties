@@ -5,8 +5,14 @@ const rentalSchema = new Schema({
   location: { type: String, required: true },
   description: { type: String, required: true },
   activities: {type: String, required: true},
-  imageName: {type: String, required: true},
-  imageData:{ type: String, required: true}
+  link: {type: String, required: false},
+  imageUrl: {
+    type: String,
+  },
+  userCreated: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Rental = mongoose.model("Rental", rentalSchema);

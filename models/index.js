@@ -1,3 +1,4 @@
 module.exports = {
-  Rental: require("./user")
+  Rental: require("./user"),
+  Images: require("./images")
 };
