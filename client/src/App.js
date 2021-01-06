@@ -15,8 +15,8 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import { BrowserRouter, Route } from "react-router-dom";
 import Properties from "./pages/Rentals/Properties"
-import NewRental from "./pages/NewRental"
-
+import NewRental from "./pages/NewRental/images.js"
+import Base from "./pages/NewRental/base.js"
 
 function App() {
   return (
@@ -38,7 +38,8 @@ function App() {
         <Route exact path="/about" component={About} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path= "/new" component={NewRental}/>
+        <Route exact path= {"/images/name/:location"} component={NewRental}/>
+        <Route exact path = "/new" component={Base} />
       </div>
     </BrowserRouter>
   );

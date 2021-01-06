@@ -22,7 +22,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Rental
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id } || {location: req.params.location}, {$set:{imgUrl: req.body.imgUrl}}, {new:true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -30,6 +30,12 @@ module.exports = {
     db.Rental
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findAllByName: function(req, res){
+    db.Rental 
+      .find({location: req.params.location})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

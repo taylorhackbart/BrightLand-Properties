@@ -9,9 +9,15 @@ export default {
   getProperties: function(id) {
     return axios.get("/api/property/" + id);
   },
+  getPropertiesByName: function(location) {
+    return axios.get("/api/property/name/" + location);
+  },
   // Deletes the Property with the given id
   deleteProperty: function(id) {
     return axios.delete("/api/property/" + id);
+  },
+  updateProperty: function (id,userData) {
+    return axios.put("/api/property/" + id,userData)
   },
   // Saves a Property to the database
   saveProperty: function(PropertyData) {

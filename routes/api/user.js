@@ -13,4 +13,9 @@ router
   .put(rentalController.update)
   .delete(rentalController.remove);
 
+  router
+.route("/name/:location")
+.get(rentalController.findAllByName)
+.put(rentalController.update)
+
 module.exports = router;
