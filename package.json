@@ -18,6 +18,7 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.2.0",
     "axios": "^0.21.0",
     "cloudinary": "^1.23.0",
     "cors": "^2.8.5",

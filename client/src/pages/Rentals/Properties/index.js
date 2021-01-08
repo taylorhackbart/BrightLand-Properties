@@ -3,38 +3,39 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
 import API from "../../../utils/API"
+import {  useParams } from "react-router-dom";
 
 function Properties() {
-  const [propertyArr, setPropertyArr] = useState([])
+  // const [propertyArr, setPropertyArr] = useState([])
   const [index, setIndex] = useState(0)
   const [rental, setRental] = useState({})
-
+  const params = useParams();
   useEffect(()=> {
     loadRentals();
-  }, [index]);
+  }, []);
 
   const loadRentals = () => {
-   API.getProperty()
+   API.getPropertiesByName(params.location)
    .then(resp => {
-     console.log(resp.data)
-     setPropertyArr(resp.data);
-     setRental(resp.data[index])
+    //  console.log(resp.data[0])
+     setRental(resp.data[0]);
+    //  setRental(resp.data[index])
    })
    .catch((err) => console.log(err)
    )}
 
    const checkNumber = (number) => {
-    if (number > propertyArr.length - 1) {
+    if (number > rental.imageUrl.length - 1) {
       return 0;
     }
     if (number < 0) {
-      return propertyArr.length - 1;
+      return rental.imageUrl.length - 1;
     }
     return number;
   };
 
   const nextPhoto = () => {
-    console.log(propertyArr)
+    // console.log(rental.imageUrl)
       setIndex((index) => {
         let newIndex = index + 1
         return checkNumber(newIndex)
@@ -47,7 +48,21 @@ function Properties() {
       return checkNumber(newIndex);
     });
   };
-
+  const updateInfo = (event) => {
+    const { name, value } = event.target;
+    API.updateProperty(rental._id, rental)
+          .then((res) => {
+            setRental({ ...rental, [name]: value });
+            console.log(res);
+          })
+          .catch((err) => {
+            throw err;
+          });
+  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setRental({ ...rental, [name]: value })
+  };
  
     return (
       <>
@@ -61,12 +76,12 @@ function Properties() {
              >
                <div className="carousel-inner">
                  <div className="carousel-item active rental-photo">
-                   <img
-                     src={rental.images}
+                   {/* <img
+                     src={rental.imageUrl[index]}
                      className="d-block w-100 large-rental-photo"
                      alt="..."
                      
-                   />
+                   /> */}
                  </div>
                </div>
 
@@ -100,14 +115,29 @@ function Properties() {
            </div>
            </div>
           <Tabs defaultActiveKey="space" id="noanim-tab-example">
-            <Tab eventKey="space" title="The Space">
+            <Tab eventKey="space" title="The Space" >
+     
             {rental.description}
+  
+            <button onClick={updateInfo}> update me </button>
             </Tab>
-            <Tab eventKey="activities" title="Activities">
+            <Tab eventKey="activities" title="Activities" defaultValue = {rental.activities}>
              {rental.activities}
             </Tab>
           </Tabs>
+          
         </div>
+        {/* <Tabs defaultActiveKey="space" id="noanim-tab-example">
+            <Tab eventKey="space" title="The Space" onChange={handleInputChange} defaultValue = {rental.description}>
+     
+            <input>{rental.description} </input>
+  
+            <button onClick={updateInfo}> update me </button>
+            </Tab>
+            <Tab eventKey="activities" title="Activities" defaultValue = {rental.activities}>
+             {rental.activities}
+            </Tab>
+          </Tabs> */}
         <button className="contact-btn">Contact</button>
         <a href={rental.link}>
         <button className="book-btn">Book</button>

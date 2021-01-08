@@ -22,7 +22,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Rental
-      .findOneAndUpdate({ _id: req.params.id } || {location: req.params.location}, {$set:{imgUrl: req.body.imgUrl}}, {new:true})
+      .findOneAndUpdate({ _id: req.params.id } || {location: req.params.location}, {$set:{imageUrl: req.body.imageUrl}}, {new:true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
