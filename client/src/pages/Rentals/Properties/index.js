@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
 import API from "../../../utils/API"
 import {  useParams } from "react-router-dom";
 
 function Properties() {
-  // const [propertyArr, setPropertyArr] = useState([])
   const [index, setIndex] = useState(0)
   const [rental, setRental] = useState({})
+  const [loading, setLoading] = useState(true)
   const params = useParams();
   useEffect(()=> {
     loadRentals();
@@ -17,9 +16,8 @@ function Properties() {
   const loadRentals = () => {
    API.getPropertiesByName(params.location)
    .then(resp => {
-    //  console.log(resp.data[0])
      setRental(resp.data[0]);
-    //  setRental(resp.data[index])
+     setLoading(false)
    })
    .catch((err) => console.log(err)
    )}
@@ -35,7 +33,6 @@ function Properties() {
   };
 
   const nextPhoto = () => {
-    // console.log(rental.imageUrl)
       setIndex((index) => {
         let newIndex = index + 1
         return checkNumber(newIndex)
@@ -59,13 +56,14 @@ function Properties() {
             throw err;
           });
   }
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setRental({ ...rental, [name]: value })
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setRental({ ...rental, [name]: value })
+  // };
  
     return (
       <>
+      
         <div className="container-fluid">
           <div className="row">
             <div className="center-me">
@@ -76,12 +74,14 @@ function Properties() {
              >
                <div className="carousel-inner">
                  <div className="carousel-item active rental-photo">
-                   {/* <img
+                 {loading === false &&
+                   <img
                      src={rental.imageUrl[index]}
                      className="d-block w-100 large-rental-photo"
                      alt="..."
-                     
-                   /> */}
+                     ref={rental.imageUrl}
+                   />
+                 }
                  </div>
                </div>
 
@@ -142,6 +142,7 @@ function Properties() {
         <a href={rental.link}>
         <button className="book-btn">Book</button>
         </a>
+
       </>
     );
   }

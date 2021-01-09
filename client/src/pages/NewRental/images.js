@@ -12,12 +12,14 @@ function NewRental() {
     activities: "",
     imageUrl: [],
   });
+  const [loading, setLoading] = useState(true)
   // const [state, setState] = useState("");
 
   const params = useParams();
 
   useEffect(async () => {
     await loadPropertyInfo();
+    setLoading(true)
   }, [params]);
 
   function onUpload(e) {
@@ -33,7 +35,8 @@ function NewRental() {
   };
 
   const onSend = (e) => {
-    e.preventDefault()
+    setLoading(true)
+    e.preventDefault();
     const file = fileInput.current.files[0];
     setRental({ ...file });
     const formData = new FormData();
@@ -47,6 +50,7 @@ function NewRental() {
       newArr.push(imgLink);
       // console.log(newArr);
       //created a new async function here to await the response from the new link for the new array
+      setLoading(false)
       const startUpdate = async () => {
         await API.updateProperty(rental._id, rental)
           .then((res) => {
@@ -59,20 +63,10 @@ function NewRental() {
           });
       };
       startUpdate();
-      // showPhotos();
     });
   };
 
-  // const showPhotos = () => {
-  //   API.getPropertiesByName(params.location).then((res) => console.log(res));
-  // };
-  // const delPhoto = (e) => {
-  //   var newArr = rental.imageUrl.filter((id) => {return e.target.id !== id._id});
-  //   setRental({ ...rental, imageUrl: newArr });
-  //   API.updateProperty(rental._id, rental)
-  //     .then((res) => console.log(res))
-  //     .catch((err) => { throw err });
-  // };
+ 
 
   return (
     <>
@@ -85,51 +79,22 @@ function NewRental() {
           <button type="submit" onClick={onSend} value="Submit">
             Upload
           </button>
+          { loading === false &&
+            <div> photo has been uploaded</div>
+            } 
+            { loading === true && 
+              <div> waiting..... </div>
+            
+            }
           
-          {/* <div onChange={showPhotos}>{rental.imageUrl.length} photos have been uploaded</div> */}
-
-
         </form>
       </div>
       <div>
         <div>
-          <Link to={"/preview/" + rental._id} >
-          <button> I am done uploading photos </button>
-
+          <Link to={"/preview/" + rental._id}>
+            <button> I am done uploading photos </button>
           </Link>
         </div>
-        {/* <List key={rental.imageUrl}>
-          <ListItem>
-            <img src={rental.imageUrl[0]} alt="..."></img>
-            <button
-                      className="delete-button"
-                      id={rental._id}
-                      onClick={delPhoto}
-                    >
-                      X
-                    </button>
-          </ListItem>
-          <ListItem>
-            <img src={rental.imageUrl[1]} alt="..."></img>
-            <button
-                      className="delete-button"
-                      id={rental._id}
-                      onClick={delPhoto}
-                    >
-                      X
-                    </button>
-          </ListItem>
-          <ListItem>
-            <img src={rental.imageUrl[2]} alt="..."></img>
-            <button
-                      className="delete-button"
-                      id={rental._id}
-                      onClick={delPhoto}
-                    >
-                      X
-                    </button>
-          </ListItem>
-        </List> */}
       </div>
     </>
   );
