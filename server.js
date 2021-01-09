@@ -1,5 +1,4 @@
 const express = require("express");
-// const fileUpload = require("express-fileupload")
 const cors = require("cors")
 const morgan = require("morgan")
 const mongoose = require("mongoose");
@@ -11,31 +10,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// app.use(fileUpload({
-//   createParentPath: true
-// }))
 app.use(cors());
 app.use(morgan("dev"))
-
-// app.post("/picture", async (req, res) => {
-//   try{
-//     if(!req.files){
-//       res.send({
-//         status: false,
-//         message: "No files"
-//       })
-//     } else {
-//       const {picture} = req.files
-//       picture.mv("./upload/s" + picture.name)
-//       res.send({
-//         status: true,
-//         message: "File has been uploaded"
-//       })
-//     }
-//   } catch (e) {
-//     res.status(500).send(e)
-//   }
-// })
 
 
 

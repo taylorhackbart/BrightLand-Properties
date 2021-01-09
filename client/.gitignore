@@ -8,3 +8,4 @@ node_modules
 /src/pages/Rentals/Lapine
 /src/pages/Rentals/MtHood
 /src/pages/Rentals/Portland
+.env
