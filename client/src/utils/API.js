@@ -37,5 +37,14 @@ export default {
 
   sendToCloud: function(formData){
     return axios.post('/api/cloud', formData)
+  },
+  saveUser: function(userData){
+    return axios.post("/api/login", userData)
+  },
+  getUsers: function() {
+    return axios.get("/api/login")
+  },
+  getUserByName: function(name) {
+    return axios.get("/api/login/" + name)
   }
 };

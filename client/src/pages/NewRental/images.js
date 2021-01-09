@@ -92,12 +92,12 @@ function NewRental() {
         </form>
       </div>
       <div>
-        {/* <div>
+        <div>
           <Link to={"/preview/" + rental._id} >
           <button> I am done uploading photos </button>
 
           </Link>
-        </div> */}
+        </div>
         {/* <List key={rental.imageUrl}>
           <ListItem>
             <img src={rental.imageUrl[0]} alt="..."></img>

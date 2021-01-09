@@ -13,56 +13,43 @@ function previewPhotos () {
   const params = useParams();
 
   useEffect(  () => {
-    // if (params.id) {
-    //   API.getProperties(params.id)
-    //     .then((res) => 
-    //     setRental(res.data))
-    //     .catch((err) => console.log(err));
-    // } else if (params.name) {
-    //   API.getUserByName(params.name)
-    //     .then((res) => 
-    //       setRental(res.data[0]))
-    //     .catch((err) => console.log(err));
-    // }
-    loadImages()
-  }, []);
-
-const loadImages = async () => {
-  try {
-    setLoading(true)
-  const rental = await API.getProperties(params.id)
-    .then((res) => 
-    setRental(res.data) )
-  } catch  (err) 
-    {
-console.log(err)
-    } finally {
-      setLoading(false)
+    if (params.id) {
+      API.getProperties(params.id)
+        .then((res) => 
+        setRental({rental: res.data, imageUrl: res.data.imageUrl})
+        //  console.log(res.data.imageUrl)
+         )
+        .catch((err) => console.log(err));
+    } else if (params.name) {
+      API.getUserByName(params.name)
+        .then((res) => 
+          setRental(res.data[0]))
+        .catch((err) => console.log(err));
     }
-  }
-
+    setLoading(false)
+    // loadImages()
+  }, []);
 
   
   return (
     <>
-
+    {loading === false && 
+    <div> 
     {rental.imageUrl.map(img => (
-      <List key={img.imageUrl} >
-        <ListItem key={img.imageUrl} >
+      <List key={img.imageUrl}>
+        <ListItem >
           <img 
-          src={img.imageUrl} 
+          src= {img.imageUrl} 
           alt="..."
-          style= { loading ? {display: "none"} : {display: "block"} }
-          onChange={loadImages}
           ></img>
         </ListItem>
 
 
-
     </List>
     ))}
+    </div>
     
-
+    }
     </>
   )
   } 
