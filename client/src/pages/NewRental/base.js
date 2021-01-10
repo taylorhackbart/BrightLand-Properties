@@ -37,6 +37,7 @@ function Base() {
   <input type="text" name="description" onChange={handleInputChange}  />
   "Activities" Description
   <input type="text" name="activities" onChange={handleInputChange}  />
+  <input type="text" name="link" onChange={handleInputChange}  />
   <Link to={"/images/name/" + state.location}>
   <button onClick={onSubmit}>Submit</button>
   </Link>

@@ -1,19 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Card, Button, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+// import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import API from "../utils/API";
 
 export default function SignUp() {
+  const fname = useRef();
+  const lname = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const phoneRef = useRef();
   const typeRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  // const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-
+  const [create, setCreate] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    jobType: "",
+    phoneNumber: ""
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(value)
+    setCreate({ ...create, [name]: value })
+  };
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -24,7 +39,10 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      API.saveUser(create);
+      // setCreate(create)
+      console.log(create);
+      // (emailRef.current.value, passwordRef.current.value);
       history.push("/");
     } catch {
       setError("Failed to Make Account");
@@ -42,9 +60,18 @@ export default function SignUp() {
           {error && <Alert variant="danger">{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
+            <Form.Group id="fname">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control onChange = {handleInputChange} type="name" ref={fname} required name="fname" ></Form.Control>
+            </Form.Group>
+            
+            <Form.Group id="lname">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="name" ref={lname} required name="lname" onChange = {handleInputChange}  ></Form.Control>
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required></Form.Control>
+              <Form.Control type="email" ref={emailRef} required name="email" onChange = {handleInputChange} ></Form.Control>
             </Form.Group>
 
             <Form.Group id="password">
@@ -53,6 +80,8 @@ export default function SignUp() {
                 type="password"
                 ref={passwordRef}
                 required
+                name="password"
+                onChange = {handleInputChange} 
               ></Form.Control>
             </Form.Group>
 
@@ -62,15 +91,18 @@ export default function SignUp() {
                 type="password"
                 ref={passwordConfirmRef}
                 required
+                onChange = {handleInputChange} 
               ></Form.Control>
             </Form.Group>
             <Form.Group id="phone">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="phone" ref={phoneRef} required></Form.Control>
+              <Form.Control type="text" name="phoneNumber" ref={phoneRef} required onChange = {handleInputChange} ></Form.Control>
             </Form.Group>
-            <div className="row" >
+            <div className="row">
               <Form.Group id="type">
-                <Form.Label style={{float: "left"}}>Employee Type:</Form.Label>
+                <Form.Label style={{ float: "left" }}>
+                  Employee Type:
+                </Form.Label>
 
                 {/* <Form.Control type="type" ref={typeRef} required> */}
                 <div style={{ float: "left" }}>
@@ -79,6 +111,8 @@ export default function SignUp() {
                     value="admin"
                     name="employeeType"
                     ref={typeRef}
+                    name="jobType"
+                    onChange = {handleInputChange} 
                   />
                   Admin
                 </div>
@@ -88,6 +122,8 @@ export default function SignUp() {
                     value="manager"
                     name="employeeType"
                     ref={typeRef}
+                    name="jobType"
+                    onChange = {handleInputChange} 
                   />
                   Manager
                 </div>
@@ -97,6 +133,8 @@ export default function SignUp() {
                     value="employee"
                     name="employeeType"
                     ref={typeRef}
+                    name="jobType"
+                    onChange = {handleInputChange} 
                   />
                   Employee
                 </div>

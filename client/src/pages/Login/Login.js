@@ -11,7 +11,10 @@ function Login() {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
-
+    const [user, setUser] = useState({
+        email: "",
+        password: "",
+    })
 
 
     async function handleSubmit(e) {
@@ -20,7 +23,10 @@ function Login() {
         try {
             setError("")
             setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value)
+            await getUserByEmail(user.email)
+            .then(res => {
+                console.log(res)
+            })
             history.push("/")
         } catch {
             setError("Failed to Log In")

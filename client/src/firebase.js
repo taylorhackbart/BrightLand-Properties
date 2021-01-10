@@ -8,7 +8,7 @@ const storage = process.env.REACT_APP_FIREBASE_STORAGE_BUCKET
 const messagingSender = process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID
 const application = process.env.REACT_APP_FIREBASE_APP_ID
 const data = process.env.REACT_APP_FIREBASE_DATABASE_URL
-
+const measurement = process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 const app = firebase.initializeApp({
     apiKey: {api},
     authDomain: {authDom},
@@ -16,7 +16,8 @@ const app = firebase.initializeApp({
     storageBucket: {storage},
     messagingSenderId: {messagingSender},
     appId: {application},
-    databaseURL: {data}
+    databaseURL: {data},
+    measurementId: {measurement}
 })
 
 

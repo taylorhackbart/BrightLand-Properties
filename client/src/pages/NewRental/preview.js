@@ -66,7 +66,7 @@ function previewPhotos() {
                     <button onClick={delPhoto} img={img} value={img}>
                       X
                     </button>
-                    <img className="preview-images" src={img} alt="..."></img>
+                    <img className="preview-images d-block w-100 large-rental-photo" src={img} alt="..."></img>
                   </ListItem>
                 </List>
               ))}

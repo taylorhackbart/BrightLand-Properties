@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
 import API from "../../../utils/API"
@@ -12,7 +12,9 @@ function Properties() {
   useEffect(()=> {
     loadRentals();
   }, []);
-
+const imageRef= useRef()
+const activityRef= useRef()
+const descriptionRef= useRef()
   const loadRentals = () => {
    API.getPropertiesByName(params.location)
    .then(resp => {
@@ -79,7 +81,8 @@ function Properties() {
                      src={rental.imageUrl[index]}
                      className="d-block w-100 large-rental-photo"
                      alt="..."
-                     ref={rental.imageUrl}
+                     ref={imageRef}
+                     
                    />
                  }
                  </div>
@@ -114,18 +117,19 @@ function Properties() {
              </div>
            </div>
            </div>
-          <Tabs defaultActiveKey="space" id="noanim-tab-example">
-            <Tab eventKey="space" title="The Space" >
+           <div className="content-box">
+          <Tabs defaultActiveKey="space" id="noanim-tab-example" >
+            <Tab eventKey="space" title="The Space" ref={descriptionRef} >
      
             {rental.description}
   
             <button onClick={updateInfo}> update me </button>
             </Tab>
-            <Tab eventKey="activities" title="Activities" defaultValue = {rental.activities}>
+            <Tab eventKey="activities" title="Activities" ref={activityRef}>
              {rental.activities}
             </Tab>
           </Tabs>
-          
+          </div>
         </div>
         {/* <Tabs defaultActiveKey="space" id="noanim-tab-example">
             <Tab eventKey="space" title="The Space" onChange={handleInputChange} defaultValue = {rental.description}>
