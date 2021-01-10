@@ -26,16 +26,16 @@ const rentalSeed = [
     description: "A beautiful brand new condo with majestic views over the city of Cabo San Lucas Mexico A beautiful brand new condo with majestic views over the city of Cabo San Lucas Mexico. This spot has all new custom designed furniture that allows one to feel as if they have reached the top of the world. This place is only walking distance from down town Cabo. So many cool things to do only a short distance away, with some of the best temperatures and weather in the world. You owe it to yourself to have this experience. Designed for work from abroad nomads.. This spot has all new custom designed furniture that allows one to feel as if they have reached the top of the world. This place is only walking distance from down town Cabo. So many cool things to do only a short distance away, with some of the best temperatures and weather in the world. You owe it to yourself to have this experience. Designed for work from abroad nomads.",
     activities: "",
     imageUrl: [
-      "https://res.cloudinary.com/brightland/image/upload/v1610144033/unnamed_gzf1yj.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144033/unnamed_7_zah00s.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144033/unnamed_6_lckdmg.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144033/unnamed_5_eexj5s.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/pasted_image_0_tjj2bz.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/pasted_image_0_1_gyokbw.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/unnamed_4_uclozk.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/unnamed_1_t1o65b.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/unnamed_3_gwiah9.png",
-      "https://res.cloudinary.com/brightland/image/upload/v1610144032/unnamed_2_gqqj0m.png"
+      "https://res.cloudinary.com/brightland/image/upload/v1610144033/CABO/unnamed_gzf1yj.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144033/CABO/unnamed_7_zah00s.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144033/CABO/unnamed_6_lckdmg.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144033/CABO/unnamed_5_eexj5s.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/pasted_image_0_tjj2bz.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/pasted_image_0_1_gyokbw.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/unnamed_4_uclozk.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/unnamed_1_t1o65b.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/unnamed_3_gwiah9.png",
+      "https://res.cloudinary.com/brightland/image/upload/v1610144032/CABO/unnamed_2_gqqj0m.png"
 
 
 

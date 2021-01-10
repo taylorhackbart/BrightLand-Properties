@@ -24,6 +24,8 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
+// app.use("/users", require("./routes/api/login.js"));
+// app.use("./routes/api/login.js")
 
 const options = {
   useNewUrlParser: true,
@@ -33,7 +35,10 @@ const options = {
 }
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/brightland", options
+  process.env.MONGODB_URI || "mongodb://localhost/brightland", options, (err)  => { 
+    if (err) throw err;
+    console.log("Robo3T connection established")
+}
 );
 
 // Start the API server

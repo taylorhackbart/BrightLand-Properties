@@ -10,7 +10,7 @@ import MtHood from "./images/MtHood.jpg";
 import Portland from "./images/Portland.jpg";
 import "./home.css";
 
-class Home extends Component {
+class HomePage extends Component {
   state = {
     imagesArr: [
       Bend,
@@ -191,4 +191,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default HomePage;
