@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
+import "./style.css"
 
 export default function Login() {
   const [email, setEmail] = useState();
@@ -31,27 +32,35 @@ export default function Login() {
     }
   };
   return (
-    <div className="page">
-      <h2>Log in</h2>
+    <div className="page container">
+      <h2 className="login-title">Log in</h2>
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
-      <form className="form" onSubmit={submit}>
+      <form className="form login-form" onSubmit={submit}>
+        <div className="row">
         <label htmlFor="login-email">Email</label>
+        </div>
+        <div className="row">
         <input
           id="login-email"
           type="email"
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="name@gmail.com"
         />
-
+</div>
+<div className="row">
         <label htmlFor="login-password">Password</label>
+        </div>
+        <div className="row">
         <input
           id="login-password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="xxxxxx"
         />
-
-        <input type="submit" value="Log in" />
+</div>
+        <input className= "login-btn" type="submit" value="Log in" />
       </form>
     </div>
   );

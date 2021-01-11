@@ -13,6 +13,8 @@ import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
 import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home";
+import Footer from "./components/Footer"
+
 
 function App() {
   const [userData, setUserData] = useState({
@@ -47,19 +49,19 @@ function App() {
   }, []);
 
   return (
+    <>
     <BrowserRouter>
       <UserContext.Provider value={{ userData, setUserData }}>
-        <Header />
-        <div className="container">
+        {/* <Header /> */}
+        {/* <div className="container"> */}
+        <Nav />
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
           </Switch>
-        </div>
-      </UserContext.Provider>
-      <div>
-        <Nav />
+        {/* </div> */}
+      {/* <div> */}
         <Route exact path="/" component={HomePage} />
         <Route exact path="/Properties/name/:location" component={Properties} />
         <Route exact path="/about" component={About} />
@@ -68,8 +70,12 @@ function App() {
         <Route exact path={"/images/name/:location"} component={NewRental} />
         <Route exact path={"/preview/:id"} component={previewPhotos} />
         <Route exact path="/new" component={Base} />
-      </div>
+      {/* </div> */}
+      <Footer />
+      </UserContext.Provider>
     </BrowserRouter>
+
+</>
   );
 }
 

@@ -2,8 +2,8 @@ nav{
   margin-bottom: 30px;
 }
 .logo {
-  height:auto;
-  width: auto;
+  height:110%;
+  width: 110%;
 }
 .navbar-brand {
   /* float: right; */
@@ -16,4 +16,6 @@ nav{
   font-size: 17px;
   margin-top: -10px;
 }
-
+.nav-bar-buttons{
+  display: inline;
+}

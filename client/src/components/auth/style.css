@@ -1,0 +1,29 @@
+form.register-form, form.login-form{
+  border: 1px solid grey;
+  padding: 5%;
+  border-radius: 10px;
+}
+h2.register-title, h2.login-title{
+  text-align: center;
+}
+.row{
+  justify-content: center;
+  margin-bottom: 3px;
+}
+ul{
+  list-style-type: none;
+}
+.register-btn, .login-btn{
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.login-btn{
+  margin-top: 12px;
+}
+li{
+  margin-left: -30px;
+}

@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import {RiLoginCircleFill} from "react-icons/ri"
+import { AiOutlineUserAdd } from "react-icons/ai"
+import {RiLogoutCircleRLine} from "react-icons/ri"
 
 export default function AuthOptions() {
   const { userData, setUserData } = useContext(UserContext);
@@ -18,13 +21,17 @@ export default function AuthOptions() {
   };
 
   return (
-    <nav className="auth-options">
+    <nav className="auth-options footer-display">
       {userData.user ? (
-        <button onClick={logout}>Log out</button>
+        <div className="align-me">
+        <RiLogoutCircleRLine className="logout-button" onClick={logout}>Log out</RiLogoutCircleRLine>
+        </div>
       ) : (
         <>
-          <button onClick={register}>Register</button>
-          <button onClick={login}>Log in</button>
+        <div className="align-me">
+          <RiLoginCircleFill className="login-button" onClick={login}></RiLoginCircleFill>
+          <AiOutlineUserAdd className="register-button" onClick={register}>Register</AiOutlineUserAdd>
+          </div>
         </>
       )}
     </nav>

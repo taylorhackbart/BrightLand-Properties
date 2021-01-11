@@ -1,21 +1,41 @@
-import React from "react";
+import React  from "react";
 import "./nav.css";
 import logo from "./logo.png";
 import { Dropdown, SplitButton } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import AuthOptions from "../auth/AuthOptions";
 
 function Nav() {
+  // const { userData, setUserData } = useContext(UserContext);
+
+  // const history = useHistory();
+
+  // const register = () => history.push("/register");
+  // const login = () => history.push("/login");
+  // const logout = () => {
+  //   setUserData({
+  //     token: undefined,
+  //     user: undefined,
+  //   });
+  //   localStorage.setItem("auth-token", "");
+  // };
+
+
+
+
   return (
     <nav className="navbar ">
       <a className="navbar-brand" href="/">
         <img className="logo" src={logo}></img>
       </a>
       <div className="nav-bar-buttons">
-        <a className="navbar-brand" href="/login">
+        {/* <a className="navbar-brand" href="/login">
           Employee Login (Inicio de sesión del empleado)
         </a>
         <a className="navbar-brand" href="/logout">
           logout
-        </a>
+        </a> */}
+        {/* <AuthOptions /> */}
         <SplitButton
           className="navbar-dropdown"
           href="/"
