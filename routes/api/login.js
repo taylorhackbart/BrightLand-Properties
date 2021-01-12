@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const auth = require("../../middleware");
 const Login = require("../../models/login");
 
-router.get("/test", (req, res) => {
-  res.send("working")
-})
+// router.get("/test", (req, res) => {
+//   res.send("working")
+// })
 
 router.post("/register", async (req, res) => {
   try {
@@ -74,6 +74,7 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         displayName: user.displayName,
+        jobType: user.jobType
       },
     });
   } catch (err) {
@@ -108,11 +109,32 @@ router.post("/tokenIsValid", async (req, res) => {
 });
 
 router.get("/", auth, async (req, res) => {
-  const user = await Login.findById(req.user);
+  // const user = await Login.findById(req.user);
+  const token = req.header("x-auth-token");
+  if (!token) return res.json(false);
+
+  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  if (!verified) return res.json(false);
+
+  const user = await Login.findById(verified.id);
+  if (!user) return res.json(false);
+
+  return (
+  
   res.json({
+    // token,
     displayName: user.displayName,
     id: user._id,
-  });
+    jobType: user.jobType
+  }));
 });
+// router.get("/", async (req, res) => {
+//   const user = await Login.find();
+//   res.json({
+//     displayName: user.displayName,
+//     id: user._id,
+//     jobType: user.jobType
+//   });
+// });
 
 module.exports = router;

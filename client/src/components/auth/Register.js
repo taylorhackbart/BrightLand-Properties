@@ -33,14 +33,15 @@ export default function Register() {
       const loginRes = await Axios.post("http://localhost:3001/users/login", {
         email,
         password,
+        jobType
       });
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      console.log(loginRes);
+      // console.log(loginRes);
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/home");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
       console.log(err);

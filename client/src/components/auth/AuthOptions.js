@@ -5,12 +5,13 @@ import {RiLoginCircleFill} from "react-icons/ri"
 import { AiOutlineUserAdd } from "react-icons/ai"
 import {RiLogoutCircleRLine} from "react-icons/ri"
 
+
 export default function AuthOptions() {
   const { userData, setUserData } = useContext(UserContext);
 
   const history = useHistory();
 
-  const register = () => history.push("/register");
+  // const register = () => history.push("/register");
   const login = () => history.push("/login");
   const logout = () => {
     setUserData({
@@ -18,6 +19,7 @@ export default function AuthOptions() {
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
+    history.push("/")
   };
 
   return (
@@ -30,7 +32,9 @@ export default function AuthOptions() {
         <>
         <div className="align-me">
           <RiLoginCircleFill className="login-button" onClick={login}></RiLoginCircleFill>
-          <AiOutlineUserAdd className="register-button" onClick={register}>Register</AiOutlineUserAdd>
+          <AiOutlineUserAdd className="register-button" 
+          // onClick={register}
+          >Register</AiOutlineUserAdd>
           </div>
         </>
       )}

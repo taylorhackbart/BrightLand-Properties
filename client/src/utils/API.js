@@ -42,7 +42,7 @@ export default {
     return axios.post("/api/login", userData)
   },
   getUsers: function() {
-    return axios.get("/api/login")
+    return axios.get("/users")
   },
   getUserByEmail: function(email) {
     return axios.get("/api/login/" + email)
