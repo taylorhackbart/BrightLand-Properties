@@ -1,8 +1,14 @@
-import React from "react"
+import React, {useState, useContext, useEffect} from "react"
+import UserContext from "../../contexts/UserContext";
 
 function Cleaning () {
+  const { userData } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+
+  
   return(
     <>
+     <UserContext.Provider value={{ userData }}>
     <form>
       <input type="radio" name="Bend" /> Bend 
       <input type="radio" name="Cabo" /> Cabo 
@@ -26,6 +32,7 @@ function Cleaning () {
     The job duty will be clear for the employee
     "Begin Cleaning" to show owner that it is being cleaned
     "Completed" button for the owner to check that it has been finished
+    </UserContext.Provider>
     </>
   )
 }

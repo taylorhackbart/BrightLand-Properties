@@ -23,13 +23,13 @@ export default {
   saveProperty: function(PropertyData) {
     return axios.post("/api/property", PropertyData);
   },
-  getImage: function(){
-    return axios.get("/api/image")
-  },
+  // getImage: function(){
+  //   return axios.get("/api/image")
+  // },
 
-  uploadImage: function(data){
-    return axios.post('/api/image', data)
-  },
+  // uploadImage: function(data){
+  //   return axios.post('/api/image', data)
+  // },
 
   getImages: function(){
     return axios.get('/api/cloud')
@@ -38,13 +38,13 @@ export default {
   sendToCloud: function(formData){
     return axios.post('/api/cloud', formData)
   },
-  saveUser: function(userData){
-    return axios.post("/api/login", userData)
-  },
   getUsers: function() {
     return axios.get("/users")
   },
-  getUserByEmail: function(email) {
-    return axios.get("/api/login/" + email)
+  getCleaning: function (){
+    return axios.get("/api/cleaning")
+  },
+  saveCleaning: function (cleaningData) {
+    return axios.post("/api/cleaning", cleaningData)
   }
 };
