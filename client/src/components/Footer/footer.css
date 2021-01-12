@@ -2,10 +2,10 @@
   display: none;
 } */
 nav.footer-display{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: 0;
+  position: flex;
+  bottom: 0;
+  display: block;
+  margin: auto;
 }
 .login-button, .register-button, .logout-button{
   height: 40px;
@@ -19,8 +19,3 @@ nav.footer-display{
 .align-me{
   text-align: center;
 }
-/* body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-} */

@@ -1,38 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import "./home.css";
 import { FiUsers } from "react-icons/fi";
-import API from "../../utils/API";
 import Axios from "axios";
+import Modal from "react-bootstrap/Modal";
+
 export default function Home() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  console.log(userData);
+  const [employees, setEmployees] = useState([]);
+  const [load, setLoad] = useState(true);
+  const [show, setShow] = useState(false);
+  const open = useRef(); 
+  const header = useRef(); 
+  const title= useRef(); 
+  const body= useRef()
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
-    // loadEmployees()
     setLoading(false);
   }, []);
   const loadEmployees = async () => {
-    let token = localStorage.getItem("auth-token")
-    const userRes = await Axios.get("http://localhost:3001/users/", {
+    let token = localStorage.getItem("auth-token");
+    const userRes = await Axios.get("http://localhost:3001/users/register", {
       headers: { "x-auth-token": token },
     });
-    console.log(userRes);
+    let newArr = [...userRes.data];
+    // console.log(newArr);
+    setEmployees({ newArr });
     setLoading(false);
+    setLoad(false);
+    handleShow()
   };
-  // if (loading === true) {
-  //   return <>loading...</>;
-  // }
-  // else
+
   return (
-    <>
+    <div className="container">
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
           <div className="page">
-            {/* { userData.user && ( */}
             {userData.user && userData.user.jobType === "admin" ? (
               <>
                 <h1>Welcome {userData.user.displayName}</h1>
@@ -62,8 +70,28 @@ export default function Home() {
                         onClick={loadEmployees}
                       />
                     )}
-                    {/* </Link> */}
                   </div>
+                </div>
+                <div>
+                  {load === false && (
+                    <Modal show={show} onHide={handleClose} ref={open}>
+                      <Modal.Header closeButton ref={header}>
+                        <Modal.Title id="contained-modal-title-vcenter" ref={title}>
+                          Employees
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body ref={body}>
+                      {employees.newArr.map((employee) => (
+                        <div key={employee._id}>
+                          <h3>{employee.displayName}</h3>
+                          <ul> {employee.jobType} </ul>
+                          <ul> {employee.phoneNumber} </ul>
+                          <ul> {employee.email} </ul>
+                        </div>
+                      ))}
+                      </Modal.Body>
+                    </Modal>
+                  )}
                 </div>
               </>
             ) : userData.user && userData.user.jobType === "employee" ? (
@@ -85,7 +113,7 @@ export default function Home() {
           </div>
         </UserContext.Provider>
       )}
-    </>
+    </div>
     // <>
     // </>
   );

@@ -128,13 +128,10 @@ router.get("/", auth, async (req, res) => {
     jobType: user.jobType
   }));
 });
-// router.get("/", async (req, res) => {
-//   const user = await Login.find();
-//   res.json({
-//     displayName: user.displayName,
-//     id: user._id,
-//     jobType: user.jobType
-//   });
-// });
+router.get("/register", async (req, res) => {
+  const user = await Login.find();
+  console.log(user)
+  res.json(user);
+});
 
 module.exports = router;

@@ -11,7 +11,7 @@ export default function AuthOptions() {
 
   const history = useHistory();
 
-  // const register = () => history.push("/register");
+  const register = () => history.push("/register");
   const login = () => history.push("/login");
   const logout = () => {
     setUserData({
@@ -33,7 +33,7 @@ export default function AuthOptions() {
         <div className="align-me">
           <RiLoginCircleFill className="login-button" onClick={login}></RiLoginCircleFill>
           <AiOutlineUserAdd className="register-button" 
-          // onClick={register}
+          onClick={register}
           >Register</AiOutlineUserAdd>
           </div>
         </>
