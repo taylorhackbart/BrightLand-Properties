@@ -44,7 +44,13 @@ export default {
   getCleaning: function (){
     return axios.get("/api/cleaning")
   },
+  getCleaningById: function (id) {
+    return axios.get("/api/cleaning/" +id)
+  },
   saveCleaning: function (cleaningData) {
     return axios.post("/api/cleaning", cleaningData)
+  },
+  updateCleaning: function (id, data){
+    return axios.put("/api/cleaning/" +id, data )
   }
 };

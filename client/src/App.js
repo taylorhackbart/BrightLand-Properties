@@ -12,13 +12,15 @@ import Register from "./components/auth/Register.js";
 import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
-
-
+import Cleaning from "./pages/Cleaning/property";
+import StartCleaning from "./pages/Cleaning/startClean";
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   });
+  // const time = new Date();
+  // time.setSeconds(time.getSeconds() + 600);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -45,7 +47,7 @@ function App() {
 
     checkLoggedIn();
   }, []);
-  
+
   return (
     <>
       <BrowserRouter>
@@ -55,11 +57,22 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/Properties/name/:location" component={Properties} />
-          <Route exact path={"/images/name/:location"} component={NewRental} />
-          <Route exact path={"/preview/:id"} component={previewPhotos} />
-          <Route exact path="/new" component={Base} />
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/Properties/name/:location"
+              component={Properties}
+            />
+            <Route
+              exact
+              path={"/images/name/:location"}
+              component={NewRental}
+            />
+            <Route exact path={"/preview/:id"} component={previewPhotos} />
+            <Route exact path="/new" component={Base} />
+            <Route exact path="/cleaning" component={Cleaning} />
+            <Route exact path="/startclean/:id" component={StartCleaning} />
+            {/* <Cleaning expiryTimestamp={time} /> */}
           </Switch>
           <Footer />
         </UserContext.Provider>

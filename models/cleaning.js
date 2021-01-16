@@ -7,14 +7,15 @@ const CleaningSchema = new Schema({
     type: String
   },
   startClean: {
-    type: Date
+    type: Date,
+    default: Date.now()
   },
   stopClean: {
-    type: Date
-  },
-  images: {
     type: String
-  }
+  },
+  images: [{
+    type: String
+  }]
 })
 const Cleaning = mongoose.model("Cleaning", CleaningSchema)
 

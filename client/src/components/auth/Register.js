@@ -121,6 +121,7 @@ export default function Register() {
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
                 value="admin"
+                name="jobType"
               />{" "}
               ADMIN
             </li>
@@ -130,6 +131,7 @@ export default function Register() {
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
                 value="manager"
+                name="jobType"
               />{" "}
               MANAGER
             </li>
@@ -139,6 +141,7 @@ export default function Register() {
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
                 value="employee"
+                name="jobType"
                 />
                 EMPLOYEE
             </li>
