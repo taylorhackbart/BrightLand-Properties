@@ -4,7 +4,7 @@ const db = require("../models");
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
+  process.env.MONGODB_CONNECTION_STRING ||
   "mongodb://localhost/brightland"
 );
 
@@ -122,7 +122,8 @@ const rentalSeed = [
       "https://res.cloudinary.com/brightland/image/upload/v1610144889/LA%20PAD/unnamed_1_qywkyk.png",
       "https://res.cloudinary.com/brightland/image/upload/v1610144886/LA%20PAD/unnamed_2_dz5yjx.png"
     ]
-  },{
+  }
+  ,{
     location: "Glamping",
     description: "This glamping site in the Eastern cascades is amazing.There is an RV pad with an RV and full electric hookup. The RV has full functioning kitchen full bathroom and sleeping for 4. Double bed and queen bed over the cab. There are 3 luxurious series of tents for your sleeping comfort. About .4 miles walk away you get a member only access to the Deschutes river. Do the drift Enjoy!",
     activities: "None",
