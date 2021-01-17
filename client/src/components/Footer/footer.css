@@ -1,13 +1,14 @@
-/* .register-button{
+.register-button{
   display: none;
-} */
+}
 nav.footer-display{
   position: flex;
   bottom: 0;
   display: block;
   margin: auto;
+  margin-top: 10%;
 }
-.login-button, .register-button, .logout-button{
+.login-button, .logout-button{
   height: 40px;
   width: 40px;
   display: inline-block;

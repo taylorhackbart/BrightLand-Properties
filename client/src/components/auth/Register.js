@@ -39,9 +39,9 @@ export default function Register() {
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      // console.log(loginRes);
+      console.log(loginRes);
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/home");
+      history.push("/");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
       console.log(err);

@@ -1,5 +1,6 @@
-nav{
+nav.navbar{
   margin-bottom: -10px;
+  /* background: rgb(246, 252, 250); */
 }
 .logo {
   height:110%;
@@ -10,12 +11,17 @@ nav{
   color: black
 }
 .btn{
-  background-color: white;
-  color: black;
+  background-color: white !important;
+  color: black !important;
+  /* color: white !important;
+  background-color: black !important; */
   border: none;
   font-size: 17px;
   margin-top: -10px;
+  border:white !important;
+  /* background-color: #2699FB !important; */
 }
 .nav-bar-buttons{
   display: inline;
 }
+

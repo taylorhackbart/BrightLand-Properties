@@ -1,0 +1,40 @@
+button.cleaning-submit{
+  display: block;
+  margin: auto;
+}
+
+.notes-area{
+  height: 290%;
+  width: 50%;
+  padding: 3%;
+}
+.row{
+margin: 1%;
+/* justify-content: center; */
+/* display: block; */
+margin-left: auto;
+margin-right: auto;
+}
+.cleaning-title{
+  text-align: center;
+  margin-bottom: 2%;
+}
+li{
+  margin-bottom: 2%;
+}
+.cleaning-next{
+  margin-top: 20%;
+}
+.new-form-element{
+  border: 1px solid grey;
+  margin-left: 4%;
+  margin-right: 4%;
+  padding-bottom: 2%;;
+}
+#file-upload-button{
+  /* margin: 1%; */
+  display: block;
+  margin-left: 40%;
+  margin-right: auto;
+
+}

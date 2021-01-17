@@ -44,7 +44,7 @@ export default function Home() {
             {userData.user && userData.user.jobType === "admin" ? (
               <>
                 <h1>Welcome {userData.user.displayName}</h1>
-                <p> {userData.user.jobType} </p>
+                <p> Job Title: {userData.user.jobType}</p>
                 <div className="card w-50">
                   <div className="card-body">
                     <h5 className="card-title">Add an Employee</h5>
@@ -96,13 +96,34 @@ export default function Home() {
               </>
             ) : userData.user && userData.user.jobType === "employee" ? (
               <div>
+
+
                 <h1>Welcome {userData.user.displayName}</h1>
-                <p> {userData.user.displayName}</p>
+                <p> Job Title: {userData.user.jobType}</p>
+                <div className="card w-50">
+                  <div className="card-body">
+                    <h5 className="card-title">Log a Clean</h5>
+                    <p className="card-text">
+                      Click the button below to begin cleaning:
+                    </p>
+                    <Link to="/cleaning">
+                      <button className="begin-clean" > Start Cleaning </button>
+                    </Link>
+                  </div>
+                </div>
+
+                 
               </div>
+
+
+
+
+
+
             ) : userData.user && userData.user.jobType === "manager" ? (
               <div>
                 <h1>Welcome {userData.user.displayName}</h1>
-                <p> {userData.user.displayName}</p>
+                <p> Job Title: {userData.user.jobType}</p>
               </div>
             ) : (
               <div>

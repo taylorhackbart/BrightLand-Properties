@@ -2,11 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
 import { useHistory } from "react-router-dom";
+import "./clean.css";
 
 function Cleaning() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
- const history = useHistory()
+  const history = useHistory();
   const [property, setPropertyType] = useState({
     property: "",
     startClean: Date,
@@ -23,7 +24,7 @@ function Cleaning() {
     setPropertyType({ ...property, [name]: value });
   };
   const onSend = (e) => {
-     e.preventDefault()
+    e.preventDefault();
 
     API.saveCleaning(property).then((res) => {
       console.log(res);
@@ -35,7 +36,7 @@ function Cleaning() {
         });
       };
       loadPropertyInfo();
-      history.push("/startclean/" + id)
+      history.push("/startclean/" + id);
     });
   };
   console.log(property);
@@ -45,86 +46,107 @@ function Cleaning() {
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
           <form>
-            <label htmlFor="property-name">Property Name: </label>
-            <input
-              id="property-bend"
-              type="radio"
-              onChange={handleChange}
-              value="bend"
-              name="property"
-            />{" "}
-            Bend
-            <input
-              id="property-cabo"
-              type="radio"
-              onChange={handleChange}
-              value="cabo"
-              name="property"
-            />{" "}
-            Cabo
-            <input
-              id="property-camping"
-              type="radio"
-              onChange={handleChange}
-              value="camping"
-              name="property"
-            />{" "}
-            Camping
-            <input
-              id="property-cerritos"
-              type="radio"
-              onChange={handleChange}
-              value="losCerritos"
-              name="property"
-            />{" "}
-            Los Cerritos
-            <input
-              id="property-indianpalms"
-              type="radio"
-              onChange={handleChange}
-              value="indianPalms"
-              name="property"
-            />{" "}
-            Indian Palms
-            <input
-              id="property-indio"
-              type="radio"
-              onChange={handleChange}
-              value="indio"
-              name="property"
-            />{" "}
-            Indio
-            <input
-              id="property-lapine"
-              type="radio"
-              onChange={handleChange}
-              value="lapine"
-              name="property"
-            />{" "}
-            La Pine
-            <input
-              id="property-mthood"
-              type="radio"
-              onChange={handleChange}
-              value="mtHood"
-              name="property"
-            />{" "}
-            Mt Hood
-            <input
-              id="property-portland"
-              type="radio"
-              onChange={handleChange}
-              value="portland"
-              name="property"
-            />{" "}
-            Portland 
-            <button onClick={onSend}> Next
-            {/* {load === false && (
-              <Link to={"/startclean/" + property._id}>
-                Next 
-              </Link>
-            )} */}
-            </button>
+            <div className="row">
+              <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
+            </div>
+            <div className="row">
+              <ul>
+                <li>
+                  <input
+                    id="property-bend"
+                    type="radio"
+                    onChange={handleChange}
+                    value="bend"
+                    name="property"
+                  />{" "}
+                  Bend
+                </li>
+                <li>
+                  <input
+                    id="property-cabo"
+                    type="radio"
+                    onChange={handleChange}
+                    value="cabo"
+                    name="property"
+                  />{" "}
+                  Cabo
+                </li>
+                <li>
+                  <input
+                    id="property-camping"
+                    type="radio"
+                    onChange={handleChange}
+                    value="camping"
+                    name="property"
+                  />{" "}
+                  Camping
+                </li>
+                <li>
+                  <input
+                    id="property-cerritos"
+                    type="radio"
+                    onChange={handleChange}
+                    value="losCerritos"
+                    name="property"
+                  />{" "}
+                  Los Cerritos
+                </li>
+                <li>
+                  <input
+                    id="property-indianpalms"
+                    type="radio"
+                    onChange={handleChange}
+                    value="indianPalms"
+                    name="property"
+                  />{" "}
+                  Indian Palms
+                </li>
+                <li>
+                  <input
+                    id="property-indio"
+                    type="radio"
+                    onChange={handleChange}
+                    value="indio"
+                    name="property"
+                  />{" "}
+                  Indio
+                </li>
+                <li>
+                  <input
+                    id="property-lapine"
+                    type="radio"
+                    onChange={handleChange}
+                    value="lapine"
+                    name="property"
+                  />{" "}
+                  La Pine
+                </li>
+                <li>
+                  <input
+                    id="property-mthood"
+                    type="radio"
+                    onChange={handleChange}
+                    value="mtHood"
+                    name="property"
+                  />{" "}
+                  Mt Hood
+                </li>
+                <li>
+                  <input
+                    id="property-portland"
+                    type="radio"
+                    onChange={handleChange}
+                    value="portland"
+                    name="property"
+                  />{" "}
+                  Portland
+                </li>
+                <button className="cleaning-next" onClick={onSend}>
+                  {" "}
+                  Next (Próximo)
+                </button>
+              </ul>
+            </div>
           </form>
         </UserContext.Provider>
       )}

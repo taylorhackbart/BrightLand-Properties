@@ -14,6 +14,7 @@ import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
+import "./app.css"
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -53,6 +54,7 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Nav />
+          < div className = "app-background">
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
@@ -75,6 +77,7 @@ function App() {
             {/* <Cleaning expiryTimestamp={time} /> */}
           </Switch>
           <Footer />
+          </div>
         </UserContext.Provider>
       </BrowserRouter>
     </>

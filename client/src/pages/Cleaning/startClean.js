@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
 import { useParams } from "react-router-dom";
+import "./clean.css";
 
 function StartClean() {
   const { userData } = useContext(UserContext);
@@ -13,7 +14,7 @@ function StartClean() {
   });
   const fileInput = useRef();
   const params = useParams();
-  const [load, setLoad] = useState(true)
+  const [load, setLoad] = useState(true);
   // console.log(params)
   useEffect(async () => {
     setLoading(false);
@@ -22,7 +23,7 @@ function StartClean() {
 
   const loadPropertyInfo = () => {
     API.getCleaningById(params.id, state).then((res) => {
-      console.log(res);
+      // console.log(res);
       setState(res.data);
     });
   };
@@ -51,7 +52,7 @@ function StartClean() {
       newArr.push(imgLink);
       // console.log(newArr);
       //created a new async function here to await the response from the new link for the new array
-      setLoad(false)
+      setLoad(false);
       const startUpdate = async () => {
         await API.updateCleaning(state._id, state)
           .then((res) => {
@@ -67,46 +68,73 @@ function StartClean() {
     });
   };
   const submitForm = () => {
-    API.updateCleaning(state._id, state)
-    .then(res => {
-      console.log(res)
-    })
-  }
+    API.updateCleaning(state._id, state).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <>
       {loading === false && (
-        <UserContext.Provider value={{ userData }}>
-          <div>
-            <div className="row">
-              Time Finished Cleaning (HH : MM ):
-              <input onChange={stopClean} type="text" name="stopClean" />
-            </div>
-            <div className="row">
-              <form encType="multipart/form-data" method="put" name="fileinfo">
-                <label>Choose Photos</label>
-                <input
-                  type="file"
-                  name="image"
-                  ref={fileInput}
-                  onChange={onUpload}
-                />
-              </form>
+        <div className="new-form-element">
+          <UserContext.Provider value={{ userData }}>
+            <h2 className="cleaning-title row">
+              Enter Cleaning Details (Ingrese los Detalles de Limpieza):
+            </h2>
+            <div className="container">
+              <div className="row">Time Finished Cleaning (HH : MM ):</div>
+              <div className="row">
+                ( Hora en que se Completó la Limpieza (HH: MM) ) :
               </div>
               <div className="row">
-              <form>
-                <button type="submit" onClick={onSend} value="Submit">
-                  Upload
-                </button>
-                {load === false && <div>  photo has been uploaded</div>}
-                {load === true && <div> waiting..... </div>}
+                <input onChange={stopClean} type="text" name="stopClean" />
+              </div>
+              {/* <div className="row"> */}
+              <form
+                encType="multipart/form-data"
+                method="put"
+                name="fileinfo"
+                // className="row"
+              >
+                <div className="row">
+                  <label>Choose Photos (Elegir Fotos): </label>
+                </div>
+                <div className="row">
+                  <input
+                  id="file-upload-button"
+                    type="file"
+                    name="image"
+                    ref={fileInput}
+                    onChange={onUpload}
+                    className="row"
+                  />
+                </div>
               </form>
+              {/* </div> */}
+              <div className="row">
+                <div>
+                  <button type="submit" onClick={onSend} value="Submit ">
+                    Upload (Subir)
+                  </button>
+                  {load === false && (
+                    <div> Photo has been uploaded ( Carga Completa )</div>
+                  )}
+                  {load === true && <div> Waiting ( Esperando)..... </div>}
+                </div>
+              </div>
+              <div className="row">
+                Enter any notes necessary (Ingresar Notas de Limpieza):
+              </div>
+              <div className="row">
+                <input className="notes-area" type="text" name="notes" />{" "}
+              </div>
+              <div className="row"></div>
+              <button className="cleaning-submit" onClick={submitForm}>
+                {" "}
+                Submit (Enviar)
+              </button>
             </div>
-            <div className="row">
-              Enter any notes necessary <input type="text" name="notes" />{" "}
-            </div>
-            <button onClick={submitForm} > Submit </button>
-          </div>
-        </UserContext.Provider>
+          </UserContext.Provider>
+        </div>
       )}
     </>
   );
