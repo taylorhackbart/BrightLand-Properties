@@ -35,9 +35,9 @@ const options = {
 }
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/brightland", options, (err)  => { 
+  process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost/brightland", options, (err)  => { 
     if (err) throw err;
-    console.log("Robo3T connection established")
+    console.log("DB connection established")
 }
 );
 
