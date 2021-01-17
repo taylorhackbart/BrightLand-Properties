@@ -107,7 +107,7 @@ function StartClean() {
                     onChange={onUpload}
                     className="row"
                   />
-                </div>
+                </div> 
               </form>
               {/* </div> */}
               <div className="row">
