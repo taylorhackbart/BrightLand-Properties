@@ -31,12 +31,12 @@ function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:3001/users/tokenIsValid" || process.env.PORT,
+        "http://localhost:3001/users/tokenIsValid" ,
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:3001/users/" || process.env.PORT, {
+        const userRes = await Axios.get("http://localhost:3001/users/" , {
           headers: { "x-auth-token": token },
         });
         setUserData({
