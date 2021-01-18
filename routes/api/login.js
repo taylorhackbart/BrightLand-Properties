@@ -110,6 +110,7 @@ router.post("/tokenIsValid", async (req, res) => {
 
 router.get("/", auth, async (req, res) => {
   // const user = await Login.findById(req.user);
+  // console.log(req)
   const token = req.header("x-auth-token");
   if (!token) return res.json(false);
 

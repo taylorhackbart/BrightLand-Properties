@@ -21,6 +21,7 @@ export default function Login() {
         "http://localhost:3001/users/login",
         loginUser
       );
+      console.log(loginRes)
       console.log(loginRes.data.user.jobType)
       setUserData({
         token: loginRes.data.token,
