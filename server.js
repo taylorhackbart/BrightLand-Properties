@@ -4,7 +4,7 @@ const morgan = require("morgan")
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT
 require('dotenv').config()
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
