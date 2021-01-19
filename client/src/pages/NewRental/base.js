@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import API from "../../utils/API"
 import { Link } from "react-router-dom";
+import "./preview.css"
 
 function Base() {
   const [rental, setRental] = useState([])
@@ -30,18 +31,26 @@ function Base() {
  }
 
   return (
-    <form>
-       Name or Location of New Rental
-  <input type="text" name="location" onChange={handleInputChange} />
-  "The Space" Description 
-  <input type="text" name="description" onChange={handleInputChange}  />
-  "Activities" Description
-  <input type="text" name="activities" onChange={handleInputChange}  />
-  <input type="text" name="link" onChange={handleInputChange}  />
+    <div className="container">
+    <form className="new-page-form">
+      
+  <p className="row">   Name or Location of New Rental </p>
+  <input type="text" name="location" className="row" onChange={handleInputChange} />
+  
+  <p className="row" > "The Space" Description </p>
+  <textarea type="text" name="description" className="row input-description" onChange={handleInputChange}  />
+
+  <p className="row">  "Activities" Description </p>
+  <textarea type="text" name="activities" className="row input-description" onChange={handleInputChange}  />
+
+  <p className="row"> AirBnb Link: </p>
+  <input type="text" name="link" className="row" onChange={handleInputChange}  />
+
   <Link to={"/images/name/" + state.location}>
-  <button onClick={onSubmit}>Submit</button>
+  <button className="row"onClick={onSubmit}>Submit</button>
   </Link>
     </form>
+    </div>
   );
 }
 

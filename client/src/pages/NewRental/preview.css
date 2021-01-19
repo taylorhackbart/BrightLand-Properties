@@ -21,7 +21,30 @@
   overflow-y: auto;
   
 }
-
+.input-description{
+  height: 60px;
+  width: 80%;
+}
+.preview-images{
+  height: 50%;
+  width: 50%;
+}
+.more-photos{
+  border-radius: 10px;
+  background-color: white;
+  font-size: large;
+}
+.del-button{
+  float: right;
+  border-radius: 10px;
+  background-color: white;
+  font-size: large;
+}
+.new-page-form{
+  border: 1px solid grey;
+  padding: 1%;
+  margin-top: 30px;
+}
 .contact-btn{
   bottom: 0;
   border-radius: 12px;

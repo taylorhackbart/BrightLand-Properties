@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+const key = "nc2y3849p384cyn2938470n239492nc083"
 const auth = (req, res, next) => {
   try {
     const token = req.header("x-auth-token");
@@ -8,7 +8,7 @@ const auth = (req, res, next) => {
         .status(401)
         .json({ msg: "No authentication token, authorization denied." });
 
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, key);
     if (!verified)
       return res
         .status(401)

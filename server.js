@@ -4,7 +4,7 @@ const morgan = require("morgan")
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001;
 require('dotenv').config()
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -39,6 +39,12 @@ mongoose.connect(
     console.log("DB connection established")
 }
 );
+// mongoose.connect(
+//   process.env.MONGODB_URI || "mongodb://localhost/brightland", options, (err)  => { 
+//     if (err) throw err;
+//     console.log("DB connection established")
+// }
+// );
 
 // Start the API server
 app.listen(PORT, function() {

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import API from "../../utils/API";
 import { Link, useParams } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
+import "./preview.css"
 
 function NewRental() {
   const fileInput = useRef();
@@ -70,31 +71,33 @@ function NewRental() {
 
   return (
     <>
-      <div>
+      <div className="container">
+        <div className="new-page-form">
         <form encType="multipart/form-data" method="put" name="fileinfo">
-          <label>Choose Photos</label>
-          <input type="file" name="image" ref={fileInput} onChange={onUpload} />
+          <h2 className="row">Choose Photos</h2>
+          <input className="row" id="file-upload-button" type="file" name="image" ref={fileInput} onChange={onUpload} />
         </form>
         <form>
-          <button type="submit" onClick={onSend} value="Submit">
+          <button className="row" type="submit" onClick={onSend} value="Submit">
             Upload
           </button>
           { loading === false &&
-            <div> photo has been uploaded</div>
+            <div className="row"> Photo has been uploaded, click "Choose File" again to upload another</div>
             } 
             { loading === true && 
-              <div> waiting..... </div>
+              <div className="row"> waiting..... </div>
             
             }
           
         </form>
-      </div>
       <div>
         <div>
           <Link to={"/preview/" + rental._id}>
-            <button> I am done uploading photos </button>
+            <button className="row"> I am done uploading photos </button>
           </Link>
         </div>
+      </div>
+      </div>
       </div>
     </>
   );

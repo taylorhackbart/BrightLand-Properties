@@ -12,6 +12,7 @@ function Cleaning() {
     property: "",
     startClean: Date,
     images: [],
+    notes: "",
   });
 
   useEffect(() => {

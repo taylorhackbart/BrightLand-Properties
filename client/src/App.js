@@ -14,7 +14,8 @@ import HomePage from "./pages/Home";
 import Footer from "./components/Footer";
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
-import "./app.css"
+import previewCleaning from "./pages/Cleaning/preview";
+import "./app.css";
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -31,12 +32,12 @@ function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:3001/users/tokenIsValid" ,
+        "http://localhost:3001/users/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:3001/users/" , {
+        const userRes = await Axios.get("http://localhost:3001/users/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -52,33 +53,33 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <Nav />
-          < div className = "app-background">
-          <Switch>
+        <Nav />
+        <div className="app-background">
+          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/Properties/name/:location"
+            component={Properties}
+          />
+          {/* <Switch>
+          </Switch> */}
+          <UserContext.Provider value={{ userData, setUserData }}>
             <Route exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route exact path="/" component={HomePage} />
-            <Route
-              exact
-              path="/Properties/name/:location"
-              component={Properties}
-            />
+            <Route exact path={"/preview/:id"} component={previewPhotos} />
+            <Route exact path="/new" component={Base} />
+            <Route exact path="/cleaning" component={Cleaning} />
+            <Route exact path="/startclean/:id" component={StartCleaning} />
+            <Route exact path="/previewclean/:id" component={previewCleaning} />
             <Route
               exact
               path={"/images/name/:location"}
               component={NewRental}
             />
-            <Route exact path={"/preview/:id"} component={previewPhotos} />
-            <Route exact path="/new" component={Base} />
-            <Route exact path="/cleaning" component={Cleaning} />
-            <Route exact path="/startclean/:id" component={StartCleaning} />
-            {/* <Cleaning expiryTimestamp={time} /> */}
-          </Switch>
-          <Footer />
-          </div>
-        </UserContext.Provider>
+            <Footer />
+          </UserContext.Provider>
+        </div>
       </BrowserRouter>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./clean.css";
 
 function StartClean() {
@@ -11,6 +11,7 @@ function StartClean() {
     property: "",
     images: [],
     stopClean: "",
+    notes: ""
   });
   const fileInput = useRef();
   const params = useParams();
@@ -67,6 +68,7 @@ function StartClean() {
       startUpdate();
     });
   };
+
   const submitForm = () => {
     API.updateCleaning(state._id, state).then((res) => {
       console.log(res);
@@ -125,13 +127,15 @@ function StartClean() {
                 Enter any notes necessary (Ingresar Notas de Limpieza):
               </div>
               <div className="row">
-                <input className="notes-area" type="text" name="notes" />{" "}
+                <input nChange={stopClean} className="notes-area" type="text" name="notes" />{" "}
               </div>
               <div className="row"></div>
+              <Link to= {"/previewclean/" + state._id} >
               <button className="cleaning-submit" onClick={submitForm}>
                 {" "}
                 Submit (Enviar)
               </button>
+              </Link>
             </div>
           </UserContext.Provider>
         </div>

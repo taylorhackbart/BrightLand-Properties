@@ -13,6 +13,9 @@ const CleaningSchema = new Schema({
   stopClean: {
     type: String
   },
+  notes: {
+    type: String
+  },
   images: [{
     type: String
   }]

@@ -3,6 +3,7 @@ import { List, ListItem } from "../../components/List";
 import { useParams, Link } from "react-router-dom";
 import API from "../../utils/API";
 import "./preview.css";
+
 function previewPhotos() {
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({
@@ -33,18 +34,23 @@ function previewPhotos() {
   const delPhoto = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    const id = e.target.value;
-    const newArr = rental.imageUrl.filter((newID) => {
-      return newID !== id;
-    });
-    const newArrAgain = newArr.slice(0);
-    console.log(newArrAgain);
-    setRental({ ...rental, imageUrl: newArr });
-    console.log(rental);
+    const rentalArray = rental.imageUrl
+    const index = rentalArray.indexOf(e.target.value);
+    console.log(index)
+    if (index !== -1){
+      rentalArray.splice(index, 1);
+      setRental({ imageUrl: rentalArray });
+    }
+    console.log(rentalArray)
 
     const startDelete = async () => {
       await API.updateProperty(rental._id, rental)
-        .then((res) => console.log(res))
+      .then((res) => {
+        setRental({...rental, imageUrl: rentalArray });
+        //THEN I updated state
+        console.log(res);
+        console.log(rental)
+      })
         .catch((err) => {
           throw err;
         });
@@ -58,26 +64,28 @@ function previewPhotos() {
         <div className="container">
           <div className="row">
             Check out the photos you've uploaded below!
-            <span> Delete photos you no longer want</span>
+            </div>
+            <p className="row"> Delete photos you no longer want</p>
             <div>
               {rental.imageUrl.map((img) => (
-                <List key={img}>
-                  <ListItem>
-                    <button onClick={delPhoto} img={img} value={img}>
+                <ul key={img}>
+                  <li className="no-border">
+                    <button className="del-button" onClick={delPhoto} img={img} value={img}>
                       X
                     </button>
-                    <img className="preview-images d-block w-100 large-rental-photo" src={img} alt="..."></img>
-                  </ListItem>
-                </List>
+                    
+                    <img className="preview-images d-block" src={img} alt="..."></img>
+                  </li>
+                </ul>
               ))}
             </div>
-          </div>
-          <p> Look good? </p>
+          {/* </div> */}
+          <p className="row"> Look good? </p>
           <Link to={"/Properties/name/" + rental.location}>
-            <button className="to-page"> Looks good! </button>
+            <button className="more-photos row"> Looks good! </button>
           </Link>
           <Link to={"/images/name/" + rental.location}>
-            <button className="more-photos"> I want to add more photos</button>
+            <button className="more-photos row"> I want to add more photos</button>
           </Link>
         </div>
       )}
