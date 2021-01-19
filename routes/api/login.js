@@ -7,7 +7,7 @@ const Login = require("../../models/login");
 // router.get("/test", (req, res) => {
 //   res.send("working")
 // })
-
+const key = "nc2y3849p384cyn2938470n239492nc083"
 router.post("/register", async (req, res) => {
   try {
     let { email, password, passwordCheck, displayName, jobType, phoneNumber } = req.body;
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user._id }, key);
     res.json({
       token,
       user: {
@@ -96,7 +96,7 @@ router.post("/tokenIsValid", async (req, res) => {
     const token = req.header("x-auth-token");
     if (!token) return res.json(false);
 
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, key);
     if (!verified) return res.json(false);
 
     const user = await Login.findById(verified.id);
@@ -114,7 +114,7 @@ router.get("/", auth, async (req, res) => {
   const token = req.header("x-auth-token");
   if (!token) return res.json(false);
 
-  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  const verified = jwt.verify(token, key);
   if (!verified) return res.json(false);
 
   const user = await Login.findById(verified.id);
