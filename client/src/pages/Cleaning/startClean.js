@@ -3,6 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
 import { useParams, Link } from "react-router-dom";
 import "./clean.css";
+import NoMatch from "../NoMatch"
 
 function StartClean() {
   const { userData } = useContext(UserContext);
@@ -11,7 +12,7 @@ function StartClean() {
     property: "",
     images: [],
     stopClean: "",
-    notes: ""
+    notes: "",
   });
   const fileInput = useRef();
   const params = useParams();
@@ -79,64 +80,77 @@ function StartClean() {
       {loading === false && (
         <div className="new-form-element">
           <UserContext.Provider value={{ userData }}>
-            <h2 className="cleaning-title row">
-              Enter Cleaning Details (Ingrese los Detalles de Limpieza):
-            </h2>
-            <div className="container">
-              <div className="row">Time Finished Cleaning (HH : MM ):</div>
-              <div className="row">
-                ( Hora en que se Completó la Limpieza (HH: MM) ) :
-              </div>
-              <div className="row">
-                <input onChange={stopClean} type="text" name="stopClean" />
-              </div>
-              {/* <div className="row"> */}
-              <form
-                encType="multipart/form-data"
-                method="put"
-                name="fileinfo"
-                // className="row"
-              >
-                <div className="row">
-                  <label>Choose Photos (Elegir Fotos): </label>
+            {userData.user ? (
+              <>
+                <h2 className="cleaning-title row">
+                  Enter Cleaning Details (Ingrese los Detalles de Limpieza):
+                </h2>
+                <div className="container">
+                  <div className="row">Time Finished Cleaning (HH : MM ):</div>
+                  <div className="row">
+                    ( Hora en que se Completó la Limpieza (HH: MM) ) :
+                  </div>
+                  <div className="row">
+                    <input onChange={stopClean} type="text" name="stopClean" />
+                  </div>
+                  {/* <div className="row"> */}
+                  <form
+                    encType="multipart/form-data"
+                    method="put"
+                    name="fileinfo"
+                    // className="row"
+                  >
+                    <div className="row">
+                      <label>Choose Photos (Elegir Fotos): </label>
+                    </div>
+                    <div className="row">
+                      <input
+                        id="file-upload-button"
+                        type="file"
+                        name="image"
+                        ref={fileInput}
+                        onChange={onUpload}
+                        className="row"
+                      />
+                    </div>
+                  </form>
+                  {/* </div> */}
+                  <div className="row">
+                    <div>
+                      <button type="submit" onClick={onSend} value="Submit ">
+                        Upload (Subir)
+                      </button>
+                      {load === false && (
+                        <div> Photo has been uploaded ( Carga Completa )</div>
+                      )}
+                      {load === true && <div> Waiting ( Esperando)..... </div>}
+                    </div>
+                  </div>
+                  <div className="row">
+                    Enter any notes necessary (Ingresar Notas de Limpieza):
+                  </div>
+                  <div className="row">
+                    <input
+                      nChange={stopClean}
+                      className="notes-area"
+                      type="text"
+                      name="notes"
+                    />{" "}
+                  </div>
+                  <div className="row"></div>
+                  <Link to={"/previewclean/" + state._id}>
+                    <button className="cleaning-submit" onClick={submitForm}>
+                      {" "}
+                      Submit (Enviar)
+                    </button>
+                  </Link>
                 </div>
-                <div className="row">
-                  <input
-                  id="file-upload-button"
-                    type="file"
-                    name="image"
-                    ref={fileInput}
-                    onChange={onUpload}
-                    className="row"
-                  />
-                </div> 
-              </form>
-              {/* </div> */}
-              <div className="row">
-                <div>
-                  <button type="submit" onClick={onSend} value="Submit ">
-                    Upload (Subir)
-                  </button>
-                  {load === false && (
-                    <div> Photo has been uploaded ( Carga Completa )</div>
-                  )}
-                  {load === true && <div> Waiting ( Esperando)..... </div>}
-                </div>
+              </>
+            ) : (
+              <div>
+                <NoMatch />
               </div>
-              <div className="row">
-                Enter any notes necessary (Ingresar Notas de Limpieza):
-              </div>
-              <div className="row">
-                <input nChange={stopClean} className="notes-area" type="text" name="notes" />{" "}
-              </div>
-              <div className="row"></div>
-              <Link to= {"/previewclean/" + state._id} >
-              <button className="cleaning-submit" onClick={submitForm}>
-                {" "}
-                Submit (Enviar)
-              </button>
-              </Link>
-            </div>
+            )}
           </UserContext.Provider>
         </div>
       )}

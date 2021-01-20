@@ -66,8 +66,10 @@ function Properties() {
 
   return (
     <>
-      <div className="container">
-        <div className="row">
+    <div className="card mb-3">
+
+
+    <div className="card-img-top">
           <div className="center-me">
             <div className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
@@ -110,8 +112,18 @@ function Properties() {
             </div>
           </div>
         </div>
-        <div className="content-box">
-          <Tabs defaultActiveKey="space" id="noanim-tab-example">
+
+
+
+
+
+  <div className="card-body">
+    <h5 className="card-title">{rental.location}</h5>
+
+
+    <div className="card-text">
+      
+    <Tabs defaultActiveKey="space" id="noanim-tab-example">
             <Tab eventKey="space" title="The Space" ref={descriptionRef}>
               {rental.description}
 
@@ -121,24 +133,14 @@ function Properties() {
               {rental.activities}
             </Tab>
           </Tabs>
-        </div>
-      
-      {/* <Tabs defaultActiveKey="space" id="noanim-tab-example">
-            <Tab eventKey="space" title="The Space" onChange={handleInputChange} defaultValue = {rental.description}>
-     
-            <input>{rental.description} </input>
-  
-            <button onClick={updateInfo}> update me </button>
-            </Tab>
-            <Tab eventKey="activities" title="Activities" defaultValue = {rental.activities}>
-             {rental.activities}
-            </Tab>
-          </Tabs> */}
-      <button className="contact-btn">Contact</button>
+          <button className="contact-btn">Contact</button>
       <a href={rental.link}>
         <button className="book-btn">Book</button>
       </a>
       </div>
+  </div>
+</div>
+
     </>
   );
 }

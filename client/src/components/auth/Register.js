@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
 import "./style.css";
 import API from "../../utils/API"
+import NoMatch from "../../pages/NoMatch"
 
 export default function Register() {
+  const { userData } = useContext(UserContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
@@ -14,8 +15,6 @@ export default function Register() {
   const [passwordCheck, setPasswordCheck] = useState();
   const [displayName, setDisplayName] = useState();
   const [error, setError] = useState();
-
-  const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
   const submit = async (e) => {
@@ -30,13 +29,7 @@ export default function Register() {
         jobType,
       };
       await API.createUser(newUser)
-      const loginRes = await API.loginUser({email, password, jobType})
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/home");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
       console.log(err);
@@ -45,10 +38,12 @@ export default function Register() {
 
   return (
     <div className="page container">
+       <UserContext.Provider value={{ userData }}>
       <h2 className="register-title">Register</h2>
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
+        )}
+        {userData.user && userData.user.jobType === "admin" ? (
       <form className="form register-form" onSubmit={submit}>
         <div className="row">
           <label htmlFor="register-email">Email</label>
@@ -144,7 +139,11 @@ export default function Register() {
         </div>
 
         <input className="register-btn" type="submit" value="Register" />
-      </form>
+      </form> 
+       ) : (
+      <NoMatch />
+       )}
+      </UserContext.Provider>
     </div>
   );
 }

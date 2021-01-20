@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem } from "../../components/List";
 import { useParams, Link } from "react-router-dom";
 import API from "../../utils/API";
+import NoMatch from "../NoMatch"
+import UserContext from "../../contexts/UserContext";
 
 function previewCleaning() {
+  const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({
       property: "",
@@ -47,6 +50,8 @@ function previewCleaning() {
   return (
     <>
       {loading === false && (
+        <UserContext.Provider value={{ userData }}>
+        {userData.user ? (
         <div className="container">
           <div className="row">
             Check out the photos you've uploaded below!
@@ -72,6 +77,10 @@ function previewCleaning() {
             <button className="more-photos"> I want to add more photos</button>
           </Link>
         </div>
+        ) : (
+          <NoMatch />
+        )}
+        </UserContext.Provider>
       )}
     </>
   );

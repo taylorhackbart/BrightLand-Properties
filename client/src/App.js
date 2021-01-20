@@ -5,7 +5,6 @@ import Properties from "./pages/Rentals/Properties";
 import NewRental from "./pages/NewRental/images.js";
 import Base from "./pages/NewRental/base.js";
 import previewPhotos from "./pages/NewRental/preview.js";
-import Axios from "axios";
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
@@ -17,6 +16,7 @@ import StartCleaning from "./pages/Cleaning/startClean";
 import previewCleaning from "./pages/Cleaning/preview";
 import "./app.css";
 import API from "./utils/API";
+import NoMatch from "./pages/NoMatch";
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -29,11 +29,15 @@ function App() {
       if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
-        console.log("no token has been found")
+        console.log("no token has been found");
       }
-      const tokenRes = await API.postToken(null, { headers: { "x-auth-token": token } })
+      const tokenRes = await API.postToken(null, {
+        headers: { "x-auth-token": token },
+      });
       if (tokenRes.data) {
-        const userRes = await API.getUsers({ headers: { "x-auth-token": token }})
+        const userRes = await API.getUsers({
+          headers: { "x-auth-token": token },
+        });
         setUserData({
           token,
           user: userRes.data,
@@ -45,37 +49,42 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="page">
       <BrowserRouter>
         <Nav />
         <div className="app-background">
-          <Route exact path="/" component={HomePage} />
-          <Route
-            exact
-            path="/Properties/name/:location"
-            component={Properties}
-          />
-          {/* <Switch>
-          </Switch> */}
           <UserContext.Provider value={{ userData, setUserData }}>
-            <Route exact path="/home" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route exact path={"/preview/:id"} component={previewPhotos} />
-            <Route exact path="/new" component={Base} />
-            <Route exact path="/cleaning" component={Cleaning} />
-            <Route exact path="/startclean/:id" component={StartCleaning} />
-            <Route exact path="/previewclean/:id" component={previewCleaning} />
-            <Route
-              exact
-              path={"/images/name/:location"}
-              component={NewRental}
-            />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route
+                exact
+                path="/Properties/name/:location"
+                component={Properties}
+              />
+              <Route exact path="/home" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route exact path={"/preview/:id"} component={previewPhotos} />
+              <Route exact path="/new" component={Base} />
+              <Route exact path="/cleaning" component={Cleaning} />
+              <Route exact path="/startclean/:id" component={StartCleaning} />
+              <Route
+                exact
+                path="/previewclean/:id"
+                component={previewCleaning}
+              />
+              <Route
+                exact
+                path={"/images/name/:location"}
+                component={NewRental}
+              />
+              <Route path="*" component={NoMatch} />
+            </Switch>
             <Footer />
           </UserContext.Provider>
         </div>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
 import { useHistory } from "react-router-dom";
 import "./clean.css";
+import NoMatch from "../NoMatch"
 
 function Cleaning() {
   const { userData } = useContext(UserContext);
@@ -45,6 +46,7 @@ function Cleaning() {
     <>
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
+           {userData.user ? (
           <form>
             <div className="row">
               <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
@@ -148,6 +150,9 @@ function Cleaning() {
               </ul>
             </div>
           </form>
+           ) : (
+             <NoMatch />
+           )}
         </UserContext.Provider>
       )}
     </>

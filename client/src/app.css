@@ -1,3 +1,5 @@
-/* .app-background{
-  background: linear-gradient(180deg, white, rgb(235, 252, 241));
-} */
+div.page{
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+}

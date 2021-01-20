@@ -33,7 +33,7 @@ export default {
     return axios.get("/users", data)
   },
   getUser: function() {
-    return axios.get("/users")
+    return axios.get("/users/register")
   },
   postToken: function(data, header) {
     return axios.post("/users/tokenIsValid", data, header)
