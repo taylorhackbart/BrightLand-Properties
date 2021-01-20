@@ -21,7 +21,6 @@ function Cleaning() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setPropertyType({ ...property, [name]: value });
   };
   const onSend = (e) => {

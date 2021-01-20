@@ -20,7 +20,6 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-
     try {
       const newUser = {
         email,
@@ -30,19 +29,12 @@ export default function Register() {
         phoneNumber,
         jobType,
       };
-      // await Axios.post("http://localhost:3001/users/register", newUser);
       await API.createUser(newUser)
-      // const loginRes = await Axios.post("http://localhost:3001/users/login", {
-      //   email,
-      //   password,
-      //   jobType
-      // });
       const loginRes = await API.loginUser({email, password, jobType})
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      // console.log(loginRes);
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/");
     } catch (err) {

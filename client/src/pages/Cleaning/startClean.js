@@ -59,7 +59,7 @@ function StartClean() {
           .then((res) => {
             //THEN I updated state
             setState({ ...state, images: newArr });
-            console.log(res);
+            // console.log(res);
           })
           .catch((err) => {
             throw err;

@@ -22,31 +22,18 @@ function App() {
     token: undefined,
     user: undefined,
   });
-  // const time = new Date();
-  // time.setSeconds(time.getSeconds() + 600);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
-      console.log(token)
       if (token === null) {
         localStorage.setItem("auth-token", "");
         token = "";
         console.log("no token has been found")
       }
-      // const tokenRes = await Axios.post(
-      //   "http://localhost:3001/users/tokenIsValid",
-      //   null,
-      //   { headers: { "x-auth-token": token } }
-      // ) 
       const tokenRes = await API.postToken(null, { headers: { "x-auth-token": token } })
-      console.log(tokenRes)
       if (tokenRes.data) {
-        // const userRes = await Axios.get("http://localhost:3001/users/", {
-        //   headers: { "x-auth-token": token },
-        // });
         const userRes = await API.getUsers({ headers: { "x-auth-token": token }})
-        console.log(userRes)
         setUserData({
           token,
           user: userRes.data,

@@ -29,17 +29,16 @@ export default function Home() {
   const body1 = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // const handleCloseClean = () => setShow(false);
-  // const handleShowClean = () => setShow(true);
 
   useEffect(() => {
     setLoading(false);
   }, []);
   const loadEmployees = async () => {
     let token = localStorage.getItem("auth-token");
-    const userRes = await Axios.get("http://localhost:3001/users/register", {
-      headers: { "x-auth-token": token },
-    });
+    // const userRes = await Axios.get("http://localhost:3001/users/register", {
+    //   headers: { "x-auth-token": token },
+    // });
+    const userRes = await API.getUser()
     let newArr = [...userRes.data];
     // console.log(newArr);
     setEmployees({ newArr });

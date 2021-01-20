@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
 import "./style.css"
 import API from "../../utils/API"
@@ -18,13 +17,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      // const loginRes = await Axios.post(
-      //   "http://localhost:3001/users/login",
-      //   loginUser
-      // );
       const loginRes = await API.loginUser(loginUser)
-      // console.log(loginRes)
-      // console.log(loginRes.data.user.jobType)
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,

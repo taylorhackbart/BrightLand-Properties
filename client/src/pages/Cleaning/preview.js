@@ -32,10 +32,7 @@ function previewCleaning() {
     const newArr = rental.images.filter((newID) => {
       return newID !== id;
     });
-    const newArrAgain = newArr.slice(0);
-    console.log(newArrAgain);
     setRental({ ...rental, images: newArr });
-    console.log(rental);
 
     const startDelete = async () => {
       await API.updateCleaning(rental._id, rental)

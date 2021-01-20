@@ -23,23 +23,17 @@ export default {
   saveProperty: function(PropertyData) {
     return axios.post("/api/property", PropertyData);
   },
-  // getImage: function(){
-  //   return axios.get("/api/image")
-  // },
-
-  // uploadImage: function(data){
-  //   return axios.post('/api/image', data)
-  // },
-
   getImages: function(){
     return axios.get('/api/cloud')
   },
-
   sendToCloud: function(formData){
     return axios.post('/api/cloud', formData)
   },
   getUsers: function(data) {
     return axios.get("/users", data)
+  },
+  getUser: function() {
+    return axios.get("/users")
   },
   postToken: function(data, header) {
     return axios.post("/users/tokenIsValid", data, header)
