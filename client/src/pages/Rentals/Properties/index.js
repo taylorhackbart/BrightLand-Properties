@@ -3,7 +3,7 @@ import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
 import API from "../../../utils/API";
 import { useParams } from "react-router-dom";
-import "../style.css"
+import "../style.css";
 
 function Properties() {
   const [index, setIndex] = useState(0);
@@ -66,10 +66,8 @@ function Properties() {
 
   return (
     <>
-    <div className="card mb-3">
-
-
-    <div className="card-img-top">
+      <div className="card mb-3">
+        <div className="card-img-top">
           <div className="center-me">
             <div className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
@@ -113,34 +111,27 @@ function Properties() {
           </div>
         </div>
 
+        <div className="card-body">
+          <h5 className="card-title">{rental.location}</h5>
 
+          <div className="card-text">
+            <Tabs defaultActiveKey="space" id="noanim-tab-example">
+              <Tab eventKey="space" title="The Space" ref={descriptionRef}>
+                {rental.description}
 
-
-
-  <div className="card-body">
-    <h5 className="card-title">{rental.location}</h5>
-
-
-    <div className="card-text">
-      
-    <Tabs defaultActiveKey="space" id="noanim-tab-example">
-            <Tab eventKey="space" title="The Space" ref={descriptionRef}>
-              {rental.description}
-
-              {/* <button onClick={updateInfo}> update me </button> */}
-            </Tab>
-            <Tab eventKey="activities" title="Activities" ref={activityRef}>
-              {rental.activities}
-            </Tab>
-          </Tabs>
-          <button className="contact-btn">Contact</button>
-      <a href={rental.link}>
-        <button className="book-btn">Book</button>
-      </a>
+                {/* <button onClick={updateInfo}> update me </button> */}
+              </Tab>
+              <Tab eventKey="activities" title="Activities" ref={activityRef}>
+                {rental.activities}
+              </Tab>
+            </Tabs>
+            <button className="contact-btn">Contact</button>
+            <a href={rental.link}>
+              <button className="book-btn">Book</button>
+            </a>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
-
     </>
   );
 }
