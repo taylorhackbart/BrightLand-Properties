@@ -38,8 +38,17 @@ export default {
   sendToCloud: function(formData){
     return axios.post('/api/cloud', formData)
   },
-  getUsers: function() {
-    return axios.get("/users")
+  getUsers: function(data) {
+    return axios.get("/users", data)
+  },
+  postToken: function(data, header) {
+    return axios.post("/users/tokenIsValid", data, header)
+  },
+  loginUser: function (data){
+    return axios.post("/users/login", data)
+  },
+  createUser: function (data){
+    return axios.post("/users/register", data)
   },
   getCleaning: function (){
     return axios.get("/api/cleaning")

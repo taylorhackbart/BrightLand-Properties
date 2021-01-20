@@ -4,6 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
 import "./style.css";
+import API from "../../utils/API"
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -29,12 +30,14 @@ export default function Register() {
         phoneNumber,
         jobType,
       };
-      await Axios.post("http://localhost:3001/users/register", newUser);
-      const loginRes = await Axios.post("http://localhost:3001/users/login", {
-        email,
-        password,
-        jobType
-      });
+      // await Axios.post("http://localhost:3001/users/register", newUser);
+      await API.createUser(newUser)
+      // const loginRes = await Axios.post("http://localhost:3001/users/login", {
+      //   email,
+      //   password,
+      //   jobType
+      // });
+      const loginRes = await API.loginUser({email, password, jobType})
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
