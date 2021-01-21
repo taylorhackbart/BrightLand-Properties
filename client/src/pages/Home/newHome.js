@@ -5,21 +5,22 @@ import API from "../../../utils/API";
 import { useParams } from "react-router-dom";
 import "../style.css";
 
-function Properties() {
+function newHome() {
   const [index, setIndex] = useState(0);
   const [rental, setRental] = useState({});
   const [loading, setLoading] = useState(true);
   const params = useParams();
-  useEffect(() => {
-    loadRentals();
-  }, []);
   const imageRef = useRef();
   const activityRef = useRef();
   const descriptionRef = useRef();
+  useEffect(() => {
+    loadRentals();
+  }, []);
+
   const loadRentals = async () => {
-    await API.getPropertiesByName(params.location)
+    await API.getProperty()
       .then((resp) => {
-        setRental(resp.data[0]);
+       console.log(resp);
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -48,17 +49,17 @@ function Properties() {
       return checkNumber(newIndex);
     });
   };
-  const updateInfo = (event) => {
-    const { name, value } = event.target;
-    API.updateProperty(rental._id, rental)
-      .then((res) => {
-        setRental({ ...rental, [name]: value });
-        console.log(res);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  };
+  // const updateInfo = (event) => {
+  //   const { name, value } = event.target;
+  //   API.updateProperty(rental._id, rental)
+  //     .then((res) => {
+  //       setRental({ ...rental, [name]: value });
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       throw err;
+  //     });
+  // };
   // const handleInputChange = (event) => {
   //   const { name, value } = event.target;
   //   setRental({ ...rental, [name]: value })
@@ -66,7 +67,7 @@ function Properties() {
 
   return (
     <>
-      <div className="card mb-3">
+      {/* <div className="card mb-3">
         <div className="card-img-top">
           <div className="center-me">
             <div className="carousel slide" data-bs-ride="carousel">
@@ -110,30 +111,9 @@ function Properties() {
             </div>
           </div>
         </div>
-
-        <div className="card-body">
-          <h5 className="card-title">{rental.location}</h5>
-
-          <div className="card-text">
-            <Tabs defaultActiveKey="space" id="noanim-tab-example">
-              <Tab eventKey="space" title="The Space" ref={descriptionRef}>
-                {rental.description}
-
-                {/* <button onClick={updateInfo}> update me </button> */}
-              </Tab>
-              <Tab eventKey="activities" title="Activities" ref={activityRef}>
-                {rental.activities}
-              </Tab>
-            </Tabs>
-            <button className="contact-btn">Contact</button>
-            <a href={rental.link}>
-              <button className="book-btn">Book</button>
-            </a>
-          </div>
-        </div>
-      </div>
+      </div> */}
     </>
   );
 }
 
-export default Properties;
+export default newHome;

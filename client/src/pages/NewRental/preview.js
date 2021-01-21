@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem } from "../../components/List";
 import { useParams, Link } from "react-router-dom";
 import API from "../../utils/API";
 import "./preview.css";
@@ -10,27 +9,32 @@ function previewPhotos() {
     location: "",
     description: "",
     activities: "",
+    homeImage: "",
     imageUrl: [],
+    link: "",
   });
   const params = useParams();
+  console.log(params)
   const [images, setImageArr] = useState([]);
 
   useEffect(() => {
     if (params.id) {
       API.getProperties(params.id)
         .then(
-          (res) => setRental(res.data)
-          //  console.log(res.data)
-        )
+          (res) => 
+          // setRental(res.data)
+          console.log(res.data)
+          )
         .catch((err) => console.log(err));
-    } else if (params.name) {
-      API.getUserByName(params.name)
+    } else if (params.location) {
+      API.getPropertiesByName(params.location)
         .then((res) => setRental(res.data[0]))
         .catch((err) => console.log(err));
     }
     setLoading(false);
+    
   }, []);
-
+console.log(rental)
   const delPhoto = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -66,6 +70,10 @@ function previewPhotos() {
             Check out the photos you've uploaded below!
             </div>
             <p className="row"> Delete photos you no longer want</p>
+            <div className="row">
+              <h4> Home Page Photo:</h4>
+              <img className="preview-images" src={rental.homeImage} />
+            </div>
             <div>
               {rental.imageUrl.map((img) => (
                 <ul key={img}>

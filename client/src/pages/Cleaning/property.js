@@ -10,6 +10,7 @@ function Cleaning() {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const [property, setPropertyType] = useState({
+    name: "",
     property: "",
     startClean: Date,
     images: [],
@@ -24,23 +25,24 @@ function Cleaning() {
     const { name, value } = e.target;
     setPropertyType({ ...property, [name]: value });
   };
-  const onSend = (e) => {
+  const onSend = async (e) => {
     e.preventDefault();
 
-    API.saveCleaning(property).then((res) => {
-      console.log(res);
+    await API.saveCleaning(property).then((res) => {
+      // console.log(res);
       const id = res.data._id;
+      setPropertyType(res.data);
       const loadPropertyInfo = async () => {
         await API.getCleaningById(id, property).then((res) => {
-          console.log(res);
           setPropertyType(res.data);
+          // console.log(res);
         });
       };
       loadPropertyInfo();
       history.push("/startclean/" + id);
     });
   };
-  console.log(property);
+  // console.log(property);
 
   return (
     <>
@@ -58,7 +60,7 @@ function Cleaning() {
                     id="property-bend"
                     type="radio"
                     onChange={handleChange}
-                    value="bend"
+                    value="Bend"
                     name="property"
                   />{" "}
                   Bend
@@ -68,7 +70,7 @@ function Cleaning() {
                     id="property-cabo"
                     type="radio"
                     onChange={handleChange}
-                    value="cabo"
+                    value="Cabo"
                     name="property"
                   />{" "}
                   Cabo
@@ -78,7 +80,7 @@ function Cleaning() {
                     id="property-camping"
                     type="radio"
                     onChange={handleChange}
-                    value="camping"
+                    value="Camping"
                     name="property"
                   />{" "}
                   Camping
@@ -88,7 +90,7 @@ function Cleaning() {
                     id="property-cerritos"
                     type="radio"
                     onChange={handleChange}
-                    value="losCerritos"
+                    value="Los Cerritos"
                     name="property"
                   />{" "}
                   Los Cerritos
@@ -98,7 +100,7 @@ function Cleaning() {
                     id="property-indianpalms"
                     type="radio"
                     onChange={handleChange}
-                    value="indianPalms"
+                    value="Indian Palms"
                     name="property"
                   />{" "}
                   Indian Palms
@@ -108,7 +110,7 @@ function Cleaning() {
                     id="property-indio"
                     type="radio"
                     onChange={handleChange}
-                    value="indio"
+                    value="Indio"
                     name="property"
                   />{" "}
                   Indio
@@ -118,7 +120,7 @@ function Cleaning() {
                     id="property-lapine"
                     type="radio"
                     onChange={handleChange}
-                    value="lapine"
+                    value="La Pine"
                     name="property"
                   />{" "}
                   La Pine
@@ -128,7 +130,7 @@ function Cleaning() {
                     id="property-mthood"
                     type="radio"
                     onChange={handleChange}
-                    value="mtHood"
+                    value="Mt Hood"
                     name="property"
                   />{" "}
                   Mt Hood
@@ -138,7 +140,7 @@ function Cleaning() {
                     id="property-portland"
                     type="radio"
                     onChange={handleChange}
-                    value="portland"
+                    value="Portland"
                     name="property"
                   />{" "}
                   Portland

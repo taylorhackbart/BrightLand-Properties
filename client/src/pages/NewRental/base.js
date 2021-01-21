@@ -1,33 +1,40 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import API from "../../utils/API"
 import { Link } from "react-router-dom";
 import "./preview.css"
 
 function Base() {
-  const [rental, setRental] = useState([])
+  const [loading, setLoading] = useState(true)
   const [state, setState] = useState({
     location: "",
     description: "",
     activities: "",
-    imageUrl: []
+    // homeImage: "",
+    // imageUrl: [],
+    link: "",
   })
-
+useEffect( async () => {
+  setLoading(false)
+}, [])
 
  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setState({ ...state, [name]: value })
   };
- const onSubmit = () => {
-   API.saveProperty(state)
-  //  .then(resp => {
-  //   const userArr = rental.slice(0);
-  //   userArr.push(resp.data);
-  //   console.log(resp.data);
-  //   setRental(userArr);
-  // })
-  // .catch((err) => {
-  //   throw err;
-  // });
+ const onSubmit = async () => {
+  //  e.preventDefault()
+   await API.saveProperty(state)
+   .then(resp => {
+    // const userArr = rental.slice(0);
+    // userArr.push(resp.data);
+    // console.log(resp.data);
+    setState(state);
+    console.log(state)
+    console.log(resp)
+  })
+  .catch((err) => {
+    throw err;
+  });
  }
 
   return (
@@ -45,10 +52,12 @@ function Base() {
 
   <p className="row"> AirBnb Link: </p>
   <input type="text" name="link" className="row" onChange={handleInputChange}  />
-
+ 
   <Link to={"/images/name/" + state.location}>
   <button className="row"onClick={onSubmit}>Submit</button>
   </Link>
+
+
     </form>
     </div>
   );

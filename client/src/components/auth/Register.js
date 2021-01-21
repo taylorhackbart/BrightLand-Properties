@@ -43,7 +43,7 @@ export default function Register() {
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
         )}
-        {userData.user && userData.user.jobType === "admin" ? (
+        {userData.user && userData.user.jobType === "Admin" ? (
       <form className="form register-form" onSubmit={submit}>
         <div className="row">
           <label htmlFor="register-email">Email</label>
@@ -110,7 +110,7 @@ export default function Register() {
                 id="register-job-admin"
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
-                value="admin"
+                value="Admin"
                 name="jobType"
               />{" "}
               ADMIN
@@ -120,7 +120,7 @@ export default function Register() {
                 id="register-job-manager"
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
-                value="manager"
+                value="Manager"
                 name="jobType"
               />{" "}
               MANAGER
@@ -130,7 +130,7 @@ export default function Register() {
                 id="register-job-employee"
                 type="radio"
                 onChange={(e) => setJobType(e.target.value)}
-                value="employee"
+                value="Employee"
                 name="jobType"
                 />
                 EMPLOYEE

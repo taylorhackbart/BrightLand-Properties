@@ -8,6 +8,7 @@ import UserContext from "../../contexts/UserContext";
 function previewCleaning() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(true)
   const [rental, setRental] = useState({
       property: "",
       stopClean: "",
@@ -26,6 +27,7 @@ function previewCleaning() {
         )
         .catch((err) => console.log(err));
     setLoading(false);
+    setLoad(false)
   }, []);
 
   const delPhoto = (e) => {
@@ -73,9 +75,12 @@ function previewCleaning() {
           <Link to="/home">
             <button className="to-page"> Looks good! </button>
           </Link>
+          { load === false && (
           <Link to={"/startclean/" + rental._id}>
             <button className="more-photos"> I want to add more photos</button>
           </Link>
+
+          )}
         </div>
         ) : (
           <NoMatch />

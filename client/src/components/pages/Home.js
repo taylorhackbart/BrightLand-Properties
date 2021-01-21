@@ -9,6 +9,7 @@ import { AiOutlineClear } from "react-icons/ai";
 import Modal from "react-bootstrap/Modal";
 import API from "../../utils/API";
 import NoMatch from "../../pages/NoMatch";
+import moment from "moment";
 
 export default function Home() {
   const { userData } = useContext(UserContext);
@@ -18,7 +19,6 @@ export default function Home() {
   const [load, setLoad] = useState(true);
   const [loadClean, setLoadClean] = useState(true);
   const [show, setShow] = useState(false);
-  // const [showClean, setShowClean] = useState(false);
   const open = useRef();
   const header = useRef();
   const title = useRef();
@@ -55,7 +55,6 @@ export default function Home() {
     const userRes = await API.getCleaning();
     let cleaningArr = [...userRes.data];
     setCleanings({ cleaningArr });
-    // console.log(cleaningArr)
     //not allowing the employee modal to open
     setLoad(true);
     //page has been loaded with all info needed
@@ -71,8 +70,8 @@ export default function Home() {
         {loading === false && (
           <UserContext.Provider value={{ userData }}>
             <div className="page">
-              {userData.user && userData.user.jobType === "admin" ? (
-                <>
+              {userData.user && userData.user.jobType === "Admin" ? (
+                <div className="container">
                   <h1>Welcome {userData.user.displayName}</h1>
                   <p> Job Title: {userData.user.jobType}</p>
                   <div className="row">
@@ -99,6 +98,7 @@ export default function Home() {
                           <FiUsers
                             className="admin-register"
                             onClick={loadEmployees}
+                            onChange={handleShow}
                           />
                         )}
                       </div>
@@ -107,7 +107,7 @@ export default function Home() {
                   {/* loading modal for viewing employees on click  */}
                   <div>
                     {load === false && loadClean === true && (
-                      <Modal show={show} onHide={handleClose} ref={open}>
+                      <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton ref={header}>
                           <Modal.Title
                             id="contained-modal-title-vcenter"
@@ -140,28 +140,35 @@ export default function Home() {
                           <AiOutlineClear
                             className="admin-register"
                             onClick={loadCleaning}
+                            onChange={handleShow}
                           />
                         )}
                       </div>
                     </div>
                     <div>
                       {loadClean === false && load === true && (
-                        <Modal show={show} onHide={handleClose} ref={open1}>
+                        <Modal ref={open1} show={show} onHide={handleClose}>
                           <Modal.Header closeButton ref={header1}>
                             <Modal.Title
                               id="contained-modal-title-vcenter"
                               ref={title1}
                             >
-                              Cleanings
+                               Cleanings
                             </Modal.Title>
                           </Modal.Header>
                           <Modal.Body ref={body1}>
                             {cleanings.cleaningArr.map((cleaning) => (
                               <div key={cleaning._id}>
-                                <h3>{cleaning.property}</h3>
-                                <ul> {cleaning.startClean} </ul>
-                                <ul> {cleaning.stopClean} </ul>
-                                <ul> {cleaning.notes}</ul>
+                                <h4>{cleaning.property}</h4>
+                                <ul> <strong>Date:   </strong>
+                                  {" "}
+                                  {moment(cleaning.startClean).format(
+                                    "DD/MM/YYYY"
+                                  )}{" "}
+                                </ul>
+                                <ul><strong> Name of Employee: </strong> {cleaning.name} </ul>
+                                <ul> <strong> Time Finished: </strong> {cleaning.stopClean} </ul>
+                                <ul>  <strong> Notes: </strong> {cleaning.notes}</ul>
                               </div>
                             ))}
                           </Modal.Body>
@@ -182,8 +189,21 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </>
-              ) : userData.user && userData.user.jobType === "employee" ? (
+                  <div className="row">
+                    <div className="card w-50 col-12 col-md-6">
+                      <div className="card-body">
+                        <h5 className="card-title">Log a Clean</h5>
+                        <p className="card-text">
+                          Click the button below to log a new cleaning:
+                        </p>
+                        <Link to="/cleaning">
+                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : userData.user && userData.user.jobType === "Employee" ? (
                 <div>
                   <h1>Welcome {userData.user.displayName}</h1>
                   <p> Job Title: {userData.user.jobType}</p>
@@ -202,10 +222,57 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              ) : userData.user && userData.user.jobType === "manager" ? (
+              ) : userData.user && userData.user.jobType === "Manager" ? (
                 <div>
                   <h1>Welcome {userData.user.displayName}</h1>
                   <p> Job Title: {userData.user.jobType}</p>
+                  <div className="row">
+                    <div className="card w-50 col-12 col-md-6">
+                      <div className="card-body">
+                        <h5 className="card-title">View Recent Cleanings</h5>
+                        <p className="card-text">
+                          Click below to view recent cleanings
+                        </p>
+                        {loading === false && (
+                          <AiOutlineClear
+                            className="admin-register"
+                            onClick={loadCleaning}
+                            onChange={handleShow}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      {loadClean === false && load === true && (
+                        <Modal show={show} onHide={handleClose} ref={open1}>
+                          <Modal.Header closeButton ref={header1}>
+                            <Modal.Title
+                              id="contained-modal-title-vcenter"
+                              ref={title1}
+                            >
+                              Cleanings
+                            </Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body ref={body1}>
+                            {cleanings.cleaningArr.map((cleaning) => (
+                              <div key={cleaning._id}>
+                              <h4>{cleaning.property}</h4>
+                              <ul> <strong>Date:   </strong>
+                                {" "}
+                                {moment(cleaning.startClean).format(
+                                  "DD/MM/YYYY"
+                                )}{" "}
+                              </ul>
+                              <ul><strong> Name of Employee: </strong> {cleaning.name} </ul>
+                              <ul> <strong> Time Finished: </strong> {cleaning.stopClean} </ul>
+                              <ul>  <strong> Notes: </strong> {cleaning.notes}</ul>
+                            </div>
+                            ))}
+                          </Modal.Body>
+                        </Modal>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div>

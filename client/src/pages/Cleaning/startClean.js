@@ -9,7 +9,9 @@ import NoMatch from "../NoMatch"
 function StartClean() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  // const [load, setLoad] = useState(true)
   const [state, setState] = useState({
+    name: "",
     property: "",
     images: [],
     stopClean: "",
@@ -20,17 +22,18 @@ function StartClean() {
   const [load, setLoad] = useState(true);
   // console.log(params)
   useEffect(async () => {
-    setLoading(false);
     await loadPropertyInfo();
+    setLoading(false);
+    setLoad(false)
   }, []);
 
-  const loadPropertyInfo = () => {
-    API.getCleaningById(params.id, state).then((res) => {
+  const loadPropertyInfo = async () => {
+    await API.getCleaningById(params.id, state).then((res) => {
       // console.log(res);
       setState(res.data);
     });
   };
-  const stopClean = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
@@ -40,14 +43,15 @@ function StartClean() {
     let fileName = fileInput.current.files[0].name;
     let imgType = fileInput.current.files[0].type;
   }
-  const onSend = (e) => {
+  const onSend = async (e) => {
     e.preventDefault();
     const file = fileInput.current.files[0];
     setState({ ...file });
     const formData = new FormData();
     formData.append("fileinfo", file);
     //sending file info to Cloudinary to receive the links
-    API.sendToCloud(formData).then((res) => {
+    setLoad(true);
+    await API.sendToCloud(formData).then((res) => {
       console.log("ready to update image links");
       const imgLink = res.data.payload[0].secure_url;
       const newArr = state.images;
@@ -55,7 +59,6 @@ function StartClean() {
       newArr.push(imgLink);
       // console.log(newArr);
       //created a new async function here to await the response from the new link for the new array
-      setLoad(false);
       const startUpdate = async () => {
         await API.updateCleaning(state._id, state)
           .then((res) => {
@@ -67,13 +70,14 @@ function StartClean() {
             throw err;
           });
       };
+      setLoad(false)
       startUpdate();
     });
   };
 
   const submitForm = () => {
     API.updateCleaning(state._id, state).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
   return (
@@ -87,12 +91,16 @@ function StartClean() {
                   Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                 </h2>
                 <div className="container">
+                  <div className="row">Enter Your Name (Introduzca su Nombre):</div>
+                  <div className="row">
+                    <input onChange={handleChange} type="text" name="name" />
+                  </div>
                   <div className="row">Time Finished Cleaning (HH : MM ):</div>
                   <div className="row">
                     ( Hora en que se Completó la Limpieza (HH: MM) ) :
                   </div>
                   <div className="row">
-                    <input onChange={stopClean} type="text" name="stopClean" />
+                    <input onChange={handleChange} type="text" name="stopClean" />
                   </div>
                   {/* <div className="row"> */}
                   <form
@@ -131,20 +139,23 @@ function StartClean() {
                     Enter any notes necessary (Ingresar Notas de Limpieza):
                   </div>
                   <div className="row">
-                    <input
-                      nChange={stopClean}
+                    <textarea
+                      onChange={handleChange}
                       className="notes-area"
                       type="text"
                       name="notes"
                     />{" "}
                   </div>
                   <div className="row"></div>
+                  { load === false && (
                   <Link to={"/previewclean/" + state._id}>
                     <button className="cleaning-submit" onClick={submitForm}>
                       {" "}
                       Submit (Enviar)
                     </button>
                   </Link>
+
+                  )}
                 </div>
               </>
             ) : (

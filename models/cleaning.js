@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
 const CleaningSchema = new Schema({
+  name: {
+    type: String
+  },
   property: {
     type: String
   },
