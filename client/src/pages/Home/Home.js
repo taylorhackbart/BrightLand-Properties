@@ -83,7 +83,9 @@ class HomePage extends Component {
                       alt="..."
                       
                     />
+                    <a href="/properties">
                     <h2 className="descriptionArr"> {this.state.descriptionArr[this.state.index]}</h2>
+                    </a>
                   </div>
                 </div>
 
@@ -116,10 +118,10 @@ class HomePage extends Component {
               </div>
             </div>
           </div>
-          <div className="container">
+          {/* <div className="container">
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/Bend">
+                <a href="/properties/name/Bend">
                   <span>
                     <img className="home-image" src={Bend}></img>
                     <h2 className="smallDesc">Bend, OR</h2>
@@ -127,7 +129,7 @@ class HomePage extends Component {
                 </a>
               </div>
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/Cabo">
+                <a href="/properties/name/Cabo">
                   <img className="home-image" src={Cabo}></img>
                   <h2 className="smallDesc">Cabo, MX</h2>
                 </a>
@@ -135,13 +137,13 @@ class HomePage extends Component {
             </div>
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/MtHood">
+                <a href="/properties/name/MtHood">
                   <img className="home-image" src={MtHood}></img>
                   <h2 className="smallDesc">Mt. Hood, OR</h2>
                 </a>
               </div>
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/Indio">
+                <a href="/properties/name/Indio">
                   <img className="home-image" src={Indio}></img>
                   <h2 className="smallDesc">Indio, CA</h2>
                 </a>
@@ -149,13 +151,13 @@ class HomePage extends Component {
             </div>
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/LosCerritos">
+                <a href="/properties/name/LosCerritos">
                   <img className="home-image" src={LosCerritos}></img>
                   <h2 className="smallDesc">Los Cerritos, MX</h2>
                 </a>
               </div>
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/Portland">
+                <a href="/properties/name/Portland">
                   <img className="home-image" src={Portland}></img>
                   <h2 className="smallDesc">Portland, OR</h2>
                 </a>
@@ -163,13 +165,13 @@ class HomePage extends Component {
             </div>
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/LaPad">
+                <a href="/properties/name/LaPad">
                   <img className="home-image" src={Lapine}></img>
                   <h2 className="smallDesc">La Pine, OR</h2>
                 </a>
               </div>
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/Glamping">
+                <a href="/properties/name/Glamping">
                   <img className="home-image" src={Glambing}></img>
                   <h2 className="smallDesc">Glamping in Oregon</h2>
                 </a>
@@ -177,14 +179,14 @@ class HomePage extends Component {
             </div>
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <a href="/Properties/name/IndianPalms">
+                <a href="/properties/name/IndianPalms">
                   <img className="home-image" src={IndianPalms}></img>
                   <h2 className="smallDesc">Indian Palms, CA</h2>
                 </a>
               </div>
               <div className="col-md-6 col-sm-12"></div>
             </div>
-          </div>
+          </div> */}
         </div>
       </>
     );

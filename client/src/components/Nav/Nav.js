@@ -15,32 +15,32 @@ function Nav() {
       <div className="nav-bar-buttons">
         <SplitButton
           className="navbar-dropdown"
-          href="/"
+          href="/properties"
           variant="primary"
-          title="Properties (Alquiler de propiedad)"
+          title="Properties (Alquiler de Propiedad)"
         >
-          <Dropdown.Item eventKey="1" href="/Properties/name/Bend">
+          <Dropdown.Item eventKey="1" href="/properties/name/Bend">
             Bend, OR
           </Dropdown.Item>
-          <Dropdown.Item eventKey="2" href="/Properties/name/Cabo">
+          <Dropdown.Item eventKey="2" href="/properties/name/Cabo">
             Cabo, MX
           </Dropdown.Item>
-          <Dropdown.Item eventKey="3" href="/Properties/name/Glamping">
+          <Dropdown.Item eventKey="3" href="/properties/name/Glamping">
             Camping, OR
           </Dropdown.Item>
-          <Dropdown.Item eventKey="4" href="/Properties/name/LosCerritos">
+          <Dropdown.Item eventKey="4" href="/properties/name/LosCerritos">
             Los Cerritos, MX
           </Dropdown.Item>
           <Dropdown.Item eventKey="5" href="/properties/name/IndianPalms">
             Indian Palms, CA
           </Dropdown.Item>
-          <Dropdown.Item eventKey="6" href="/Properties/name/Indio">
+          <Dropdown.Item eventKey="6" href="/properties/name/Indio">
             Indio, CA
           </Dropdown.Item>
           <Dropdown.Item eventKey="7" href="/properties/name/LaPad">
             La Pine, OR
           </Dropdown.Item>
-          <Dropdown.Item eventKey="8" href="/Properties/name/MtHood">
+          <Dropdown.Item eventKey="8" href="/properties/name/MtHood">
             Mt Hood, OR
           </Dropdown.Item>
           <Dropdown.Item eventKey="9" href="/properties/name/Portland">

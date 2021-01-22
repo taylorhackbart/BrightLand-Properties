@@ -37,7 +37,7 @@ export default function Login() {
       )}
       <form className="form login-form" onSubmit={submit}>
         <div className="row">
-        <label htmlFor="login-username">Username</label>
+        <label htmlFor="login-username">Username (Nombre de Usuario)</label>
         </div>
         <div className="row">
         <input
@@ -48,7 +48,7 @@ export default function Login() {
         />
 </div>
 <div className="row">
-        <label htmlFor="login-password">Password</label>
+        <label htmlFor="login-password">Password (Contraseña)</label>
         </div>
         <div className="row">
         <input

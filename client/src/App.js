@@ -17,6 +17,7 @@ import previewCleaning from "./pages/Cleaning/preview";
 import "./app.css";
 import API from "./utils/API";
 import NoMatch from "./pages/NoMatch";
+import Rentals from "./pages/Rentals/Rentals"
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -58,7 +59,7 @@ function App() {
               <Route exact path="/" component={HomePage} />
               <Route
                 exact
-                path="/Properties/name/:location"
+                path="/properties/name/:location"
                 component={Properties}
               />
               <Route exact path="/home" component={Home} />
@@ -67,6 +68,7 @@ function App() {
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/cleaning" component={Cleaning} />
+              <Route exact path="/properties" component={Rentals} />
               <Route exact path="/startclean/:id" component={StartCleaning} />
               <Route
                 exact
