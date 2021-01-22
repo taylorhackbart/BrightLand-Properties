@@ -10,6 +10,7 @@ import Modal from "react-bootstrap/Modal";
 import API from "../../utils/API";
 import NoMatch from "../../pages/NoMatch";
 import moment from "moment";
+// import { Transition } from 'react-transition-group'
 
 export default function Home() {
   const { userData } = useContext(UserContext);
@@ -19,7 +20,7 @@ export default function Home() {
   const [load, setLoad] = useState(true);
   const [loadClean, setLoadClean] = useState(true);
   const [show, setShow] = useState(false);
-  const open = useRef();
+  const opem = useRef();
   const header = useRef();
   const title = useRef();
   const body = useRef();
@@ -29,6 +30,7 @@ export default function Home() {
   const body1 = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  // const [inProp, setInProp] = useState(false)
 
   useEffect(() => {
     setLoading(false);
@@ -61,6 +63,7 @@ export default function Home() {
     setLoading(false);
     //cleaning data has been loaded
     setLoadClean(false);
+
     handleShow();
   };
 
@@ -108,6 +111,7 @@ export default function Home() {
                   <div>
                     {load === false && loadClean === true && (
                       <Modal show={show} onHide={handleClose}>
+                        {/* <Transition in={inProp} ref={trans}/> */}
                         <Modal.Header closeButton ref={header}>
                           <Modal.Title
                             id="contained-modal-title-vcenter"
@@ -119,10 +123,10 @@ export default function Home() {
                         <Modal.Body ref={body}>
                           {employees.newArr.map((employee) => (
                             <div key={employee._id}>
-                              <h3>{employee.displayName}</h3>
-                              <ul> {employee.jobType} </ul>
-                              <ul> {employee.phoneNumber} </ul>
-                              <ul> {employee.email} </ul>
+                              <h4>{employee.displayName}</h4>
+                              <ul><strong>Username:</strong> "{employee.username}"</ul>
+                              <ul><strong>Role: </strong> {employee.jobType} </ul>
+                              <ul><strong>Phone Number: </strong> {employee.phoneNumber} </ul>
                             </div>
                           ))}
                         </Modal.Body>

@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Properties from "./pages/Rentals/Properties";
 import NewRental from "./pages/NewRental/images.js";
+import homeImage from "./pages/NewRental/homeImage";
 import Base from "./pages/NewRental/base.js";
 import previewPhotos from "./pages/NewRental/preview.js";
 import Home from "./components/pages/Home";
@@ -17,7 +18,7 @@ import previewCleaning from "./pages/Cleaning/preview";
 import "./app.css";
 import API from "./utils/API";
 import NoMatch from "./pages/NoMatch";
-import Rentals from "./pages/Rentals/Rentals"
+import Rentals from "./pages/Rentals/Rentals";
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -50,11 +51,11 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
+    <div className="page-container">
       <BrowserRouter>
         <Nav />
-        <div className="app-background">
-          <UserContext.Provider value={{ userData, setUserData }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <div className="app-background">
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route
@@ -66,6 +67,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
+              <Route exact path={"/homeimage/:id"} component={homeImage} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/cleaning" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
@@ -82,9 +84,9 @@ function App() {
               />
               <Route path="*" component={NoMatch} />
             </Switch>
-            <Footer />
-          </UserContext.Provider>
-        </div>
+          </div>
+          <Footer />
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

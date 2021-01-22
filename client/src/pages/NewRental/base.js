@@ -6,12 +6,12 @@ import "./preview.css"
 function Base() {
   const [loading, setLoading] = useState(true)
   const [state, setState] = useState({
-    location: "",
-    description: "",
-    activities: "",
-    homeImage: [],
-    imageUrl: [],
-    link: "",
+    // location: "",
+    // description: "",
+    // activities: "",
+    // homeImage: [],
+    // imageUrl: [],
+    // link: "",
   })
 useEffect( async () => {
   setLoading(false)

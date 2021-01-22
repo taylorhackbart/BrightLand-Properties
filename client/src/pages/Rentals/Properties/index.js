@@ -65,7 +65,7 @@ function Properties() {
   // };
 
   return (
-    <>
+    <div className="container">
       <div className="card mb-3">
         <div className="card-img-top">
           <div className="center-me">
@@ -125,14 +125,16 @@ function Properties() {
                 {rental.activities}
               </Tab>
             </Tabs>
-            <button className="contact-btn">Contact</button>
-            <a href={rental.link}>
+            <a href={rental.link} target="_blank">
+              <button className="contact-btn">Contact</button>
+            </a>
+            <a href={rental.link} target="_blank">
               <button className="book-btn">Book</button>
             </a>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -6,12 +6,12 @@ import "./preview.css";
 function previewPhotos() {
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({
-    location: "",
-    description: "",
-    activities: "",
-    homeImage: [],
-    imageUrl: [],
-    link: "",
+    // location: "",
+    // description: "",
+    // activities: "",
+    // homeImage: [],
+    // imageUrl: [],
+    // link: "",
   });
   const params = useParams();
   console.log(params)

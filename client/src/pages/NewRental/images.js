@@ -8,12 +8,12 @@ function NewRental() {
   const fileInput = useRef();
   const homeInput = useRef();
   const [rental, setRental] = useState({
-    location: "",
-    description: "",
-    activities: "",
-    homeImage: [],
-    imageUrl: [],
-    link: "",
+    // location: "",
+    // description: "",
+    // activities: "",
+    // homeImage: [],
+    // imageUrl: [],
+    // link: "",
   });
   const [homeFile, setHomeFile] = useState({});
   const [loading, setLoading] = useState(true);
@@ -50,31 +50,31 @@ function NewRental() {
     // setRental({ ...file });
     const formData = new FormData();
     formData.append("fileinfo", file);
-    console.log(file);
     //sending file info to Cloudinary to receive the links
     API.sendToCloud(formData).then((res) => {
-      console.log("ready to update image links");
+      console.log("ready to update image links")
       const imgLink = res.data.payload[0].secure_url;
       const newArr = rental.imageUrl;
       //slice(0) kept getting rejected, so i kept it as is and pushed the next link into the new array
       newArr.push(imgLink);
-      
-      // console.log(newArr);
       //created a new async function here to await the response from the new link for the new array
       setLoading(false);
       // const startUpdate = async () => {
-        let newPush = {imageUrl: newArr}
-        console.log(newPush)
-        //  API.updateProperty(rental._id, rental)
-          // .then((res) => {
+        // let newPush = {imageUrl: newArr}
+        // console.log(newPush)
+        const startUpdate = async ()  => {
+        await API.updateProperty(rental._id, rental)
+        .then((res) => {
+            setRental({...rental})
+            // console.log(rental)
             //THEN I updated state
             // console.log(res);
-      //     })
-      //     .catch((err) => {
-      //       throw err;
-      //     });
-      // };
-      // startUpdate();
+          })
+          .catch((err) => {
+            throw err;
+          });
+      };
+      startUpdate();
     });
   };
   function onHomeUpload(e) {
@@ -92,41 +92,43 @@ function NewRental() {
     // setRental({ ...file });
     // console.log(rental)
     // const file = fileInput.current.files[0];
-    // setRental({ ...file });
+    setRental({ ...file });
     const formData = new FormData();
     formData.append("homefile", file);
     console.log(file);
     //sending file info to Cloudinary to receive the links
     API.sendToCloud(formData).then((res) => {
       console.log("ready to update image links");
+      console.log(res)
       // setRental( {...rental, homeImage: [] });
       // setLoadingPhoto(true);
       // console.log(res);
       const homeImgLink = res.data.payload[0].secure_url;
-      // setLoadingPhoto(false);
       // const homeImg = homeImgLink;
       const homeArr = rental.homeImage;
       homeArr.push(homeImgLink);
       console.log(homeArr);
       // const slicedArr = homeArr.slice(0)
       // console.log(slicedArr)
-      let newPush = {homeImage: homeArr}
-      console.log(newPush)
-      setRental({...rental, homeImage: newPush})
-
+      // let newPush = {homeImage: homeArr}
+      // console.log(newPush)
+      // setRental({...rental, homeImage: homeArr})
+      // setLoadingPhoto(false);
+      console.log(rental)
+      setRental(rental);
       setLoadingPhoto(false);
-      // const homeUpdate = () => {
-        API.updateProperty(rental._id, rental)
-      //     .then((res) => {
-      //       // setRental({...rental});
-      //       console.log(res);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // };
+      const homeUpdate = async () => {
+       await API.updateProperty(rental._id, rental)
+          .then((res) => {
+            setRental(rental);
+            console.log(res, rental._id);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
       
-      // homeUpdate();
+      homeUpdate();
     })
     .catch((err) => {
       throw err;
@@ -189,7 +191,7 @@ function NewRental() {
                 className="row"
                 id="file-upload-button"
                 type="file"
-                name="homeImage"
+                name="image"
                 ref={homeInput}
                 onChange={onHomeUpload}
               />
@@ -212,7 +214,10 @@ function NewRental() {
             </form>
             <div>
               <div>
-                <Link to={"/preview/" + rental._id}>
+                {/* <Link to={"/preview/" + rental._id}>
+                  <button className="row"> I am done uploading photos </button>
+                </Link> */}
+                <Link to={"/homeimage/" + rental._id}>
                   <button className="row"> I am done uploading photos </button>
                 </Link>
               </div>
