@@ -6,7 +6,7 @@ const rentalSchema = new Schema({
   description: { type: String, required: true },
   activities: {type: String, required: true},
   link: {type: String, required: false},
-  homeImage: {type: String},
+  homeImage: [{type: String}],
   imageUrl: [
     {type: String}
   ],

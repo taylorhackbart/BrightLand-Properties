@@ -9,8 +9,8 @@ function Base() {
     location: "",
     description: "",
     activities: "",
-    // homeImage: "",
-    // imageUrl: [],
+    homeImage: [],
+    imageUrl: [],
     link: "",
   })
 useEffect( async () => {

@@ -9,7 +9,7 @@ function previewPhotos() {
     location: "",
     description: "",
     activities: "",
-    homeImage: "",
+    homeImage: [],
     imageUrl: [],
     link: "",
   });
@@ -17,20 +17,21 @@ function previewPhotos() {
   console.log(params)
   const [images, setImageArr] = useState([]);
 
-  useEffect(() => {
+  useEffect( async() => {
     if (params.id) {
-      API.getProperties(params.id)
+      await API.getProperties(params.id)
         .then(
           (res) => 
-          // setRental(res.data)
-          console.log(res.data)
+          setRental(res.data)
+          // console.log(res.data)
           )
         .catch((err) => console.log(err));
-    } else if (params.location) {
-      API.getPropertiesByName(params.location)
-        .then((res) => setRental(res.data[0]))
-        .catch((err) => console.log(err));
-    }
+    } 
+    // else if (params.location) {
+    //   await API.getPropertiesByName(params.location)
+    //     .then((res) => setRental(res.data[0]))
+    //     .catch((err) => console.log(err));
+    // }
     setLoading(false);
     
   }, []);
@@ -72,9 +73,14 @@ console.log(rental)
             <p className="row"> Delete photos you no longer want</p>
             <div className="row">
               <h4> Home Page Photo:</h4>
-              <img className="preview-images" src={rental.homeImage} />
+              </div>
+              <div className="row">
+              <img className="preview-images" src={rental.homeImage} alt="none uploaded" />
             </div>
-            <div>
+            <div className="row">
+              <h4> Photos for Rental Page: </h4>
+            </div>
+            <div className="row">
               {rental.imageUrl.map((img) => (
                 <ul key={img}>
                   <li className="no-border">
