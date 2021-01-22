@@ -6,7 +6,7 @@ const LoginSchema = new Schema({
     displayName: {
       type: String
     },
-    email: {
+    username: {
       type: String,
     },
     password: {

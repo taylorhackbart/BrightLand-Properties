@@ -6,7 +6,7 @@ import "./style.css"
 import API from "../../utils/API"
 
 export default function Login() {
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
@@ -16,7 +16,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const loginUser = { email, password };
+      const loginUser = { username, password };
       const loginRes = await API.loginUser(loginUser)
       setUserData({
         token: loginRes.data.token,
@@ -37,14 +37,14 @@ export default function Login() {
       )}
       <form className="form login-form" onSubmit={submit}>
         <div className="row">
-        <label htmlFor="login-email">Email</label>
+        <label htmlFor="login-username">Username</label>
         </div>
         <div className="row">
         <input
-          id="login-email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="name@gmail.com"
+          id="login-username"
+          type="username"
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="janedoe"
         />
 </div>
 <div className="row">

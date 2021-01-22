@@ -8,7 +8,7 @@ import NoMatch from "../../pages/NoMatch"
 
 export default function Register() {
   const { userData } = useContext(UserContext);
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [jobType, setJobType] = useState();
@@ -21,7 +21,7 @@ export default function Register() {
     e.preventDefault();
     try {
       const newUser = {
-        email,
+        username,
         password,
         passwordCheck,
         displayName,
@@ -46,14 +46,14 @@ export default function Register() {
         {userData.user && userData.user.jobType === "Admin" ? (
       <form className="form register-form" onSubmit={submit}>
         <div className="row">
-          <label htmlFor="register-email">Email</label>
+          <label htmlFor="register-username">Username</label>
         </div>
         <div className="row">
           <input
-            id="register-email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="name@gmail.com"
+            id="register-username"
+            type="text"
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="janedoe"
           />
         </div>
 

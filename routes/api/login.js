@@ -10,11 +10,11 @@ const Login = require("../../models/login");
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, displayName, jobType, phoneNumber } = req.body;
+    let { username, password, passwordCheck, displayName, jobType, phoneNumber } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordCheck )
+    if (!username || !password || !passwordCheck )
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
@@ -25,20 +25,20 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Enter the same password twice for verification." });
 
-    const existingUser = await Login.findOne({ email: email });
+    const existingUser = await Login.findOne({ username: username });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
+        .json({ msg: "An account with this username already exists." });
 
-    if (!displayName) displayName = email;
+    if (!displayName) displayName = username;
     
     //storing the password in the database using encryption 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new Login({
-      email,
+      username,
       password: passwordHash,
       displayName,
       jobType,
@@ -53,17 +53,17 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     // validate
-    if (!email || !password)
+    if (!username || !password)
       return res.status(400).json({ msg: "Not all fields have been entered." });
 
-    const user = await Login.findOne({ email: email });
+    const user = await Login.findOne({ username: username });
     if (!user)
       return res
         .status(400)
-        .json({ msg: "No account with this email has been registered." });
+        .json({ msg: "No account with this username has been registered." });
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
