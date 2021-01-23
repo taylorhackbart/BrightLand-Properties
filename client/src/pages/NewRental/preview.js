@@ -5,37 +5,20 @@ import "./preview.css";
 
 function previewPhotos() {
   const [loading, setLoading] = useState(true);
-  const [rental, setRental] = useState({
-    // location: "",
-    // description: "",
-    // activities: "",
-    // homeImage: [],
-    // imageUrl: [],
-    // link: "",
-  });
+  const [rental, setRental] = useState({});
   const params = useParams();
-  console.log(params)
-  const [images, setImageArr] = useState([]);
-
   useEffect( async() => {
     if (params.id) {
       await API.getProperties(params.id)
         .then(
           (res) => 
           setRental(res.data)
-          // console.log(res.data)
           )
         .catch((err) => console.log(err));
     } 
-    // else if (params.location) {
-    //   await API.getPropertiesByName(params.location)
-    //     .then((res) => setRental(res.data[0]))
-    //     .catch((err) => console.log(err));
-    // }
     setLoading(false);
-    
   }, []);
-console.log(rental)
+
   const delPhoto = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -93,7 +76,6 @@ console.log(rental)
                 </ul>
               ))}
             </div>
-          {/* </div> */}
           <p className="row"> Look good? </p>
           <Link to={"/Properties/name/" + rental.location}>
             <button className="more-photos row"> Looks good! </button>

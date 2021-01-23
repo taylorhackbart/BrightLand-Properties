@@ -1,15 +1,17 @@
 nav.navbar{
-  margin-bottom: -10px;
+  /* margin-bottom: 10px; */
   /* background: rgb(246, 252, 250); */
 }
 .logo {
-  height:110%;
-  width: 110%;
+  height:150%;
+  width: 150%;
+  margin-left: 50%;
 }
-.navbar-brand {
-  /* float: right; */
-  color: black
-}
+/* .row {
+
+  display: block;
+  margin: auto;
+} */
 .btn{
   background-color: white !important;
   color: black !important;
@@ -17,11 +19,15 @@ nav.navbar{
   background-color: black !important; */
   border: none;
   font-size: 17px;
-  margin-top: -10px;
+  margin-top: -40px;
   border:white !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
   /* background-color: #2699FB !important; */
 }
-.nav-bar-buttons{
-  display: inline;
+ul{
+  display: block;
+  margin: auto;
 }
+
 

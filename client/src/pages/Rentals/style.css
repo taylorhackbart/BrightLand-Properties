@@ -6,21 +6,31 @@
   margin-left: auto;
   margin-right: auto;
 }
-/* .rental-photo{
-  height: 100%;
-  max-height: 600px;
-  display: flex;
-  width: 100%;
-  object-fit: cover;
-  margin: auto;
-  justify-content: center;
-  vertical-align: middle;
-} */
+.card-title{
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  font-size: 30px;
+  margin-top: -15px;
+  /* margin-left: 2%; */
+}
+.show{
+  font-family: 'Roboto', sans-serif;
+  margin: 2%;
+}
+.nav-item, .nav-link{
+  color: rgb(33, 33, 163);
+  font-size: large;
+
+}
 .large-rental-photo{
   border-radius: 15px;
 }
 .card{
   border: none;
+}
+.card-body{
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .contact-btn{
   bottom: 0;

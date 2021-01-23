@@ -3,7 +3,6 @@ import Nav from "./components/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Properties from "./pages/Rentals/Properties";
 import NewRental from "./pages/NewRental/images.js";
-import homeImage from "./pages/NewRental/homeImage";
 import Base from "./pages/NewRental/base.js";
 import previewPhotos from "./pages/NewRental/preview.js";
 import Home from "./components/pages/Home";
@@ -67,7 +66,6 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
-              <Route exact path={"/homeimage/:id"} component={homeImage} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/cleaning" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
