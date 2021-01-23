@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../style.css";
+// import "../style.css";
 import { Tabs, Tab } from "react-bootstrap";
-import API from "../../../utils/API";
+import API from "../../utils/API";
 import { useParams } from "react-router-dom";
-import "../style.css";
+import "./home.css";
 
-function newHome() {
+function NewHome() {
   const [index, setIndex] = useState(0);
-  const [rental, setRental] = useState({});
+  const [rental, setRental] = useState([]);
+  const [newRental, setNewRental] = useState([]);
+  const [evenRental, setEvenRental] = useState([]);
+  const [oddRental, setOddRental] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const imageRef = useRef();
@@ -15,76 +18,90 @@ function newHome() {
   const descriptionRef = useRef();
   useEffect(() => {
     loadRentals();
+    // setLoading(false)
   }, []);
 
   const loadRentals = async () => {
     await API.getProperty()
       .then((resp) => {
-       console.log(resp);
+        console.log(resp.data)
+        setEvenRental(resp.data.slice(5, 10));
+        setOddRental(resp.data.slice(0, 5));
+        setRental(resp.data.slice(10,15))
+        console.log(rental)
+        setNewRental(resp.data.slice(15, 20))
         setLoading(false);
       })
       .catch((err) => console.log(err));
   };
 
-  const checkNumber = (number) => {
-    if (number > rental.imageUrl.length - 1) {
-      return 0;
-    }
-    if (number < 0) {
-      return rental.imageUrl.length - 1;
-    }
-    return number;
-  };
-
-  const nextPhoto = () => {
-    setIndex((index) => {
-      let newIndex = index + 1;
-      return checkNumber(newIndex);
-    });
-  };
-
-  const prevPhoto = () => {
-    setIndex((index) => {
-      let newIndex = index - 1;
-      return checkNumber(newIndex);
-    });
-  };
-  // const updateInfo = (event) => {
-  //   const { name, value } = event.target;
-  //   API.updateProperty(rental._id, rental)
-  //     .then((res) => {
-  //       setRental({ ...rental, [name]: value });
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       throw err;
-  //     });
-  // };
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setRental({ ...rental, [name]: value })
-  // };
-
+ 
   return (
     <>
-      {/* <div className="card mb-3">
-        <div className="card-img-top">
-          <div className="center-me">
-            <div className="carousel slide" data-bs-ride="carousel">
+      {loading === false && (
+        <div className="card mb-3">
+          <div className="card-img-top">
+            <div className="center-me">
+              <div className="row">
+                <div className="col-md-6 col-sm-12 ">
+                  {oddRental.map((col) => (
+                    <div key={col._id}>
+                      <ul>{col.location}</ul>
+                      <ul>
+                        <img className="home-image" src={col.homeImage} />
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div className="col-md-6 col-sm-12 ">
+                  {evenRental.map((col) => (
+                    <div key={col._id}>
+                      <ul>{col.location}</ul>
+                      <ul>
+                        <img className="home-image" src={col.homeImage} />
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6 col-sm-12 ">
+                  {rental.map((col) => (
+                    <div key={col._id}>
+                      <ul>{col.location}</ul>
+                      <ul>
+                        <img className="home-image" src={col.homeImage} />
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div className="col-md-6 col-sm-12 ">
+                  {newRental.map((col) => (
+                    <div key={col._id}>
+                      <ul>{col.location}</ul>
+                      <ul>
+                        <img className="home-image" src={col.homeImage} />
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* <div className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
-                <div className="carousel-item active rental-photo">
-                  {loading === false && (
+                <div className="carousel-item active rental-photo"> */}
+              {/* {loading === false && (
                     <img
                       src={rental.imageUrl[index]}
                       className="d-block w-100 large-rental-photo"
                       alt="..."
                       ref={imageRef}
                     />
-                  )}
-                </div>
-              </div>
+                  )} */}
+              {/* </div>
+              </div> */}
 
-              <a
+              {/* <a
                 className="carousel-control-prev"
                 role="button"
                 data-bs-slide="prev"
@@ -108,12 +125,13 @@ function newHome() {
                 ></span>
                 <span className="visually-hidden"></span>
               </a>
+            </div> */}
             </div>
           </div>
         </div>
-      </div> */}
+      )}
     </>
   );
 }
 
-export default newHome;
+export default NewHome;

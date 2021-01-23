@@ -6,6 +6,7 @@ import NewRental from "./pages/NewRental/images.js";
 import Base from "./pages/NewRental/base.js";
 import previewPhotos from "./pages/NewRental/preview.js";
 import Home from "./components/pages/Home";
+import NewHome from "./pages/Home/NewHome.js";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
 import UserContext from "./contexts/UserContext";
@@ -67,6 +68,7 @@ function App() {
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path="/new" component={Base} />
+              <Route exact path="/newHome" component={NewHome} />
               <Route exact path="/cleaning" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
               <Route exact path="/startclean/:id" component={StartCleaning} />

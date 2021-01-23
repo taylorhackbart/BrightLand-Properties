@@ -8,7 +8,7 @@ import Lapine from "./images/Lapine.png";
 import LosCerritos from "./images/LosCerritos.jpg";
 import MtHood from "./images/MtHood.jpg";
 import Portland from "./images/Portland.jpg";
-import "./home.css";
+// import "./home.css";
 
 class HomePage extends Component {
   state = {
