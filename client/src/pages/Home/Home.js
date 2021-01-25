@@ -1,72 +1,61 @@
-import React, { Component } from "react";
-import Bend from "./images/Bend.jpg";
-import Cabo from "./images/Cabo.jpg";
-import Glambing from "./images/Glambing.jpg";
-import IndianPalms from "./images/IndianPalms.jpg";
-import Indio from "./images/Indio.jpg";
-import Lapine from "./images/Lapine.png";
-import LosCerritos from "./images/LosCerritos.jpg";
-import MtHood from "./images/MtHood.jpg";
-import Portland from "./images/Portland.jpg";
-// import "./home.css";
+import React, { useState, useEffect } from "react";
+import API from "../../utils/API";
+function HomePage() {
+  const [state, setState] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [index, setIndex] = useState(0);
+  const [load, setLoad] = useState(true);
+  const [counter, setCounter] = useState(0);
 
-class HomePage extends Component {
-  state = {
-    imagesArr: [
-      Bend,
-      Cabo,
-      Glambing,
-      IndianPalms,
-      Indio,
-      Lapine,
-      LosCerritos,
-      MtHood,
-      Portland,
-    ],
-    index: 0,
-    descriptionArr:[
-      "BEND, OR",
-      "CABO, MX",
-      "GLAMBING IN OREGON",
-      "INDIAN PALMS, CA",
-      "INDIO, CA",
-      "LA PINE, CA",
-      "LOS CERRITOS, MX",
-      "MT HOOD, OR",
-      "PORTLAND, OR"
-    ]
-  };
-  handleClick =()=>{
-    this.setState({index: this.state.index})
-  }
-  nextPhoto = (e) => {
-    e.preventDefault()
-    if (this.state.index + 1 === this.state.imagesArr.length) {
-      this.setState({
-        index: 0,
-      });
-    } else {
-      this.setState({
-        index: this.state.index + 1,
-      });
-    }
+  useEffect(() => {
+    loadProperties();
+    setLoad(false);
+      setTimeout(() => {
+        if (counter >= state.length-1 || index >= state.length-1 ) {
+          setIndex(0);
+          setCounter(1);
+        // console.log(index, counter);
+      } else {
+        setIndex(index + 1);
+        setCounter(index);
+        // console.log(index, counter);
+      }
+    }, 5000);
+  }, [counter]);
+
+  const loadProperties = () => {
+    API.getProperty().then((res) => {
+      setState(res.data);
+      setLoading(false);
+    });
   };
 
-  prevPhoto = (e) => {
-    e.preventDefault()
-    if (this.state.index - 1 === -1) {
-      this.setState({
-        index: this.state.imagesArr.length - 1,
-      });
-    } else {
-      this.setState({
-        index: this.state.index - 1,
-      });
+  const checkNumber = (number) => {
+    if (number > state.length - 1) {
+      return 0;
     }
+    if (number < 0) {
+      return state.length - 1;
+    }
+    return number;
   };
-  render() {
-    return (
-      <>
+  const nextPhoto = () => {
+    setIndex((index) => {
+      let newIndex = index + 1;
+      return checkNumber(newIndex);
+    });
+  };
+
+  const prevPhoto = () => {
+    setIndex((index) => {
+      let newIndex = index - 1;
+      return checkNumber(newIndex);
+    });
+  };
+
+  return (
+    <>
+      {load === false && (
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12 center-me">
@@ -77,16 +66,27 @@ class HomePage extends Component {
               >
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <img
-                      src={this.state.imagesArr[this.state.index]}
-                      className="d-block w-100 large-photo"
-                      alt="..."
-                      
-                    />
-                    <a href="/properties">
-                    <h2 className="descriptionArr"> {this.state.descriptionArr[this.state.index]}</h2>
-                    </a>
+                    <>
+                      {loading === true ? (
+                        <></>
+                      ) : (
+                        <>
+                          <a href={"/properties/name/" + state[index].location}>
+                            <img
+                              src={state[index].homeImage}
+                              className="d-block w-100 large-photo"
+                              alt="..."
+                            />
+                          </a>
+                          <h2 className="descriptionArr">
+                            {" "}
+                            {state[index].location}
+                          </h2>
+                        </>
+                      )}
+                    </>
                   </div>
+                  {/* </div> */}
                 </div>
 
                 <a
@@ -94,7 +94,7 @@ class HomePage extends Component {
                   href="#carouselExampleIndicators"
                   role="button"
                   data-bs-slide="prev"
-                  onClick={this.prevPhoto}
+                  onClick={prevPhoto}
                 >
                   <span
                     className="carousel-control-prev-icon"
@@ -107,7 +107,7 @@ class HomePage extends Component {
                   href="#carouselExampleIndicators"
                   role="button"
                   data-bs-slide="next"
-                  onClick={this.nextPhoto}
+                  onClick={nextPhoto}
                 >
                   <span
                     className="carousel-control-next-icon"
@@ -118,79 +118,9 @@ class HomePage extends Component {
               </div>
             </div>
           </div>
-          {/* <div className="container">
-            <div className="row">
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/Bend">
-                  <span>
-                    <img className="home-image" src={Bend}></img>
-                    <h2 className="smallDesc">Bend, OR</h2>
-                  </span>
-                </a>
-              </div>
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/Cabo">
-                  <img className="home-image" src={Cabo}></img>
-                  <h2 className="smallDesc">Cabo, MX</h2>
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/MtHood">
-                  <img className="home-image" src={MtHood}></img>
-                  <h2 className="smallDesc">Mt. Hood, OR</h2>
-                </a>
-              </div>
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/Indio">
-                  <img className="home-image" src={Indio}></img>
-                  <h2 className="smallDesc">Indio, CA</h2>
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/LosCerritos">
-                  <img className="home-image" src={LosCerritos}></img>
-                  <h2 className="smallDesc">Los Cerritos, MX</h2>
-                </a>
-              </div>
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/Portland">
-                  <img className="home-image" src={Portland}></img>
-                  <h2 className="smallDesc">Portland, OR</h2>
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/LaPad">
-                  <img className="home-image" src={Lapine}></img>
-                  <h2 className="smallDesc">La Pine, OR</h2>
-                </a>
-              </div>
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/Glamping">
-                  <img className="home-image" src={Glambing}></img>
-                  <h2 className="smallDesc">Glamping in Oregon</h2>
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6 col-sm-12">
-                <a href="/properties/name/IndianPalms">
-                  <img className="home-image" src={IndianPalms}></img>
-                  <h2 className="smallDesc">Indian Palms, CA</h2>
-                </a>
-              </div>
-              <div className="col-md-6 col-sm-12"></div>
-            </div>
-          </div> */}
         </div>
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
-
 export default HomePage;

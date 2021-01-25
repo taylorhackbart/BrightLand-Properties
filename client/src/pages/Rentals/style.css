@@ -13,6 +13,31 @@
   margin-top: -15px;
   /* margin-left: 2%; */
 }
+.overflow-text{
+  position: absolute;
+  top: 0;
+}
+.descriptionArr{
+  z-index: 100;
+  float: right;
+  margin-top: 120px;
+  position:absolute;
+  color: white;
+  font-weight: 600;
+  font-size: larger;
+  margin-left: 10px;
+}
+.home-image {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0px;
+  border-radius: 15px;
+}
 .show{
   font-family: 'Roboto', sans-serif;
   margin: 2%;
