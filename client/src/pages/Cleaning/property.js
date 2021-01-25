@@ -49,7 +49,7 @@ function Cleaning() {
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
            {userData.user ? (
-          <form>
+          <form className= "page-adjustment">
             <div className="row">
               <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
             </div>

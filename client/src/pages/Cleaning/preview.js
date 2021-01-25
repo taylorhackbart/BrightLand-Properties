@@ -54,7 +54,7 @@ function previewCleaning() {
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
         {userData.user ? (
-        <div className="container">
+        <div className="container page-adjustment">
           <div className="row">
             Check out the photos you've uploaded below!
             <p> Delete photos you no longer want</p>

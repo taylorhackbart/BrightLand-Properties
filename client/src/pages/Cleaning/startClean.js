@@ -87,6 +87,7 @@ function StartClean() {
           <UserContext.Provider value={{ userData }}>
             {userData.user ? (
               <>
+              <div className= "page-adjustment">
                 <h2 className="cleaning-title row">
                   Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                 </h2>
@@ -157,6 +158,7 @@ function StartClean() {
 
                   )}
                 </div>
+              </div>
               </>
             ) : (
               <div>

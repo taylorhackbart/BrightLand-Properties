@@ -65,7 +65,7 @@ function Properties() {
   // };
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="card mb-3">
         <div className="card-img-top">
           <div className="center-me">
@@ -118,18 +118,16 @@ function Properties() {
             <Tabs defaultActiveKey="space" id="noanim-tab-example">
               <Tab eventKey="space" title="The Space" ref={descriptionRef}>
                 {rental.description}
-
-                {/* <button onClick={updateInfo}> update me </button> */}
               </Tab>
               <Tab eventKey="activities" title="Activities" ref={activityRef}>
                 {rental.activities}
               </Tab>
             </Tabs>
             <a href={rental.link} target="_blank">
-              <button className="contact-btn">Contact</button>
+              <button className="contact-btns">Contact</button>
             </a>
             <a href={rental.link} target="_blank">
-              <button className="book-btn">Book</button>
+              <button className="book-btns">Book</button>
             </a>
           </div>
         </div>

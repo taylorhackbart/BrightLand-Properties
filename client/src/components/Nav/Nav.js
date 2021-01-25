@@ -1,17 +1,17 @@
-import React, {useState, useEffect}  from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.css";
 import logo from "./logo.png";
 import { Dropdown, SplitButton } from "react-bootstrap";
-import API from "../../utils/API"
+import API from "../../utils/API";
 
 function Nav() {
-  const [state, setState] = useState({})
-  const [load, setLoad] = useState(true)
-  
-  useEffect( () => {
+  const [state, setState] = useState({});
+  const [load, setLoad] = useState(true);
+
+  useEffect(() => {
     loadRentals();
-  }, [])
-  
+  }, []);
+
   const loadRentals = async () => {
     await API.getProperty()
       .then((resp) => {
@@ -24,55 +24,43 @@ function Nav() {
   };
 
   return (
-    <nav className="navbar container">
-      <ul>
-        <li>
-      <a className="navbar-brand" href="/">
-        <img className="logo" src={logo}></img>
-      </a>
-      </li>
-    {load === false && (
-
-   
-      <li className="nav-bar-buttons">
-        <SplitButton
-          className="navbar-dropdown"
-          href="/properties"
-          variant="primary"
-          title="Properties (Alquiler de Propiedad)"
-          style={{fontFamily: "Futura"}}
-        >
-          <Dropdown.Item eventKey="1" href={"/properties/name/" + state[0].location}>
-            Bend, OR
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="2" href={"/properties/name/" + state[1].location}>
-            Cabo, MX
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="3" href={"/properties/name/" + state[8].location}>
-            Camping, OR
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="4" href={"/properties/name/" + state[6].location}>
-            Los Cerritos, MX
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="5" href={"/properties/name/" + state[4].location}>
-            Indian Palms, CA
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="6" href={"/properties/name/" + state[5].location}>
-            Indio, CA
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="7" href={"/properties/name/" + state[7].location}>
-            La Pine, OR
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="8" href={"/properties/name/" + state[2].location}>
-            Mt Hood, OR
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="9" href={"/properties/name/" + state[3].location}>
-            Portland, OR
-          </Dropdown.Item>
-        </SplitButton>
-      </li>
-    )}
-      </ul>
+    <nav className="navbar">
+      <div className="logo-button">
+        <a className="navbar-brand" href="/">
+          <img className="logo" src={logo}></img>
+        </a>
+      </div>
+      {load === false && (
+        <div className="content-nav">
+          <>
+            <div className="home-button">
+              <a href="/">
+                <button className="styled-home"> HOME </button>
+              </a>
+            </div>
+            <div className="nav-bar-buttons">
+              <SplitButton
+                className="navbar-dropdown"
+                href="/properties"
+                variant="primary"
+                title="LOCATIONS (ALQUILER DE PROPIEDAD)"
+                style={{ fontFamily: "Futura" }}
+              >
+                {state.map((links) => (
+                  <div key={links._id}>
+                    <Dropdown.Item
+                      eventKey={links._id}
+                      href={"/properties/name/" + links.location}
+                    >
+                      {links.location}
+                    </Dropdown.Item>
+                  </div>
+                ))}
+              </SplitButton>
+            </div>
+          </>
+        </div>
+      )}
     </nav>
   );
 }

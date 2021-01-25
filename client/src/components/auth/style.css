@@ -13,6 +13,9 @@ h2.register-title, h2.login-title{
 ul{
   list-style-type: none;
 }
+.register-container{
+  margin-top: 6%;
+}
 .register-btn, .login-btn{
   display: block;
   margin: auto;

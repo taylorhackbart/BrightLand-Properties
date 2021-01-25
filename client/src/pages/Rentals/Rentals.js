@@ -31,27 +31,31 @@ function Rentals() {
   return (
     <>
       {loading === false && (
-        <div className="card mb-3">
+        <div className="card mb-3 card-rental">
           <div className="card-img-top">
             <div className="center-me">
               <div className="row">
                 <div className="col-md-6 col-sm-12 ">
                   {oddRental.map((col) => (
-                    <div key={col._id}>
+                    <div className="center-div" key={col._id}>
+                      <a href={"/properties/name/" + col.location}>
                       <ul className="descriptionArr">{col.location}</ul>
                       <ul>
                         <img className="home-image" src={col.homeImage} />
                       </ul>
+                      </a>
                     </div>
                   ))}
                 </div>
                 <div className="col-md-6 col-sm-12 ">
                   {evenRental.map((col) => (
-                    <div key={col._id}>
+                    <div className="center-div" key={col._id}>
+                      <a href={"/properties/name/" + col.location}>
                       <ul className="descriptionArr">{col.location}</ul>
                       <ul>
                         <img className="home-image" src={col.homeImage} />
                       </ul>
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -61,20 +65,24 @@ function Rentals() {
                 <div className="col-md-6 col-sm-12 ">
                   {rental.map((col) => (
                     <div key={col._id}>
+                      <a href={"/properties/name/" + col.location}>
                       <ul className="descriptionArr">{col.location}</ul>
                       <ul>
                         <img className="home-image" src={col.homeImage} />
                       </ul>
+                      </a>
                     </div>
                   ))}
                 </div>
                 <div className="col-md-6 col-sm-12 ">
                   {newRental.map((col) => (
                     <div key={col._id}>
+                     <a href={"/properties/name/" + col.location}>
                       <ul className="descriptionArr">{col.location}</ul>
                       <ul>
                         <img className="home-image" src={col.homeImage} />
                       </ul>
+                      </a>
                     </div>
                   ))}
                 </div>

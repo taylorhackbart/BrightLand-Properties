@@ -37,7 +37,7 @@ export default function Register() {
   };
 
   return (
-    <div className="page container">
+    <div className="page container register-container">
        <UserContext.Provider value={{ userData }}>
       <h2 className="register-title">Register</h2>
       {error && (

@@ -30,7 +30,7 @@ export default function Login() {
     }
   };
   return (
-    <div className="page container">
+    <div className="page container register-container">
       <h2 className="login-title">Log in</h2>
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />

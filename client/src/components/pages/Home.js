@@ -69,7 +69,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container">
+      <div className="container home-screen">
         {loading === false && (
           <UserContext.Provider value={{ userData }}>
             <div className="page">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
+import "./home.css"
 function HomePage() {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(true);

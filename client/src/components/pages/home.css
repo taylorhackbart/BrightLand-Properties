@@ -8,3 +8,9 @@
   text-align: center;
   color: black
 }
+.home-screen{
+  margin-top: 3%;
+}
+h1, p, h5{
+  text-align: center;
+}

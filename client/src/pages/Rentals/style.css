@@ -5,6 +5,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+ 
 }
 .card-title{
   font-family: 'Roboto', sans-serif;
@@ -32,7 +33,8 @@
   width: 100%;
   object-fit: cover;
   display: block;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
   position: relative;
   padding: 0px;
@@ -43,38 +45,72 @@
   margin: 2%;
 }
 .nav-item, .nav-link{
-  color: rgb(33, 33, 163);
+  color: black;
   font-size: large;
+  font-family: 'Roboto', sans-serif;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+  color: rgb(33, 33, 163);
+  box-shadow: 1px 1px 1px 1px grey;
+}
+.rental-photo{
+  max-height: 650px;
+  width: 100%;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+.center-div{
+  display: block;
+  margin-left: auto;
+  margin-right:auto;
+}
+div.col-md-6.col-sm-12{
+  padding: 0px;
+  justify-content: center;
+  display: block;
+  float: left;
 
 }
-.large-rental-photo{
-  border-radius: 15px;
-}
 .card{
+  display: block;
+  margin: auto;
   border: none;
+  max-width: 1300px;
 }
 .card-body{
   margin-left: 2%;
   margin-right: 2%;
 }
-.contact-btn{
-  bottom: 0;
-  border-radius: 12px;
-  background-color: white;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  cursor: pointer;
+.mb-3{
+  margin-bottom: 100px !important;
 }
-.book-btn{
-  border-radius: 10px;
-  float: right;
-  background-color: blue;
-  color: white;
-  font-weight: 150;
-  font-style: bold;
-  border: none;
-  padding-left: 2%;
-  padding-right: 2%;
+.contact-btns{
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.849);
+  margin-bottom: 20px;
+  padding: 1%;
   margin-top: 10px;
   cursor: pointer;
+  border: 1px solid white;
+  border-radius: 70px 70px;
+  box-shadow: 5px 5px 5px 1px grey;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+}
+.book-btns{
+  border-radius: 30px;
+  float: right;
+  background-color: rgb(33, 33, 163);
+  color: white;
+  font-size: 17px;
+  border: none;
+  padding: 1% 2%;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px 1px grey;
+  font-family: 'Roboto', sans-serif;
+}
+ul{
+  padding-left: 25px;
+  padding-right: 25px;
 }

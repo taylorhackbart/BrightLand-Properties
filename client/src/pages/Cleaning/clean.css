@@ -13,6 +13,9 @@ margin: 1%;
 margin-left: auto;
 margin-right: auto;
 }
+.page-adjustment{
+  margin-top: 5%;
+}
 .cleaning-title{
   text-align: center;
   margin-bottom: 2%;
