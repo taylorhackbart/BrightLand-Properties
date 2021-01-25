@@ -5,6 +5,7 @@ nav.navbar{
   margin-top: 15px;
   margin-left: 3%;
   margin-right: 3%;
+  display: flex;
 }
 .logo-button{
   position: absolute;
@@ -21,6 +22,7 @@ nav.navbar{
   display: block;
 
 }
+
 .content-nav{
   position: absolute;
   display: block;
@@ -53,15 +55,11 @@ nav.navbar{
 .btn{
   background-color: white !important;
   color: black !important;
-  /* color: white !important;
-  background-color: black !important; */
   border: none;
   font-size: 15px;
   margin-top: -37px;
   border:white !important;
   font-family: 'Roboto', sans-serif;
-  /* font-size: small; */
-  /* background-color: #2699FB !important; */
 }
 
 

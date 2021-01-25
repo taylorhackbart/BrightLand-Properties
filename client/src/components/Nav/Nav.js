@@ -7,6 +7,7 @@ import API from "../../utils/API";
 function Nav() {
   const [state, setState] = useState({});
   const [load, setLoad] = useState(true);
+  const [isActive, setisActive] = useState(false)
 
   useEffect(() => {
     loadRentals();
@@ -60,6 +61,7 @@ function Nav() {
             </div>
           </>
         </div>
+
       )}
     </nav>
   );
