@@ -34,7 +34,7 @@ function NavBar() {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="nav-bar-buttons">
                 <div className="home-button">
-                  <Nav.Link href="/">HOME</Nav.Link>
+                  <Nav.Link className="home-button" href="/">HOME</Nav.Link>
                 </div>
                 <SplitButton
                   title="Dropdown"

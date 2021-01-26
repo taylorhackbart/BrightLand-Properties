@@ -18,43 +18,64 @@ nav.navbar{
   float: left;
   display: block;
 }
-
+a.home-button.nav-link{
+  margin-right: 35px;
+  color: black;
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+}
 .nav-bar-buttons{
   margin-top: 4%;
   float:right;
   padding: 1%;
   text-align: right;
+  margin-right: 4%;
 }
-.navbar-dropdown{
+/* .navbar-dropdown{
   float: right;
   z-index:100;
   margin-top: -3%;
-}
+} */
 .collapse.show{
   border: none;
   margin-top: -7%;
 }
-button.navbar-toggler:not(:disabled):not(.disabled){
-  margin-right: 10px;
+button.navbar-toggler{
+  margin-right: 45px;
   margin-top: -6%;
 }
+/* .navbar-nav .dropdown-menu {
+  display: list-item;
+  margin-left: -40%;
+  margin-top: 10%;
+} */
+.navbar-light .navbar-nav .nav-link{
+  color: black;
+}
+.btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
+  display:none;
+}
 a.btn.btn-primary, .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
-  background-color: white;
+  background-color: transparent;
   border: none;
   color: black;
   font-family: 'Roboto', sans-serif;
+  /* display: none; */
 }
 @media (min-width: 1200px){
   .navbar-expand-xl .navbar-nav{
     display: flex;
     width: 100%;
   }
+  .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
+    display:block;
+  }
   .nav-bar-buttons{
     z-index:100;
     position: relative;
     display: block;
     margin-top: 5%;
-    background-color: white;
+    background-color: transparent;
     margin-left: -2%;
     width: 95%;
     height: 52px;
@@ -68,16 +89,33 @@ a.btn.btn-primary, .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(
   /* a.btn.btn-primary, .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn */
 
  div.navbar-dropdown.dropdown.btn-group {
-  margin-top: 0px;
+  margin-top: -3px;
   float: right;
   text-align: right;
-  margin-left: 62%;
-
+  margin-left: 55%;
+  font-family: 'Roboto', sans-serif;
+}
+.navbar-expand-xl .navbar-nav .dropdown-menu{
+  position: relative;
+  margin-left: 20%;
+  margin-top: 10%;
 }
  .home-button{
   float: left;
-  margin-top: -1%;
+  margin-top: -4px;
   margin-left: 1%;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+}
+a.dropdown-item{
+  background-color: white;
+}
+.logo {
+  position: absolute;
+  margin-top: -75px;
+  float: left;
+  display: block;
 }
 }
 
