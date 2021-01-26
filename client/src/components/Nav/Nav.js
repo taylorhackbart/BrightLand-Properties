@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./nav.css";
 import logo from "./logo.png";
-import { Dropdown, SplitButton } from "react-bootstrap";
 import API from "../../utils/API";
+import { Navbar, Nav, NavDropdown, SplitButton } from "react-bootstrap";
 
-function Nav() {
+function NavBar() {
   const [state, setState] = useState({});
   const [load, setLoad] = useState(true);
-  const [isActive, setisActive] = useState(false)
 
   useEffect(() => {
     loadRentals();
@@ -17,54 +16,53 @@ function Nav() {
     await API.getProperty()
       .then((resp) => {
         setState(resp.data);
-        // console.log(resp.data[0].location)
         setLoad(false);
-        // console.log(state[0].location)
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <nav className="navbar">
-      <div className="logo-button">
-        <a className="navbar-brand" href="/">
+    <>
+      <Navbar collapseOnSelect expand="xl" bg="light" variant="light">
+        <Navbar.Brand className="logo-button" href="/">
           <img className="logo" src={logo}></img>
-        </a>
-      </div>
-      {load === false && (
-        <div className="content-nav">
-          <>
-            <div className="home-button">
-              <a href="/">
-                <button className="styled-home"> HOME </button>
-              </a>
-            </div>
-            <div className="nav-bar-buttons">
-              <SplitButton
-                className="navbar-dropdown"
-                href="/properties"
-                variant="primary"
-                title="LOCATIONS (ALQUILER DE PROPIEDAD)"
-                style={{ fontFamily: "Futura" }}
-              >
-                {state.map((links) => (
-                  <div key={links._id}>
-                    <Dropdown.Item
-                      eventKey={links._id}
-                      href={"/properties/name/" + links.location}
-                    >
-                      {links.location}
-                    </Dropdown.Item>
-                  </div>
-                ))}
-              </SplitButton>
-            </div>
-          </>
-        </div>
+        </Navbar.Brand>
 
-      )}
-    </nav>
+        {load === false && (
+          <>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav container-fluid" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="nav-bar-buttons">
+                <div className="home-button">
+                  <Nav.Link href="/">HOME</Nav.Link>
+                </div>
+                <SplitButton
+                  title="Dropdown"
+                  id="collapsible-nav-dropdown"
+                  className="navbar-dropdown"
+                  href="/properties"
+                  variant="primary"
+                  title="LOCATIONS (ALQUILER DE PROPIEDAD)"
+                  style={{ fontFamily: "Futura" }}
+                >
+                  {state.map((links) => (
+                    <div key={links._id}>
+                      <NavDropdown.Item
+                        href={"/properties/name/" + links.location}
+                      >
+                        {links.location}
+                      </NavDropdown.Item>
+                    </div>
+                  ))}
+                  <NavDropdown.Item href="/">Home</NavDropdown.Item>
+                </SplitButton>
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        )}
+      </Navbar>
+    </>
   );
 }
 
-export default Nav;
+export default NavBar;

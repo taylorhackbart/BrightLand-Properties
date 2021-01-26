@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Nav from "./components/Nav";
+import NavBar from "./components/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Properties from "./pages/Rentals/Properties";
 import NewRental from "./pages/NewRental/images.js";
@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="page-container">
       <BrowserRouter>
-        <Nav />
+        <NavBar />
         <UserContext.Provider value={{ userData, setUserData }}>
           <div className="app-background">
             <Switch>
