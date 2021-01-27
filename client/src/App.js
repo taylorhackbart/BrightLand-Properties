@@ -8,11 +8,13 @@ import previewPhotos from "./pages/NewRental/preview.js";
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
+import PropertyType from "./components/auth/PropertyType.js";
 import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home/Home.js";
 import Footer from "./components/Footer";
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
+import PropertyRoutes from "./pages/Cleaning/property2";
 import previewCleaning from "./pages/Cleaning/preview";
 import "./app.css";
 import API from "./utils/API";
@@ -64,10 +66,11 @@ function App() {
               />
               <Route exact path="/home" component={Home} />
               <Route path="/login" component={Login} />
+              {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path="/new" component={Base} />
-              {/* <Route exact path="/newHome" component={NewHome} /> */}
+              <Route exact path={"/chooseprop/:id"} component={PropertyType} />
               <Route exact path="/cleaning" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
               <Route exact path="/startclean/:id" component={StartCleaning} />

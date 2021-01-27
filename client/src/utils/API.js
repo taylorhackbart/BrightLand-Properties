@@ -35,6 +35,9 @@ export default {
   getUser: function() {
     return axios.get("/users/register")
   },
+  getUserById: function(id) {
+    return axios.get("/users/register/" +id)
+  },
   postToken: function(data, header) {
     return axios.post("/users/tokenIsValid", data, header)
   },

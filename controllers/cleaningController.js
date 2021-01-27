@@ -22,7 +22,12 @@ module.exports = {
   },
   update: function(req, res) {
     db.Cleaning
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, 
+        {$set: {
+          images: req.body.images
+        }},
+        {new: true}
+       )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

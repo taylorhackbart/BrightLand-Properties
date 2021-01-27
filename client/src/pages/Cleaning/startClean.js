@@ -11,11 +11,11 @@ function StartClean() {
   const [loading, setLoading] = useState(true);
   // const [load, setLoad] = useState(true)
   const [state, setState] = useState({
-    name: "",
-    property: "",
-    images: [],
-    stopClean: "",
-    notes: "",
+    // name: "",
+    // property: "",
+    // images: [],
+    // stopClean: "",
+    // notes: "",
   });
   const fileInput = useRef();
   const params = useParams();

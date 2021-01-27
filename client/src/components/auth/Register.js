@@ -16,6 +16,7 @@ export default function Register() {
   const [displayName, setDisplayName] = useState();
   const [error, setError] = useState();
   const history = useHistory();
+  const [user, setUser] = useState({})
 
   const submit = async (e) => {
     e.preventDefault();
@@ -29,7 +30,18 @@ export default function Register() {
         jobType,
       };
       await API.createUser(newUser)
-      history.push("/home");
+      .then((res) => {
+        const id = res.data._id
+        setUser(res.data)
+        const loadUserInfo = async () => {
+          await API.getUserById(id)
+          .then(res => {
+            setUser(res.data)
+          })
+        }
+        loadUserInfo()
+        history.push("/chooseprop/" + id);
+      })
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
       console.log(err);
@@ -137,8 +149,9 @@ export default function Register() {
             </li>
           </ul>
         </div>
-
+        {/* < a href={"/chooseprop/" + username}> */}
         <input className="register-btn" type="submit" value="Register" />
+        {/* </a> */}
       </form> 
        ) : (
       <NoMatch />

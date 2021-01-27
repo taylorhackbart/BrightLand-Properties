@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import "./home.css";
@@ -19,6 +19,7 @@ export default function Home() {
   const [cleanings, setCleanings] = useState([]);
   const [load, setLoad] = useState(true);
   const [loadClean, setLoadClean] = useState(true);
+  const [user, setUser]  = useState({})
   const [show, setShow] = useState(false);
   const opem = useRef();
   const header = useRef();
@@ -30,11 +31,14 @@ export default function Home() {
   const body1 = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // const [inProp, setInProp] = useState(false)
+  const params = useParams();
+
 
   useEffect(() => {
     setLoading(false);
   }, []);
+
+
   const loadEmployees = async () => {
     let token = localStorage.getItem("auth-token");
     // const userRes = await Axios.get("http://localhost:3001/users/register", {
@@ -203,6 +207,9 @@ export default function Home() {
                         <Link to="/cleaning">
                           <AiOutlineClear className="admin-register"></AiOutlineClear>
                         </Link>
+                        {/* <Link to={"/propertyroutes/" +user} >
+                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                        </Link> */}
                       </div>
                     </div>
                   </div>

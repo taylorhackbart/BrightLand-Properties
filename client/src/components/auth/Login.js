@@ -12,6 +12,8 @@ export default function Login() {
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
+  
+  
 
   const submit = async (e) => {
     e.preventDefault();
@@ -23,8 +25,9 @@ export default function Login() {
         user: loginRes.data.user,
 
       });
+      const id = loginRes.data.user.id
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/home");
+      history.push("/home/");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }

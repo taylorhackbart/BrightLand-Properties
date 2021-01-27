@@ -10,14 +10,14 @@ function Cleaning() {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const [property, setPropertyType] = useState({
-    name: "",
-    property: "",
-    startClean: Date,
-    images: [],
-    notes: "",
+    // name: "",
+    // property: "",
+    // startClean: Date,
+    // images: [],
+    // notes: "",
   });
 
-  useEffect(() => {
+  useEffect( async () => {
     setLoading(false);
   }, []);
 

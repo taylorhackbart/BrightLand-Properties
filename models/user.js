@@ -2,10 +2,49 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const rentalSchema = new Schema({
-  location: { type: String, required: true },
-  description: { type: String, required: true },
-  activities: {type: String, required: true},
-  link: {type: String, required: false},
+  location: { type: String},
+  employee: [{
+    displayName: {
+      type: String
+    },
+    username: {
+      type: String,
+    },
+    password: {
+      type: String,
+    },
+    phoneNumber: {
+      type: String,
+    },
+    jobType: {
+      type: String
+    },
+    userCreated: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  cleaning: [{
+    name: {
+      type: String
+    },
+    startClean: {
+      type: Date,
+      default: Date.now()
+    },
+    stopClean: {
+      type: String
+    },
+    notes: {
+      type: String
+    },
+    images: [{
+      type: String
+    }]
+  }],
+  description: { type: String },
+  activities: {type: String},
+  link: {type: String},
   homeImage: [{type: String}],
   imageUrl: [
     {type: String}

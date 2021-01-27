@@ -10,11 +10,18 @@ const Login = require("../../models/login");
 
 router.post("/register", async (req, res) => {
   try {
-    let { username, password, passwordCheck, displayName, jobType, phoneNumber } = req.body;
+    let {
+      username,
+      password,
+      passwordCheck,
+      displayName,
+      jobType,
+      phoneNumber,
+    } = req.body;
 
     // validate
 
-    if (!username || !password || !passwordCheck )
+    if (!username || !password || !passwordCheck)
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
@@ -32,8 +39,8 @@ router.post("/register", async (req, res) => {
         .json({ msg: "An account with this username already exists." });
 
     if (!displayName) displayName = username;
-    
-    //storing the password in the database using encryption 
+
+    //storing the password in the database using encryption
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
@@ -42,7 +49,7 @@ router.post("/register", async (req, res) => {
       password: passwordHash,
       displayName,
       jobType,
-      phoneNumber
+      phoneNumber,
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -74,7 +81,7 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         displayName: user.displayName,
-        jobType: user.jobType
+        jobType: user.jobType,
       },
     });
   } catch (err) {
@@ -120,19 +127,22 @@ router.get("/", auth, async (req, res) => {
   const user = await Login.findById(verified.id);
   if (!user) return res.json(false);
 
-  return (
-  
-  res.json({
+  return res.json({
     // token,
     displayName: user.displayName,
     id: user._id,
-    jobType: user.jobType
-  }));
+    jobType: user.jobType,
+  });
 });
 router.get("/register", async (req, res) => {
   const user = await Login.find();
-  console.log(user)
+  console.log(user);
   res.json(user);
 });
 
+router.get("/register/:id", async (req, res) => {
+  Login.findById(req.params.id)
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+});
 module.exports = router;
