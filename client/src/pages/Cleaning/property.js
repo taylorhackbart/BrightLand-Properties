@@ -8,41 +8,51 @@ import NoMatch from "../NoMatch"
 function Cleaning() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const [state, setState] = useState({})
+  const [rental, setRental] = useState({})
   const history = useHistory();
-  const [property, setPropertyType] = useState({
-    // name: "",
-    // property: "",
-    // startClean: Date,
-    // images: [],
-    // notes: "",
-  });
+  const [property, setPropertyType] = useState({});
 
   useEffect( async () => {
-    setLoading(false);
+    loadProperty();
+    // setLoading(false);
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPropertyType({ ...property, [name]: value });
-  };
-  const onSend = async (e) => {
-    e.preventDefault();
-
-    await API.saveCleaning(property).then((res) => {
-      // console.log(res);
-      const id = res.data._id;
-      setPropertyType(res.data);
-      const loadPropertyInfo = async () => {
-        await API.getCleaningById(id, property).then((res) => {
-          setPropertyType(res.data);
-          // console.log(res);
-        });
-      };
-      loadPropertyInfo();
-      history.push("/startclean/" + id);
+  const loadProperty = () => {
+    API.getProperty().then((res) => {
+      setState(res.data);
+      console.log(res.data)
+      setLoading(false);
     });
   };
-  // console.log(property);
+  // console.log(property)
+ 
+  const onSend = async (e) => {
+    e.preventDefault();
+    await API.saveCleaning(property.location)
+    .then((res) => {
+      console.log(res.data);
+      setRental(res.data);
+      const newFunc = async () => {
+        const newArr = property.cleaning
+        newArr.unshift(rental)
+        console.log(newArr)
+        const id = rental._id
+        const update = async () => {
+          await API.updateProperty(property._id, property)
+          .then(res => {
+            setPropertyType({...property, cleaning: newArr})
+            console.log(property.cleaning[0]._id)
+          })
+          history.push("/startclean/" + property._id)
+        }
+        update()
+      }
+      newFunc()
+    });
+  };
+ 
+  console.log(property, state);
 
   return (
     <>
@@ -50,8 +60,19 @@ function Cleaning() {
         <UserContext.Provider value={{ userData }}>
            {userData.user ? (
           <form className= "page-adjustment">
-            <div className="row">
-              <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
+            <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
+            <div>
+            {state.map(x => (
+              <div key={x._id}>
+                <ul>
+                  <li>
+                <input type="radio" name = "location" onChange={(e) => setPropertyType({...x})}/>
+                  {x.location}
+                  </li>
+               </ul>
+                </div>
+            ))}
+              {/* <label htmlFor="property-name">Choose the Property (Elija Propiedad): </label>
             </div>
             <div className="row">
               <ul>
@@ -145,11 +166,11 @@ function Cleaning() {
                   />{" "}
                   Portland
                 </li>
+              </ul> */}
                 <button className="cleaning-next" onClick={onSend}>
                   {" "}
                   Next (Próximo)
                 </button>
-              </ul>
             </div>
           </form>
            ) : (

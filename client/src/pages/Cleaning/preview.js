@@ -11,37 +11,44 @@ function previewCleaning() {
   const [load, setLoad] = useState(true);
   const [state, setState] = useState({});
   const [rental, setRental] = useState({});
+  const [img, setImg] = useState([])
   const params = useParams();
-
   useEffect(async () => {
-    await API.getCleaningById(params.id, rental)
-      .then((res) => {
-        setRental(res.data);
-        setState(res.data.images);
-      })
-      .catch((err) => console.log(err));
-    setLoading(false);
+      loadPropertyInfo();
+    // setLoading(false);
     setLoad(false);
   }, []);
-
+  const loadPropertyInfo = async () => {
+    await API.getProperties(params.id).then((res) => {
+      // console.log(res.data.cleaning[0]);
+      setState(res.data.cleaning[0]);
+      setRental(res.data);
+      setLoading(false)
+    });
+  };
+  // console.log(rental)
   const delPhoto = (e) => {
     e.preventDefault();
-    const id = rental.images.indexOf(e.target.value);
-    const newElement = rental.images.splice(id, 1);
-    const newArr = rental.images.filter((i) => i !== newElement);
-    setState(newArr);
+    const id = state.images.indexOf(e.target.value);
+    const newElement = state.images.splice(id, 1);
+    const newArr = state.images.filter((i) => i !== newElement);
+    setState({...state, images: newArr});
+    console.log(newArr)
     startDelete();
+    // setRental({...rental, clean})
   };
+  console.log(state, rental)
   const startDelete = async () => {
-    await API.updateCleaning(rental._id, rental)
+    await API.updateProperty(rental._id, rental)
       .then((res) => {
-        setRental({ ...rental, images: state });
+        // setRental({ ...rental, images: state });
         console.log(res.data);
       })
       .catch((err) => {
         throw err;
       });
   };
+
   return (
     <>
       {loading === false && (
@@ -52,21 +59,21 @@ function previewCleaning() {
                 Check out the photos you've uploaded below!
                 <p> Delete photos you no longer want</p>
                 <div>
-                  {rental.images.map((img) => (
-                    <List key={img}>
-                      {/* {console.log(img)} */}
-                      <ListItem>
-                        <button onClick={delPhoto} img={img} value={img}>
+                  {state.images.map((img) => (
+                     <List key={img}> 
+                       {/* {console.log(img)}  */}
+                       <ListItem> 
+                         <button onClick={delPhoto} img={img} value={img}>
                           X
-                        </button>
+                        </button> 
                         <img
                           className="preview-images d-block w-100 large-rental-photo"
                           src={img}
                           alt="..."
-                        ></img>
-                      </ListItem>
-                    </List>
-                  ))}
+                        ></img> 
+                       </ListItem> 
+                     </List> 
+                   ))} 
                 </div>
               </div>
               <p> Look good? </p>

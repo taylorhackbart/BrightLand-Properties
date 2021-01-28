@@ -7,7 +7,6 @@ function PropertyType() {
   const [rental, setRental] = useState({});
   const [user, setUser] = useState({})
   const [property, setProperty] = useState({});
-  const [state, setState] = useState({})
   const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(true);
   const params = useParams();
@@ -19,8 +18,6 @@ function PropertyType() {
   const loadUser = async () => {
     await API.getUserById(params.id).then((res) => {
       setUser(res.data)
-      // setProperty({employee: user})
-      // console.log(res);
       setLoading(false);
     });
   };
