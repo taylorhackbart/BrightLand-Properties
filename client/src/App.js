@@ -71,7 +71,7 @@ function App() {
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path="/new" component={Base} />
               <Route exact path={"/chooseprop/:id"} component={PropertyType} />
-              <Route exact path="/cleaning" component={Cleaning} />
+              <Route exact path="/cleaning/:id" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
               <Route exact path="/startclean/:id" component={StartCleaning} />
               <Route

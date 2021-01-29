@@ -38,6 +38,9 @@ export default {
   getUserById: function(id) {
     return axios.get("/users/register/" +id)
   },
+  updateUser: function(id, data) {
+    return axios.put("/users/register/" +id, data)
+  },
   postToken: function(data, header) {
     return axios.post("/users/tokenIsValid", data, header)
   },

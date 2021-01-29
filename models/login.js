@@ -21,7 +21,25 @@ const LoginSchema = new Schema({
     userCreated: {
       type: Date,
       default: Date.now
-    }
+    },
+    cleaning: [{
+      name: {
+        type: String
+      },
+      startClean: {
+        type: Date,
+        default: Date.now()
+      },
+      stopClean: {
+        type: String
+      },
+      notes: {
+        type: String
+      },
+      images: [{
+        type: String
+      }]
+    }],
 });
 
 const Login = mongoose.model("Login", LoginSchema);

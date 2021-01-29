@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import "./clean.css";
 import NoMatch from "../NoMatch";
 
@@ -9,7 +9,7 @@ function StartClean() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
-  const [img, setImg] = useState({})
+  const [img, setImg] = useState([])
   const history = useHistory()
   const [state, setState] = useState({});
   const fileInput = useRef();
@@ -17,15 +17,17 @@ function StartClean() {
   const [load, setLoad] = useState(true);
 
   useEffect(async () => {
-    await loadPropertyInfo();
+    await loadUserInfo();
     setLoading(false);
     setLoad(false);
   }, []);
+
   console.log(rental, state)
-  const loadPropertyInfo = async () => {
-    await API.getProperties(params.id).then((res) => {
-      // console.log(res.data);
-      setState(res.data.cleaning[0]);
+
+  const loadUserInfo = async () => {
+    await API.getUserById(params.id).then((res) => {
+      console.log(res.data);
+      setState(res.data.cleaning);
       setRental(res.data);
     });
   };
@@ -51,24 +53,38 @@ function StartClean() {
       console.log("ready to update image links");
       // setState({...state})
       const imgLink = res.data.payload[0].secure_url;
-      const newArr = state.images;
-      newArr.unshift(imgLink);
-      console.log(newArr)
-      setState({ ...state});
-      console.log(rental,state)
+      // const newArr = state.images;
+      const newArr = img
+      newArr.push(imgLink);
+      // console.log(img)
+     
       setLoad(false);
     });
-    console.log(state)
+    settingState()
+    console.log(img)
   };
+  const settingState = () => {
+  setState({ ...state, images: img});
+  }
+  const updateRental =  () => {
+    const newArr = rental.cleaning
+    newArr.push(state)
+    setRental({...rental, cleaning: newArr})
+
+  }
+  
   const submitForm = async () => {
-    await API.updateProperty(rental._id, rental)
+    const newArr = rental.cleaning
+    newArr.unshift(state)
+    setRental({...rental, cleaning: newArr})
+    await API.updateUser(rental._id, rental)
       .then((res) => {
         console.log(res, state);
       })
       .catch((err) => {
         throw err;
       });
-      history.push("/previewclean/" + rental._id)
+      // history.push("/previewclean/" + rental._id)
   };
 
 
@@ -84,12 +100,12 @@ function StartClean() {
                     Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                   </h2>
                   <div className="container">
-                    <div className="row">
+                    {/* <div className="row">
                       Enter Your Name (Introduzca su Nombre):
                     </div>
                     <div className="row">
                       <input onChange={handleChange} type="text" name="name" />
-                    </div>
+                    </div> */}
                     <div className="row">
                       Time Finished Cleaning (HH : MM ):
                     </div>
@@ -128,7 +144,7 @@ function StartClean() {
                         <input
                           id="file-upload-button"
                           type="file"
-                          name="image"
+                          name="images"
                           ref={fileInput}
                           onChange={onUpload}
                           className="row"
@@ -162,12 +178,15 @@ function StartClean() {
                   </div> */}
 
                     {load === false && (
-                      // <Link to={"/previewclean/" + state._id}>
-                      <button className="cleaning-submit" onClick={submitForm}>
+                      <Link to={"/previewclean/" + rental._id}>
+                      <button className="cleaning-submit" 
+                      
+                      onClick={submitForm}
+                      >
                         {" "}
                         Submit (Enviar)
                       </button>
-                      // </Link>
+                      </Link>
                     )}
                   </div>
                 </div>

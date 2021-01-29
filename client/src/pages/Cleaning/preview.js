@@ -19,8 +19,8 @@ function previewCleaning() {
     setLoad(false);
   }, []);
   const loadPropertyInfo = async () => {
-    await API.getProperties(params.id).then((res) => {
-      // console.log(res.data.cleaning[0]);
+    await API.getUserById(params.id).then((res) => {
+      console.log(res.data.cleaning[0]);
       setState(res.data.cleaning[0]);
       setRental(res.data);
       setLoading(false)
@@ -59,25 +59,25 @@ function previewCleaning() {
                 Check out the photos you've uploaded below!
                 <p> Delete photos you no longer want</p>
                 <div>
-                  {state.images.map((img) => (
-                     <List key={img}> 
+                  {/* {state.images.map((img) => ( */}
+                     {/* <List key={img}>  */}
                        {/* {console.log(img)}  */}
-                       <ListItem> 
-                         <button onClick={delPhoto} img={img} value={img}>
+                       {/* <ListItem>  */}
+                         {/* <button onClick={delPhoto} img={img} value={img}> */}
                           X
-                        </button> 
-                        <img
-                          className="preview-images d-block w-100 large-rental-photo"
+                        {/* </button>  */}
+                        {/* <img */}
+                          {/* className="preview-images d-block w-100 large-rental-photo"
                           src={img}
-                          alt="..."
-                        ></img> 
-                       </ListItem> 
-                     </List> 
-                   ))} 
+                          alt="..." */}
+                        {/* ></img>  */}
+                       {/* </ListItem>  */}
+                     {/* </List>  */}
+                   {/* ))}  */}
                 </div>
               </div>
               <p> Look good? </p>
-              <Link to="/home">
+              <Link to={"/cleaning/" +rental._id}>
                 <button className="to-page"> Looks good! </button>
               </Link>
               {load === false && (

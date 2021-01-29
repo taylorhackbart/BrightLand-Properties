@@ -1,20 +1,30 @@
 import React, { useState, useContext, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./clean.css";
 import NoMatch from "../NoMatch"
+// import { exists } from "../../../../models/user";
+
 
 function Cleaning() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({})
+  const [user1, setUser1] = useState(new Set())
   const [state, setState] = useState({})
-  const [rental, setRental] = useState({})
+  const [state1, setState1] = useState(new Set())
+  const [rental, setRental] = useState([])
   const history = useHistory();
+  const [index, setIndex] = useState(0)
   const [property, setPropertyType] = useState({});
+  const [property1, setPropertyType1] = useState(new Set());
+  const params = useParams()
+// console.log(params.id)
 
   useEffect( async () => {
     loadProperty();
+    loadUser();
     // setLoading(false);
   }, []);
 
@@ -22,37 +32,59 @@ function Cleaning() {
     API.getProperty().then((res) => {
       setState(res.data);
       console.log(res.data)
+      // setState1([res.data])
       setLoading(false);
     });
   };
-  // console.log(property)
- 
-  const onSend = async (e) => {
+  // console.log(state1, user1)
+const loadUser = () => {
+  API.getUserById(params.id)
+  .then(res => {
+    console.log(res.data)
+    setUser(res.data)
+    // setUser1([res.data])
+  })
+}
+const findId = () => {
+  console.log(params.id)
+  console.log(property.employee)
+}
+console.log(rental, property)
+  const onSend = async (e, i) => {
     e.preventDefault();
-    await API.saveCleaning(property.location)
-    .then((res) => {
-      console.log(res.data);
-      setRental(res.data);
-      const newFunc = async () => {
-        const newArr = property.cleaning
-        newArr.unshift(rental)
-        console.log(newArr)
-        const id = rental._id
-        const update = async () => {
-          await API.updateProperty(property._id, property)
-          .then(res => {
-            setPropertyType({...property, cleaning: newArr})
-            console.log(property.cleaning[0]._id)
-          })
-          history.push("/startclean/" + property._id)
-        }
-        update()
+    console.log(params.id)
+    
+  console.log(property.employee)
+    const newArr = property.employee
+    function pushToArray() {
+      const index = newArr.findIndex((e) => e._id === user._id);
+      // console.log(obj)
+      if (index === -1) {
+        const item = newArr.unshift(user)
+          console.log(item, "new item")
+      } else {
+        console.log("matched", index, newArr[index])
+        const updatedArr = newArr[index].cleaning
+        console.log(updatedArr, user.cleaning)
+        updatedArr.push(user.cleaning[0])
+
       }
-      newFunc()
-    });
-  };
+      setPropertyType({...property})
+    }
+    updateProp() 
+  pushToArray()
+};
+  console.log(user, property)
+    const updateProp = async() => {
+      await API.updateProperty(property._id, property)
+      .then(res=> {
+        console.log(res)
+      })
+      
+    }
+  
  
-  console.log(property, state);
+  // console.log(property, rental);
 
   return (
     <>

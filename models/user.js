@@ -22,25 +22,25 @@ const rentalSchema = new Schema({
     userCreated: {
       type: Date,
       default: Date.now
-    }
-  }],
-  cleaning: [{
-    name: {
-      type: String
     },
-    startClean: {
-      type: Date,
-      default: Date.now()
-    },
-    stopClean: {
-      type: String
-    },
-    notes: {
-      type: String
-    },
-    images: [{
-      type: String
-    }]
+    cleaning: [{
+      name: {
+        type: String
+      },
+      startClean: {
+        type: Date,
+        default: Date.now()
+      },
+      stopClean: {
+        type: String
+      },
+      notes: {
+        type: String
+      },
+      images: [{
+        type: String
+      }]
+    }],
   }],
   description: { type: String },
   activities: {type: String},

@@ -21,7 +21,7 @@ export default function Home() {
   const [loadClean, setLoadClean] = useState(true);
   const [user, setUser]  = useState({})
   const [show, setShow] = useState(false);
-  const opem = useRef();
+  const open = useRef();
   const header = useRef();
   const title = useRef();
   const body = useRef();
@@ -32,12 +32,19 @@ export default function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const params = useParams();
-
+  const id = userData.user.id
 
   useEffect(() => {
+    loadUser()
     setLoading(false);
   }, []);
 
+  const loadUser = () => {
+    API.getUserById(id)
+    .then(res => {
+      setUser(res.data)
+    })
+  }
 
   const loadEmployees = async () => {
     let token = localStorage.getItem("auth-token");
@@ -204,12 +211,9 @@ export default function Home() {
                         <p className="card-text">
                           Click the button below to log a new cleaning:
                         </p>
-                        <Link to="/cleaning">
+                        <Link to={"/startclean/" + user._id}>
                           <AiOutlineClear className="admin-register"></AiOutlineClear>
                         </Link>
-                        {/* <Link to={"/propertyroutes/" +user} >
-                          <AiOutlineClear className="admin-register"></AiOutlineClear>
-                        </Link> */}
                       </div>
                     </div>
                   </div>

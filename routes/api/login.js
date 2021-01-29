@@ -145,4 +145,12 @@ router.get("/register/:id", async (req, res) => {
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
 });
+router.put("/register/:id", async (req, res) => {
+  Login.findOneAndUpdate({ _id: req.params.id }, 
+    {$set: {
+      cleaning: req.body.cleaning
+    }})
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err));
+});
 module.exports = router;
