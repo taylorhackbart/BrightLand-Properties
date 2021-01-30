@@ -14,7 +14,7 @@ import HomePage from "./pages/Home/Home.js";
 import Footer from "./components/Footer";
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
-import PropertyRoutes from "./pages/Cleaning/property2";
+import AddPhotos from "./pages/Cleaning/addPhotos";
 import previewCleaning from "./pages/Cleaning/preview";
 import "./app.css";
 import API from "./utils/API";
@@ -69,6 +69,7 @@ function App() {
               {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
+              <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path="/new" component={Base} />
               <Route exact path={"/chooseprop/:id"} component={PropertyType} />
               <Route exact path="/cleaning/:id" component={Cleaning} />

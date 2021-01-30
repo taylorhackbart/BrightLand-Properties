@@ -14,11 +14,11 @@ function previewCleaning() {
   const [img, setImg] = useState([])
   const params = useParams();
   useEffect(async () => {
-      loadPropertyInfo();
+      loadUserInfo();
     // setLoading(false);
     setLoad(false);
   }, []);
-  const loadPropertyInfo = async () => {
+  const loadUserInfo = async () => {
     await API.getUserById(params.id).then((res) => {
       console.log(res.data.cleaning[0]);
       setState(res.data.cleaning[0]);
@@ -35,14 +35,15 @@ function previewCleaning() {
     setState({...state, images: newArr});
     console.log(newArr)
     startDelete();
-    // setRental({...rental, clean})
+    const updatedArr = rental.cleaning[0]
+    setRental({...rental, cleaning: state})
   };
   console.log(state, rental)
   const startDelete = async () => {
-    await API.updateProperty(rental._id, rental)
+    await API.updateUser(rental._id, rental)
       .then((res) => {
-        // setRental({ ...rental, images: state });
-        console.log(res.data);
+        setRental({ ...rental, cleaning: state });
+        console.log(res);
       })
       .catch((err) => {
         throw err;
@@ -59,21 +60,21 @@ function previewCleaning() {
                 Check out the photos you've uploaded below!
                 <p> Delete photos you no longer want</p>
                 <div>
-                  {/* {state.images.map((img) => ( */}
-                     {/* <List key={img}>  */}
-                       {/* {console.log(img)}  */}
-                       {/* <ListItem>  */}
-                         {/* <button onClick={delPhoto} img={img} value={img}> */}
+                  {state.images.map((img) => (
+                     <List key={img}> 
+                       {console.log(img)} 
+                       <ListItem> 
+                         <button onClick={delPhoto} img={img} value={img}>
                           X
-                        {/* </button>  */}
-                        {/* <img */}
-                          {/* className="preview-images d-block w-100 large-rental-photo"
+                        </button> 
+                        <img
+                          className="preview-images d-block w-100 large-rental-photo"
                           src={img}
-                          alt="..." */}
-                        {/* ></img>  */}
-                       {/* </ListItem>  */}
-                     {/* </List>  */}
-                   {/* ))}  */}
+                          alt="..."
+                        ></img> 
+                       </ListItem> 
+                     </List> 
+                   ))} 
                 </div>
               </div>
               <p> Look good? </p>
@@ -81,7 +82,7 @@ function previewCleaning() {
                 <button className="to-page"> Looks good! </button>
               </Link>
               {load === false && (
-                <Link to={"/startclean/" + rental._id}>
+                <Link to={"/addphotos/" + rental._id}>
                   <button className="more-photos">
                     {" "}
                     I want to add more photos

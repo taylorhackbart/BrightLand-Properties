@@ -15,11 +15,13 @@ import moment from "moment";
 export default function Home() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const [cleaningData, setCleaningData] = useState({});
   const [employees, setEmployees] = useState([]);
+  const [employeeArr, setEmployeesArr] = useState([]);
   const [cleanings, setCleanings] = useState([]);
   const [load, setLoad] = useState(true);
   const [loadClean, setLoadClean] = useState(true);
-  const [user, setUser]  = useState({})
+  const [user, setUser] = useState({});
   const [show, setShow] = useState(false);
   const open = useRef();
   const header = useRef();
@@ -31,29 +33,46 @@ export default function Home() {
   const body1 = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const params = useParams();
-  const id = userData.user.id
+ 
+  useEffect(async () => {
+     userData
+     loadCleaning();
+     try {
+        const id = userData.user.id
+        await API.getUserById(id).then((res) => {
+          setUser(res.data);
+          setLoading(false);
+        });
+      } catch (err) {
+        console.log(err);
+      }
 
-  useEffect(() => {
-    loadUser()
-    setLoading(false);
-  }, []);
+  }, [userData]);
 
-  const loadUser = () => {
-    API.getUserById(id)
-    .then(res => {
-      setUser(res.data)
-    })
-  }
+
+  const loadCleaning = async (i) => {
+    await API.getProperty().then((res) => {
+      setCleaningData(res.data);
+    });
+  };
+
+  // const loadUser = async () => {
+  //   const id = userData.user.id
+  //   // const { userData } = useContext(UserContext);
+  //   console.log(userData)
+  //   try {
+  //     await API.getUserById(id).then((res) => {
+  //       setUser(res.data);
+  //       setLoading(false);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const loadEmployees = async () => {
-    let token = localStorage.getItem("auth-token");
-    // const userRes = await Axios.get("http://localhost:3001/users/register", {
-    //   headers: { "x-auth-token": token },
-    // });
     const userRes = await API.getUser();
     let newArr = [...userRes.data];
-    // console.log(newArr);
     setEmployees({ newArr });
     //page has been loaded with all info
     setLoading(false);
@@ -64,25 +83,69 @@ export default function Home() {
     setLoadClean(true);
   };
 
-  const loadCleaning = async () => {
-    const userRes = await API.getCleaning();
-    let cleaningArr = [...userRes.data];
-    setCleanings({ cleaningArr });
-    //not allowing the employee modal to open
-    setLoad(true);
-    //page has been loaded with all info needed
-    setLoading(false);
-    //cleaning data has been loaded
-    setLoadClean(false);
+  const loadAPI = async (i) => {
+    cleaningData.map((x) => {
+      const newArr = x.employee;
+      // console.log(newArr)
+      for (i = 0; i < newArr.length; i++) {
+        if (newArr.length > 0) {
+          newArr.map((baby)=> {
+            const help = baby.cleaning;
+            // const newVar = Object.assign(help)
+            console.log(employeeArr[i])
+            if (help.length > 0) {
+              const value = newArr.reduce((x, y) => {
+                  return[y + x]
+              })
+              help.map( o => {
+                function pushToArray() {
+                  const index = employeeArr.findIndex((e) => e._id === o._id);
+                  if (index === -1) {
+                    // const item = 
+                    //MAY WANT TO CHECK THIS OUT
+                    const item = employeeArr.unshift(o);
+                    console.log(item, "new item");
+                    // TODO NEED TO SET A STATE FOR NEW ARRAY ON PAGE LOAD
+                  } else {
+                    console.log("matched", index, employeeArr);
+                    // const updatedArr = employeeArr[index]
+                    // updatedArr.push(employeeArr[index]);
+                  }
+                }
+                pushToArray()
+                if (employeeArr.includes(o._id)){
+                  // console.log("here", o)
+                  // return employeeArr
+                } else {
+                  console.log("noce", o)
+                  // const updated = new Array ()
+                  // employeeArr.push(o)
+                  // console.log(employeeArr)
+                }
+              })
+              }
 
-    handleShow();
+              const nice = help;
+              // console.log(nice)
+              setEmployeesArr(nice);
+              setLoad(true);
+              setLoading(false);
+              setLoadClean(false);
+              handleShow();
+            // }
+          });
+        }
+      }
+    });
   };
+
+  // console.log(cleaningData, cleanings, employeeArr);
 
   return (
     <>
+        <UserContext.Provider value={{ userData }}>
       <div className="container home-screen">
-        {loading === false && (
-          <UserContext.Provider value={{ userData }}>
+          {loading === false && (
             <div className="page">
               {userData.user && userData.user.jobType === "Admin" ? (
                 <div className="container">
@@ -107,7 +170,6 @@ export default function Home() {
                         <p className="card-text">
                           Click the link below to view all employees
                         </p>
-                        {/* <Link to="/viewall"> */}
                         {loading === false && (
                           <FiUsers
                             className="admin-register"
@@ -122,7 +184,6 @@ export default function Home() {
                   <div>
                     {load === false && loadClean === true && (
                       <Modal show={show} onHide={handleClose}>
-                        {/* <Transition in={inProp} ref={trans}/> */}
                         <Modal.Header closeButton ref={header}>
                           <Modal.Title
                             id="contained-modal-title-vcenter"
@@ -135,9 +196,16 @@ export default function Home() {
                           {employees.newArr.map((employee) => (
                             <div key={employee._id}>
                               <h4>{employee.displayName}</h4>
-                              <ul><strong>Username:</strong> "{employee.username}"</ul>
-                              <ul><strong>Role: </strong> {employee.jobType} </ul>
-                              <ul><strong>Phone Number: </strong> {employee.phoneNumber} </ul>
+                              <ul>
+                                <strong>Username:</strong> "{employee.username}"
+                              </ul>
+                              <ul>
+                                <strong>Role: </strong> {employee.jobType}{" "}
+                              </ul>
+                              <ul>
+                                <strong>Phone Number: </strong>{" "}
+                                {employee.phoneNumber}{" "}
+                              </ul>
                             </div>
                           ))}
                         </Modal.Body>
@@ -154,7 +222,7 @@ export default function Home() {
                         {loading === false && (
                           <AiOutlineClear
                             className="admin-register"
-                            onClick={loadCleaning}
+                            onClick={loadAPI}
                             onChange={handleShow}
                           />
                         )}
@@ -168,22 +236,35 @@ export default function Home() {
                               id="contained-modal-title-vcenter"
                               ref={title1}
                             >
-                               Cleanings
+                              Cleanings
                             </Modal.Title>
                           </Modal.Header>
                           <Modal.Body ref={body1}>
-                            {cleanings.cleaningArr.map((cleaning) => (
-                              <div key={cleaning._id}>
-                                <h4>{cleaning.property}</h4>
-                                <ul> <strong>Date:   </strong>
-                                  {" "}
+                            {employeeArr.map((cleaning) => (
+                              <div
+                              key={cleaning._id}
+                              >
+                                {/* <h4>{cleaning.property}</h4> */}
+                                <ul>
+                                {/* {console.log(cleaning)} */}
+                                  <strong>Date: </strong>{" "}
                                   {moment(cleaning.startClean).format(
                                     "DD/MM/YYYY"
                                   )}{" "}
                                 </ul>
-                                <ul><strong> Name of Employee: </strong> {cleaning.name} </ul>
-                                <ul> <strong> Time Finished: </strong> {cleaning.stopClean} </ul>
-                                <ul>  <strong> Notes: </strong> {cleaning.notes}</ul>
+                                <ul>
+                                  <strong> Name of Employee: </strong>{" "}
+                                  {cleaning.name}{" "}
+                                </ul>
+                                <ul>
+                                  {" "}
+                                  <strong> Time Finished: </strong>{" "}
+                                  {cleaning.stopClean}{" "}
+                                </ul>
+                                <ul>
+                                  {" "}
+                                  <strong> Notes: </strong> {cleaning.notes}
+                                </ul>
                               </div>
                             ))}
                           </Modal.Body>
@@ -226,14 +307,11 @@ export default function Home() {
                     <div className="card-body">
                       <h5 className="card-title">Log a Clean</h5>
                       <p className="card-text">
-                        Click the button below to begin cleaning:
-                      </p>
-                      <Link to="/cleaning">
-                        <button className="begin-clean">
-                          {" "}
-                          Start Cleaning{" "}
-                        </button>
-                      </Link>
+                          Click the button below to log a new cleaning:
+                        </p>
+                        <Link to={"/startclean/" + user._id}>
+                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                        </Link>
                     </div>
                   </div>
                 </div>
@@ -246,8 +324,11 @@ export default function Home() {
                       <div className="card-body">
                         <h5 className="card-title">View Recent Cleanings</h5>
                         <p className="card-text">
-                          Click below to view recent cleanings
+                          Click the button below to log a new cleaning:
                         </p>
+                        <Link to={"/startclean/" + user._id}>
+                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                        </Link>
                         {loading === false && (
                           <AiOutlineClear
                             className="admin-register"
@@ -271,17 +352,28 @@ export default function Home() {
                           <Modal.Body ref={body1}>
                             {cleanings.cleaningArr.map((cleaning) => (
                               <div key={cleaning._id}>
-                              <h4>{cleaning.property}</h4>
-                              <ul> <strong>Date:   </strong>
-                                {" "}
-                                {moment(cleaning.startClean).format(
-                                  "DD/MM/YYYY"
-                                )}{" "}
-                              </ul>
-                              <ul><strong> Name of Employee: </strong> {cleaning.name} </ul>
-                              <ul> <strong> Time Finished: </strong> {cleaning.stopClean} </ul>
-                              <ul>  <strong> Notes: </strong> {cleaning.notes}</ul>
-                            </div>
+                                <h4>{cleaning.property}</h4>
+                                <ul>
+                                  {" "}
+                                  <strong>Date: </strong>{" "}
+                                  {moment(cleaning.startClean).format(
+                                    "DD/MM/YYYY"
+                                  )}{" "}
+                                </ul>
+                                <ul>
+                                  <strong> Name of Employee: </strong>{" "}
+                                  {cleaning.name}{" "}
+                                </ul>
+                                <ul>
+                                  {" "}
+                                  <strong> Time Finished: </strong>{" "}
+                                  {cleaning.stopClean}{" "}
+                                </ul>
+                                <ul>
+                                  {" "}
+                                  <strong> Notes: </strong> {cleaning.notes}
+                                </ul>
+                              </div>
                             ))}
                           </Modal.Body>
                         </Modal>
@@ -295,9 +387,9 @@ export default function Home() {
                 </div>
               )}
             </div>
-          </UserContext.Provider>
-        )}
+          )}
       </div>
+          </UserContext.Provider>
     </>
   );
 }
