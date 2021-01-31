@@ -112,7 +112,7 @@ export default function Home() {
                     // updatedArr.push(employeeArr[index]);
                   }
                 }
-                pushToArray()
+                pushToArray() 
                 if (employeeArr.includes(o._id)){
                   // console.log("here", o)
                   // return employeeArr
