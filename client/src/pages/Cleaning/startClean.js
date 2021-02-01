@@ -9,8 +9,8 @@ function StartClean() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
-  const [img, setImg] = useState([])
-  const history = useHistory()
+  const [img, setImg] = useState([]);
+  const history = useHistory();
   const [state, setState] = useState({});
   const fileInput = useRef();
   const params = useParams();
@@ -22,11 +22,8 @@ function StartClean() {
     setLoad(false);
   }, []);
 
-  console.log(rental, state)
-
   const loadUserInfo = async () => {
     await API.getUserById(params.id).then((res) => {
-      console.log(res.data);
       setState(res.data.cleaning);
       setRental(res.data);
     });
@@ -51,32 +48,21 @@ function StartClean() {
     setLoad(true);
     await API.sendToCloud(formData).then((res) => {
       console.log("ready to update image links");
-      // setState({...state})
       const imgLink = res.data.payload[0].secure_url;
-      // const newArr = state.images;
-      const newArr = img
+      const newArr = img;
       newArr.push(imgLink);
-      // console.log(img)
-     
       setLoad(false);
     });
-    settingState()
-    console.log(img)
+    settingState();
   };
   const settingState = () => {
-  setState({ ...state, images: img});
-  }
-  const updateRental =  () => {
-    const newArr = rental.cleaning
-    newArr.push(state)
-    setRental({...rental, cleaning: newArr})
+    setState({ ...state, images: img });
+  };
 
-  }
-  
   const submitForm = async () => {
-    const newArr = rental.cleaning
-    newArr.unshift(state)
-    setRental({...rental, cleaning: newArr})
+    const newArr = rental.cleaning;
+    newArr.unshift(state);
+    setRental({ ...rental, cleaning: newArr });
     await API.updateUser(rental._id, rental)
       .then((res) => {
         console.log(res, state);
@@ -84,9 +70,7 @@ function StartClean() {
       .catch((err) => {
         throw err;
       });
-      // history.push("/previewclean/" + rental._id)
   };
-
 
   return (
     <>
@@ -100,12 +84,12 @@ function StartClean() {
                     Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                   </h2>
                   <div className="container">
-                    {/* <div className="row">
+                    <div className="row">
                       Enter Your Name (Introduzca su Nombre):
                     </div>
                     <div className="row">
                       <input onChange={handleChange} type="text" name="name" />
-                    </div> */}
+                    </div>
                     <div className="row">
                       Time Finished Cleaning (HH : MM ):
                     </div>
@@ -130,12 +114,10 @@ function StartClean() {
                         type="text"
                       />{" "}
                     </div>
-                    {/* <div className="row"> */}
                     <form
                       encType="multipart/form-data"
                       method="put"
                       name="fileinfo"
-                      // className="row"
                     >
                       <div className="row">
                         <label>Choose Photos (Elegir Fotos): </label>
@@ -151,7 +133,6 @@ function StartClean() {
                         />
                       </div>
                     </form>
-                    {/* </div> */}
                     <div className="row">
                       <div>
                         <button type="submit" onClick={onSend} value="Submit ">
@@ -165,27 +146,16 @@ function StartClean() {
                         )}
                       </div>
                     </div>
-                    {/* <div className="row">
-                    Enter any notes necessary (Ingresar Notas de Limpieza):
-                  </div> */}
-                    {/* <div className="row">
-                    <textarea
-                      name="notes"
-                      onChange={handleChange}
-                      className="notes-area"
-                      type="text"
-                    />{" "}
-                  </div> */}
 
                     {load === false && (
                       <Link to={"/previewclean/" + rental._id}>
-                      <button className="cleaning-submit" 
-                      
-                      onClick={submitForm}
-                      >
-                        {" "}
-                        Submit (Enviar)
-                      </button>
+                        <button
+                          className="cleaning-submit"
+                          onClick={submitForm}
+                        >
+                          {" "}
+                          Submit (Enviar)
+                        </button>
                       </Link>
                     )}
                   </div>

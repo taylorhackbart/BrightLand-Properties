@@ -53,22 +53,9 @@ export default function Home() {
   const loadCleaning = async (i) => {
     await API.getProperty().then((res) => {
       setCleaningData(res.data);
+      // loadAPI();
     });
   };
-
-  // const loadUser = async () => {
-  //   const id = userData.user.id
-  //   // const { userData } = useContext(UserContext);
-  //   console.log(userData)
-  //   try {
-  //     await API.getUserById(id).then((res) => {
-  //       setUser(res.data);
-  //       setLoading(false);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   const loadEmployees = async () => {
     const userRes = await API.getUser();
@@ -86,53 +73,31 @@ export default function Home() {
   const loadAPI = async (i) => {
     cleaningData.map((x) => {
       const newArr = x.employee;
-      // console.log(newArr)
       for (i = 0; i < newArr.length; i++) {
         if (newArr.length > 0) {
           newArr.map((baby)=> {
             const help = baby.cleaning;
-            // const newVar = Object.assign(help)
-            console.log(employeeArr[i])
             if (help.length > 0) {
-              const value = newArr.reduce((x, y) => {
-                  return[y + x]
-              })
               help.map( o => {
                 function pushToArray() {
                   const index = employeeArr.findIndex((e) => e._id === o._id);
                   if (index === -1) {
-                    // const item = 
-                    //MAY WANT TO CHECK THIS OUT
-                    const item = employeeArr.unshift(o);
-                    console.log(item, "new item");
+                    employeeArr.unshift(o);
+                    console.log("new item");
                     // TODO NEED TO SET A STATE FOR NEW ARRAY ON PAGE LOAD
                   } else {
                     console.log("matched", index, employeeArr);
-                    // const updatedArr = employeeArr[index]
-                    // updatedArr.push(employeeArr[index]);
                   }
                 }
                 pushToArray() 
-                if (employeeArr.includes(o._id)){
-                  // console.log("here", o)
-                  // return employeeArr
-                } else {
-                  console.log("noce", o)
-                  // const updated = new Array ()
-                  // employeeArr.push(o)
-                  // console.log(employeeArr)
-                }
               })
               }
-
               const nice = help;
-              // console.log(nice)
               setEmployeesArr(nice);
               setLoad(true);
               setLoading(false);
               setLoadClean(false);
               handleShow();
-            // }
           });
         }
       }

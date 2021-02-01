@@ -11,38 +11,27 @@ function Cleaning() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [state, setState] = useState({});
-  const [rental, setRental] = useState([]);
-  const history = useHistory();
-  const [index, setIndex] = useState(0);
   const [property, setPropertyType] = useState({});
   const params = useParams();
-  // console.log(params.id)
 
   useEffect(async () => {
     loadProperty();
     loadUser();
-    // setLoading(false);
   }, []);
 
   const loadProperty = () => {
     API.getProperty().then((res) => {
       setState(res.data);
       console.log(res.data);
-      // setState1([res.data])
       setLoading(false);
     });
   };
-  // console.log(state1, user1)
+
   const loadUser = () => {
     API.getUserById(params.id).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setUser(res.data);
-      // setUser1([res.data])
     });
-  };
-  const findId = () => {
-    console.log(params.id);
-    console.log(property.employee);
   };
 
   const onSend = async (e, i) => {
@@ -54,18 +43,19 @@ function Cleaning() {
         // TODO const item = 
         //TODOMAY WANT TO CHECK THIS OUT
         newArr.unshift(user);
-        console.log(item, "new item");
+        console.log( "new item");
       } else {
         console.log("matched", index, newArr[index]);
         const updatedArr = newArr[index].cleaning;
         updatedArr.push(user.cleaning[0]);
       }
       setPropertyType({ ...property });
+      updateProp();
     }
-    updateProp();
     pushToArray();
   };
-  console.log(user, property);
+  // console.log(user, property);
+
   const updateProp = async () => {
     await API.updateProperty(property._id, property).then((res) => {
       console.log(res);
@@ -96,12 +86,12 @@ function Cleaning() {
                     </ul>
                   </div>
                 ))}
-                <Link to = "/home" >
-                <button className="cleaning-next" onClick={onSend}>
+                {/* <Link to = "/home" > */}
+                <button className="cleaning-next" onClick={onSend} >
                   {" "}
                   Next (Próximo)
                 </button>
-                </Link>
+                {/* </Link> */}
               </div>
             </form>
           ) : (

@@ -28,7 +28,7 @@ function AddPhotos() {
     await API.getUserById(params.id).then((res) => {
       console.log(res.data);
       setState(res.data.cleaning[0]);
-      setImg(res.data.cleaning[0].images)
+      setImg(res.data.cleaning[0].images);
       setRental(res.data);
     });
   };
@@ -52,10 +52,10 @@ function AddPhotos() {
       // setState({...state})
       const imgLink = res.data.payload[0].secure_url;
       // const newArr = state.images;
-      const newArr = img
+      const newArr = img;
       // const newArr = state.cleaning.images;
       newArr.push(imgLink);
-      console.log(newArr)
+      console.log(newArr);
       setLoad(false);
       // setState({ ...state, images: newArr });
     });
@@ -63,19 +63,11 @@ function AddPhotos() {
     console.log(img);
   };
   const settingState = () => {
-    setState({...state, images: img})
+    setState({ ...state, images: img });
   };
 
-  const updateRental = () => {
-    const newArr = rental.cleaning;
-    newArr.push(state);
-    setRental({ ...rental, cleaning: newArr });
-  };
 
   const submitForm = async () => {
-    // const newArr = rental.cleaning;
-    // newArr.unshift(state);
-    // setRental({ ...rental, cleaning: newArr });
     await API.updateUser(rental._id, rental)
       .then((res) => {
         console.log(res, state);
@@ -83,7 +75,6 @@ function AddPhotos() {
       .catch((err) => {
         throw err;
       });
-    // history.push("/previewclean/" + rental._id)
   };
 
   return (
@@ -139,7 +130,7 @@ function AddPhotos() {
                           {" "}
                           Submit (Enviar)
                         </button>
-                     </Link>
+                      </Link>
                     )}
                   </div>
                 </div>

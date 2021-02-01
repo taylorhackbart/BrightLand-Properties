@@ -11,22 +11,21 @@ function previewCleaning() {
   const [load, setLoad] = useState(true);
   const [state, setState] = useState({});
   const [rental, setRental] = useState({});
-  const [img, setImg] = useState([])
   const params = useParams();
+
   useEffect(async () => {
       loadUserInfo();
-    // setLoading(false);
     setLoad(false);
   }, []);
+
   const loadUserInfo = async () => {
     await API.getUserById(params.id).then((res) => {
-      console.log(res.data.cleaning[0]);
       setState(res.data.cleaning[0]);
       setRental(res.data);
       setLoading(false)
     });
   };
-  // console.log(rental)
+
   const delPhoto = (e) => {
     e.preventDefault();
     const id = state.images.indexOf(e.target.value);
@@ -38,7 +37,7 @@ function previewCleaning() {
     const updatedArr = rental.cleaning[0]
     setRental({...rental, cleaning: state})
   };
-  console.log(state, rental)
+
   const startDelete = async () => {
     await API.updateUser(rental._id, rental)
       .then((res) => {
@@ -46,7 +45,7 @@ function previewCleaning() {
         console.log(res);
       })
       .catch((err) => {
-        throw err;
+        console.log(err);
       });
   };
 
@@ -62,7 +61,6 @@ function previewCleaning() {
                 <div>
                   {state.images.map((img) => (
                      <List key={img}> 
-                       {console.log(img)} 
                        <ListItem> 
                          <button onClick={delPhoto} img={img} value={img}>
                           X
