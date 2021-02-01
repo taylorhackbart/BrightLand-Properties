@@ -24,17 +24,20 @@ export default function AuthOptions() {
   };
 
   return (
-    <nav className="auth-options footer-display">
+    <nav className="auth-options">
       {userData.user ? (
         <div className="align-me">
-        <RiLogoutCircleRLine className="logout-button" onClick={logout}>Log out</RiLogoutCircleRLine>
-
-        <BsHouse className="logout-button" onClick={home}/>
+          <div className="row">
+        <button className="employee-button" onClick={home}> PORTAL </button>
+        </div>
+        <div className="row">
+        <button className="logout-button" onClick={logout}>LOGOUT</button>
+        </div>
         </div>
       ) : (
         <>
         <div className="align-me">
-          <RiLoginCircleFill className="login-button" onClick={login}></RiLoginCircleFill>
+          <button className="login-button" onClick={login}>LOGIN</button>
           <AiOutlineUserAdd className="register-button" 
           onClick={register}
           >Register</AiOutlineUserAdd>

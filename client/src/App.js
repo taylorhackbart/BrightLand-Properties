@@ -56,8 +56,8 @@ function App() {
   return (
     <div className="page-container">
       <BrowserRouter>
-        <NavBar />
         <UserContext.Provider value={{ userData, setUserData }}>
+        <NavBar />
           <div className="app-background">
             <Switch>
               <Route exact path="/" component={HomePage} />
@@ -92,7 +92,7 @@ function App() {
               <Route path="*" component={NoMatch} />
             </Switch>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </UserContext.Provider>
       </BrowserRouter>
     </div>

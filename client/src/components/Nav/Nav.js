@@ -3,6 +3,7 @@ import "./nav.css";
 import logo from "./logo.png";
 import API from "../../utils/API";
 import { Navbar, Nav, NavDropdown, SplitButton } from "react-bootstrap";
+import AuthOptions from "../auth/AuthOptions"
 
 function NavBar() {
   const [state, setState] = useState({});
@@ -31,8 +32,9 @@ function NavBar() {
         {load === false && (
           <>
             <Navbar.Toggle aria-controls="responsive-navbar-nav container-fluid" />
-            <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="nav-bar-buttons">
+              {/* <div > */}
+            <Navbar.Collapse id="responsive-navbar-nav">
                 <div className="home-button">
                   <Nav.Link className="home-button" href="/">HOME</Nav.Link>
                 </div>
@@ -56,8 +58,12 @@ function NavBar() {
                   ))}
                   <NavDropdown.Item href="/">Home</NavDropdown.Item>
                 </SplitButton>
-              </Nav>
+                <Nav.Link className="auth-option-nav">
+                  <AuthOptions />
+                </Nav.Link>
             </Navbar.Collapse>
+                {/* </div> */}
+              </Nav>
           </>
         )}
       </Navbar>

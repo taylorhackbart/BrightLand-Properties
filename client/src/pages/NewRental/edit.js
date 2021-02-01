@@ -62,7 +62,7 @@ function Edit() {
             defaultValue={rental.location}
             onChange={setChangeLocation}
           />
-          <button onClick={saveLocation}> OK </button>
+          <button className="edit-btn" onClick={saveLocation}> OK </button>
           </div>
            <div className="row edit-row">
              <h3> DESCRIPTION: </h3>
@@ -76,7 +76,7 @@ function Edit() {
               defaultValue={rental.description}
               onChange={setChangeDesc}
             />
-            <button onClick={saveDescription}> OK </button>
+            <button className="edit-btn" onClick={saveDescription}> OK </button>
           </label>
           </div>
           <div className="row edit-row">
@@ -91,7 +91,7 @@ function Edit() {
               defaultValue={rental.activities}
               onChange={setChangeAct}
             />
-            <button onClick={saveActivities}> OK </button>
+            <button className="edit-btn" onClick={saveActivities}> OK </button>
           </label>
           </div>
           <div className="row edit-row">
@@ -102,9 +102,9 @@ function Edit() {
             defaultValue={rental.link}
             onChange={setChangeLink}
           />
-          <button onClick={saveLink}> OK </button>
+          <button className="edit-btn" onClick={saveLink}> OK </button>
           </div>
-          <button onClick={onSave}> DONE </button>
+          <button className="edit-btn" onClick={onSave}> DONE </button>
         </>
       )}
     </div>

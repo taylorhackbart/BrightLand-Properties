@@ -1,14 +1,13 @@
-nav.navbar{
+nav.navbar {
   padding-top: 50px;
-  padding-bottom: 0;;
+  padding-bottom: 0;
   z-index: 100;
   margin-top: 15px;
   margin-left: 3%;
-  border:none;
+  border: none;
   display: flex;
 }
-.logo-button{
-  /* display: none; */
+.logo-button {
   margin-bottom: 30px;
 }
 .logo {
@@ -17,52 +16,139 @@ nav.navbar{
   float: left;
   display: block;
 }
-a.home-button.nav-link{
+a.home-button.nav-link {
   margin-right: 35px;
   color: black;
   font-size: 17px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-.nav-bar-buttons{
-  margin-top: 4%;
-  float:right;
+.nav-bar-buttons {
+  margin-top: -14%;
   padding: 1%;
   text-align: right;
-  margin-right: 4%;
+  margin-left: 60%;
 }
-
-.collapse.show{
+.navbar-toggler {
+  margin: 0 auto;
+}
+.collapse {
   border: none;
-  margin-top: -7%;
-}
-button.navbar-toggler{
-  margin-right: 45px;
-  margin-top: -6%;
 }
 
-.navbar-light .navbar-nav .nav-link{
+button.navbar-toggler {
+  margin-left: 90%;
+  margin-top: -6%;
+  display: block;
+  float: right;
+}
+
+.navbar-light .navbar-nav .nav-link {
   color: black;
 }
-.btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
-  display:none;
+.nav-link {
+  margin-top: 100px;
 }
-a.btn.btn-primary, .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
+a.auth-option-nav.nav-link {
+  margin-top: 40px;
+}
+.btn-group > .btn:not(:first-child),
+.btn-group > .btn-group:not(:first-child) > .btn {
+  display: none;
+}
+.login-button {
+  margin-top: -200px;
+  background-color: transparent;
+  margin-right: 5%;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+  padding-top: 0;
+}
+.employee-button {
+  margin-top: -9%;
+  background-color: transparent;
+  margin-right: -60%;
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  margin-top: -2%;
+  margin-right: -60%;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+}
+.align-me {
+  text-align: right;
+  /* bottom: 0; */
+  margin-top: -10%;
+}
+a.btn.btn-primary,
+.btn-group > .btn:not(:first-child),
+.btn-group > .btn-group:not(:first-child) > .btn {
   background-color: transparent;
   border: none;
   color: black;
-  font-family: 'Roboto', sans-serif;
-  /* display: none; */
+  font-family: "Roboto", sans-serif;
+  margin-top: -6%;
+  margin-left: 70%;
 }
-@media (min-width: 1200px){
-  .navbar-expand-xl .navbar-nav{
+@media (min-width: 1200px) {
+  .navbar-expand-xl .navbar-nav {
     display: flex;
     width: 100%;
   }
-  .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(:first-child)>.btn{
-    display:block;
+  .login-button {
+    margin-top: -80%;
+    background: transparent;
+    border: none;
+    display: flex;
+    float: right;
+    cursor: pointer;
+    /* margin-right: 250%; */
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
   }
-  .nav-bar-buttons{
-    z-index:100;
+  .logout-button {
+    margin-top: -90%;
+    background: transparent;
+    border: none;
+    margin-right: 20%;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+  }
+  .employee-button {
+    margin-top: -60%;
+    background: transparent;
+    border: none;
+    display: flex;
+    float: right;
+    cursor: pointer;
+    margin-right: 250%;
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+  }
+  .align-me {
+    display: inline;
+    text-align: right;
+    margin-top: -120%;
+    bottom: 0;
+    /* margin-right: -300%; */
+  }
+  .btn-group > .btn:not(:first-child),
+  .btn-group > .btn-group:not(:first-child) > .btn {
+    display: block;
+    margin-left: -5%;
+  }
+  .nav-bar-buttons {
+    z-index: 100;
     position: relative;
     display: block;
     margin-top: 5%;
@@ -70,46 +156,52 @@ a.btn.btn-primary, .btn-group>.btn:not(:first-child), .btn-group>.btn-group:not(
     margin-left: -2%;
     width: 95%;
     height: 52px;
-    border: .5px solid grey;
+    border: 0.5px solid grey;
     margin-top: 4%;
     border-radius: 20px;
-    box-shadow: 5px 5px 5px 2px grey; 
-    float:right;
+    box-shadow: 5px 5px 5px 2px grey;
+    float: right;
     padding: 1%;
   }
 
- div.navbar-dropdown.dropdown.btn-group {
-  margin-top: -3px;
-  float: right;
-  text-align: right;
-  margin-left: 55%;
-  font-family: 'Roboto', sans-serif;
+  div.navbar-dropdown.dropdown.btn-group {
+    margin-top: 0%;
+    float: right;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Roboto", sans-serif;
+  }
+  nav.navbar {
+    margin-bottom: -15px;
+  }
+  .navbar-expand-xl .navbar-nav .dropdown-menu {
+    position: relative;
+    margin-left: 20%;
+    /* margin-top: 10%; */
+  }
+  .home-button {
+    z-index: 100;
+    float: left;
+    margin-top: -1%;
+    margin-left: 1%;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+  }
+  a.dropdown-item {
+    background-color: white;
+    margin-top: -15%;
+  }
+  .logo {
+    position: absolute;
+    margin-top: -75px;
+    float: left;
+    display: block;
+  }
+  a.btn.btn-primary {
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+  }
 }
-nav.navbar{
-  margin-bottom: -15px;
-}
-.navbar-expand-xl .navbar-nav .dropdown-menu{
-  position: relative;
-  margin-left: 20%;
-  margin-top: 10%;
-}
- .home-button{
-  float: left;
-  margin-top: -4px;
-  margin-left: 1%;
-  color: black;
-  font-family: 'Roboto', sans-serif;
-  font-size: 17px;
-}
-a.dropdown-item{
-  background-color: white;
-}
-.logo {
-  position: absolute;
-  margin-top: -75px;
-  float: left;
-  display: block;
-}
-}
-
-

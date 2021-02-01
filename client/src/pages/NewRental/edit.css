@@ -1,7 +1,7 @@
 .description-input, .activities-input {
   width: 100%;
 }
-button{
+.edit-btn{
   height: 50px;
   width: 60px;
   float: right;

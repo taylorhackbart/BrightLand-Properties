@@ -1,24 +1,26 @@
 .register-button{
   display: none;
 }
-nav.auth-options{
+/* nav.auth-options{
   position: relative;
   bottom: 0;
   display: block;
   margin: auto;
-}
+} */
 
-.login-button, .logout-button{
-  height: 40px;
-  width: 40px;
-  bottom: 0;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+/* .login-button{
+  background-color: transparent;
+  margin-right: 3%;
+  border: none;
   cursor: pointer;
-  text-align: center;
+}
+.logout-button{
+  background: transparent;
+  border: none;
+  margin-right: -50%;
+  cursor: pointer;
 }
 .align-me{
-  text-align: center;
+  text-align: right;
   bottom: 0;
-}
+} */
