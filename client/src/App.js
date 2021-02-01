@@ -12,10 +12,12 @@ import PropertyType from "./components/auth/PropertyType.js";
 import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home/Home.js";
 import Footer from "./components/Footer";
+import Edit from "./pages/NewRental/edit"
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
 import AddPhotos from "./pages/Cleaning/addPhotos";
 import previewCleaning from "./pages/Cleaning/preview";
+import Manage from "./pages/NewRental/manage"
 import "./app.css";
 import API from "./utils/API";
 import NoMatch from "./pages/NoMatch";
@@ -71,6 +73,8 @@ function App() {
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path="/new" component={Base} />
+              <Route exact path="/manage" component={Manage} />
+              <Route exact path="/edit/:id" component={Edit} />
               <Route exact path={"/chooseprop/:id"} component={PropertyType} />
               <Route exact path="/cleaning/:id" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />

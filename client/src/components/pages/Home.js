@@ -10,7 +10,6 @@ import Modal from "react-bootstrap/Modal";
 import API from "../../utils/API";
 import NoMatch from "../../pages/NoMatch";
 import moment from "moment";
-// import { Transition } from 'react-transition-group'
 
 export default function Home() {
   const { userData } = useContext(UserContext);
@@ -84,7 +83,6 @@ export default function Home() {
                   if (index === -1) {
                     employeeArr.unshift(o);
                     console.log("new item");
-                    // TODO NEED TO SET A STATE FOR NEW ARRAY ON PAGE LOAD
                   } else {
                     console.log("matched", index, employeeArr);
                   }
@@ -148,7 +146,7 @@ export default function Home() {
                   {/* loading modal for viewing employees on click  */}
                   <div>
                     {load === false && loadClean === true && (
-                      <Modal show={show} onHide={handleClose}>
+                      <Modal show={show} onHide={handleClose} ref={open}>
                         <Modal.Header closeButton ref={header}>
                           <Modal.Title
                             id="contained-modal-title-vcenter"
@@ -238,12 +236,12 @@ export default function Home() {
                     </div>
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">Add a New Property</h5>
+                        <h5 className="card-title">Manage Properties</h5>
                         <p className="card-text">
-                          Click below to add a new rental property
+                          Click below to add or edit properties
                         </p>
                         {loading === false && (
-                          <Link to="/new">
+                          <Link to="/manage">
                             <BsHouse className="admin-register" />
                           </Link>
                         )}
@@ -255,7 +253,18 @@ export default function Home() {
                       <div className="card-body">
                         <h5 className="card-title">Log a Clean</h5>
                         <p className="card-text">
-                          Click the button below to log a new cleaning:
+                          Click the button below to log a new cleaning
+                        </p>
+                        <Link to={"/startclean/" + user._id}>
+                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="card w-50 col-12 col-md-6">
+                      <div className="card-body">
+                        <h5 className="card-title">Edit a Rental</h5>
+                        <p className="card-text">
+                          Click the button below to edit a rental
                         </p>
                         <Link to={"/startclean/" + user._id}>
                           <AiOutlineClear className="admin-register"></AiOutlineClear>

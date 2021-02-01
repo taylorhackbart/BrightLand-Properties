@@ -28,6 +28,7 @@ module.exports = {
         description: req.body.description,
         activities: req.body.activities,
         link: req.body.link,
+        location: req.body.location
        } },
       { new: true }
     )

@@ -1,0 +1,20 @@
+.description-input, .activities-input {
+  width: 100%;
+}
+button{
+  height: 50px;
+  width: 60px;
+  float: right;
+}
+.edit-contain{
+  margin-top: 50px;
+}
+
+textarea{
+  float: left;
+  width: 39%;
+}
+.row{
+  margin-left: 0%;
+  margin-right: 0%;
+}
