@@ -105,7 +105,7 @@ function Edit() {
           <button className="edit-btn" onClick={saveLink}> OK </button>
           </div>
           <button className="edit-btn" onClick={onSave}> DONE </button>
-          <a href={"/editphotos/" + rental._id} >
+          <a href={"/addmore/" + rental._id} >
           <button className="edit-btn" > NEXT </button>
           </a>
         </>

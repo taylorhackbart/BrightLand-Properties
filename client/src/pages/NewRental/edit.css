@@ -6,10 +6,15 @@
   width: 60px;
   float: right;
 }
-.edit-contain{
-  margin-top: 50px;
+.edit-container{
+  margin-top: 70px;
 }
-
+.edit-button{
+  /* height: 20px; */
+  /* width: 20px; */
+  border: none;
+  background: transparent;
+}
 textarea{
   float: left;
   width: 39%;
@@ -28,18 +33,9 @@ textarea{
   flex-direction: row;
   flex-wrap: wrap;
 }
-/* .image-mapped-items{
-  height: 50%;
-  width: 50%;
-} */
-/* .image-mapped-images{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
+
 .image-grid {  
   display: grid;
-  /* grid-template-columns: repeat(4, minmax(0, 200px)); */
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 2rem;
   row-gap: 0;
@@ -48,11 +44,10 @@ textarea{
 }
 .galleryimg{
   display: block;
-  object-fit: scale-down;
+  object-fit: cover;
   height: 100%;
   width: 100%;
   margin-bottom: -20px;
-  /* padding-bottom: 10px; */
   z-index: 100;
 }
 .image-item {

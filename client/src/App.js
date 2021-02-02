@@ -11,7 +11,7 @@ import Register from "./components/auth/Register.js";
 import PropertyType from "./components/auth/PropertyType.js";
 import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home/Home.js";
-import Footer from "./components/Footer";
+import AddMore from "./pages/NewRental/addmore"
 import Edit from "./pages/NewRental/edit"
 import EditPhotos from "./pages/NewRental/editphotos"
 import Cleaning from "./pages/Cleaning/property";
@@ -76,6 +76,7 @@ function App() {
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path={"/editphotos/:id"} component={EditPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
+              <Route exact path={"/addmore/:id"} component={AddMore} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/manage" component={Manage} />
               <Route exact path="/edit/:id" component={Edit} />
