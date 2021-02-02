@@ -13,6 +13,7 @@ import UserContext from "./contexts/UserContext";
 import HomePage from "./pages/Home/Home.js";
 import Footer from "./components/Footer";
 import Edit from "./pages/NewRental/edit"
+import EditPhotos from "./pages/NewRental/editphotos"
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
 import AddPhotos from "./pages/Cleaning/addPhotos";
@@ -22,6 +23,7 @@ import "./app.css";
 import API from "./utils/API";
 import NoMatch from "./pages/NoMatch";
 import Rentals from "./pages/Rentals/Rentals";
+import  SimpleReactLightbox  from "simple-react-lightbox";
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -55,6 +57,7 @@ function App() {
 
   return (
     <div className="page-container">
+      <SimpleReactLightbox>
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
         <NavBar />
@@ -71,6 +74,7 @@ function App() {
               {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
               <Route exact path={"/preview/:id"} component={previewPhotos} />
+              <Route exact path={"/editphotos/:id"} component={EditPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/manage" component={Manage} />
@@ -95,6 +99,7 @@ function App() {
           {/* <Footer /> */}
         </UserContext.Provider>
       </BrowserRouter>
+      </SimpleReactLightbox>
     </div>
   );
 }
