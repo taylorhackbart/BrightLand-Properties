@@ -24,6 +24,18 @@ import API from "./utils/API";
 import NoMatch from "./pages/NoMatch";
 import Rentals from "./pages/Rentals/Rentals";
 import  SimpleReactLightbox  from "simple-react-lightbox";
+import {DndProvider} from "react-dnd"
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {TouchBackend} from "react-dnd-touch-backend";
+
+const isTouchDevice = () => {
+  if ("ontouchstart" in window) {
+    return true;
+  }
+  return false;
+};
+const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
+
 function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -57,6 +69,7 @@ function App() {
 
   return (
     <div className="page-container">
+      <DndProvider backend={backendForDND}>
       <SimpleReactLightbox>
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
@@ -76,10 +89,10 @@ function App() {
               <Route exact path={"/preview/:id"} component={previewPhotos} />
               <Route exact path={"/editphotos/:id"} component={EditPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
-              <Route exact path={"/addmore/:id"} component={AddMore} />
+              <Route exact path={["/addmore/:id", "/addmore/name/:name"]} component={AddMore} />
               <Route exact path="/new" component={Base} />
               <Route exact path="/manage" component={Manage} />
-              <Route exact path="/edit/:id" component={Edit} />
+              <Route exact path={["/edit/:id", "/edit/name/:name"]} component={Edit} />
               <Route exact path={"/chooseprop/:id"} component={PropertyType} />
               <Route exact path="/cleaning/:id" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
@@ -101,6 +114,7 @@ function App() {
         </UserContext.Provider>
       </BrowserRouter>
       </SimpleReactLightbox>
+      </DndProvider>
     </div>
   );
 }

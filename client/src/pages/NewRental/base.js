@@ -53,7 +53,7 @@ useEffect( async () => {
   <p className="row"> AirBnb Link: </p>
   <input type="text" name="link" className="row" onChange={handleInputChange}  />
  
-  <Link to={"/images/name/" + state.location}>
+  <Link to={"/addmore/name/" + state.location}>
   <button className="row"onClick={onSubmit}>Submit</button>
   </Link>
 

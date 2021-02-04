@@ -3,43 +3,48 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const LoginSchema = new Schema({
-    displayName: {
-      type: String
-    },
-    username: {
-      type: String,
-    },
-    password: {
-      type: String,
-    },
-    phoneNumber: {
-      type: String,
-    },
-    jobType: {
-      type: String
-    },
-    userCreated: {
-      type: Date,
-      default: Date.now
-    },
-    cleaning: [{
+  displayName: {
+    type: String,
+  },
+  username: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
+  phoneNumber: {
+    type: String,
+  },
+  jobType: {
+    type: String,
+  },
+  userCreated: {
+    type: Date,
+    default: Date.now,
+  },
+  cleaning: [
+    {
       name: {
-        type: String
+        type: String,
       },
       startClean: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
       },
       stopClean: {
-        type: String
+        type: String,
       },
       notes: {
-        type: String
+        type: String,
       },
-      images: [{
-        type: String
-      }]
-    }],
+      images: [
+        {
+          id: { type: String },
+          src: { type: String },
+        },
+      ],
+    },
+  ],
 });
 
 const Login = mongoose.model("Login", LoginSchema);

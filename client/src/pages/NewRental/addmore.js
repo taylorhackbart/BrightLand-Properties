@@ -3,39 +3,53 @@ import { DndProvider } from "react-dnd";
 import { useParams, useHistory } from "react-router-dom";
 import Dropzone from "../../components/FileInput/Dropzone";
 import ImageList from "../../components/FileInput/ImageList";
-import {HTML5Backend} from "react-dnd-html5-backend";
-import {TouchBackend} from "react-dnd-touch-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 import cuid from "cuid";
 import API from "../../utils/API";
 import update from "immutability-helper";
 
 const isTouchDevice = () => {
   if ("ontouchstart" in window) {
+    // console.log("true")
     return true;
   }
+  // console.log("false")
   return false;
 };
 
 const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 
 function AddMore() {
-  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState([]);
-  const [property, setProperty] = useState({})
+  const [property, setProperty] = useState({});
   const params = useParams();
   const history = useHistory();
 
   useEffect(() => {
     loadPropertyInfo();
   }, []);
+
   const loadPropertyInfo = () => {
-    API.getProperties(params.id)
-      .then((res) => {
-        setRental(res.data.imageUrl);
-        setProperty(res.data)
-        // console.log(res)
-      })
-      .catch((err) => console.log(err));
+    if (params.id) {
+      API.getProperties(params.id)
+        .then((res) => {
+          setRental(res.data.imageUrl);
+          setProperty(res.data);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (params.name) {
+      API.getPropertiesByName(params.name)
+        .then((res) => {
+          setRental(res.data[0].imageUrl);
+          setProperty(res.data[0]);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    }
   };
   const onDrop = useCallback((acceptedFiles) => {
     // Loop through accepted files
@@ -46,7 +60,7 @@ function AddMore() {
       // onload callback gets called after the reader reads the file data
       reader.onload = function (e) {
         // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it.
-        setImages((prevState) => [
+        setRental((prevState) => [
           ...prevState,
           { id: cuid(), src: e.target.result },
         ]);
@@ -57,45 +71,63 @@ function AddMore() {
       return file;
     });
   }, []);
-  const onSend = () => {
-    const newArr = new Array();
-    // images.map((x) => {
-      // newArr.push(x);
-      newArr.push(images)
-      console.log(newArr)
-      // setProperty({...property, imageUrl: newArr})
-      // API.updateProperty(property._id, property)
-      // .then(res => {
-        // console.log(res)
-        // history.push("/editphotos/" + property._id)
-      // })
-    // });
 
+  const onSend = () => {
+    console.log(property, rental);
+    setProperty({ ...property, imageUrl: rental });
   };
+
+  const onSubmit = async () => {
+    await API.updateProperty(property._id, property).then((res) => {
+      setProperty({ ...property, imageUrl: rental });
+      console.log(res);
+      history.push("/properties/name/" + property.location);
+    });
+  };
+
   const moveImage = (dragIndex, hoverIndex) => {
-    const draggedImage = images[dragIndex];
-    setImages(
-      update(images, {
-        $splice: [[dragIndex, 1], [hoverIndex, 0, draggedImage]]
+    console.log("click");
+    const draggedImage = rental[dragIndex];
+    setRental(
+      update(rental, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, draggedImage],
+        ],
       })
     );
   };
-  console.log(property)
+  const removeItem = (id) => {
+    setRental(
+      update(rental, {
+        $splice: [[id, 1]],
+      })
+    );
+  };
+  console.log(property, rental);
   return (
-    <main className="App">
-      <h1 className="text-center">Drag and Drop Example</h1>
+    <>
+      {loading === false && (
+        <main className="App">
+          <h1 className="text-center">Drag and Drop </h1>
 
-      <Dropzone onDrop={onDrop} accept={"image/*"} />
-      {/* {console.log(images)} */}
-      {/* <ImageList images={images} /> */}
-      {images && images.length > 0 && (
-        <h3 className="text-center">Drag the Images to change positions</h3>
+          <Dropzone onDrop={onDrop} accept={"image/*"} />
+          {rental && rental.length > 0 && (
+            <h3 className="text-center">Drag the Images to change positions</h3>
+          )}
+          <DndProvider backend={backendForDND}>
+            <ImageList
+              images={rental}
+              moveImage={moveImage}
+              removeItem={removeItem}
+            />
+          </DndProvider>
+
+          <button onClick={onSend}> Save </button>
+          <button onClick={onSubmit}> Submit </button>
+        </main>
       )}
-      <DndProvider backend={backendForDND}>
-        <ImageList images={images} moveImage={moveImage} />
-      </DndProvider>
-      <button onClick={onSend}> Submit </button>
-    </main>
+    </>
   );
 }
 

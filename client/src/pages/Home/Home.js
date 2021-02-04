@@ -74,7 +74,7 @@ function HomePage() {
                         <>
                           <a href={"/properties/name/" + state[index].location}>
                             <img
-                              src={state[index].homeImage}
+                              src={state[index].imageUrl[0].src}
                               className="d-block w-100 large-photo"
                               alt="..."
                             />

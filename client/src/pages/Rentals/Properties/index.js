@@ -48,21 +48,8 @@ function Properties() {
       return checkNumber(newIndex);
     });
   };
-  const updateInfo = (event) => {
-    const { name, value } = event.target;
-    API.updateProperty(rental._id, rental)
-      .then((res) => {
-        setRental({ ...rental, [name]: value });
-        console.log(res);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  };
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setRental({ ...rental, [name]: value })
-  // };
+ 
+
 
   return (
     <div className="container-fluid">
@@ -74,7 +61,7 @@ function Properties() {
                 <div className="carousel-item active rental-photo">
                   {loading === false && (
                     <img
-                      src={rental.imageUrl[index]}
+                      src={rental.imageUrl[index].src}
                       className="d-block w-100 large-rental-photo"
                       alt="..."
                       ref={imageRef}
