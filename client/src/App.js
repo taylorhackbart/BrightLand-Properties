@@ -25,6 +25,7 @@ import NoMatch from "./pages/NoMatch";
 import Rentals from "./pages/Rentals/Rentals";
 import  SimpleReactLightbox  from "simple-react-lightbox";
 import {DndProvider} from "react-dnd"
+import { DragDropContext} from "react-beautiful-dnd"
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {TouchBackend} from "react-dnd-touch-backend";
 
@@ -68,6 +69,7 @@ function App() {
   }, []);
 
   return (
+    <DragDropContext>
     <div className="page-container">
       <DndProvider backend={backendForDND}>
       <SimpleReactLightbox>
@@ -116,6 +118,7 @@ function App() {
       </SimpleReactLightbox>
       </DndProvider>
     </div>
+    </DragDropContext>
   );
 }
 

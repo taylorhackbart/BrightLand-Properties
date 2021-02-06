@@ -52,7 +52,7 @@ export default function Home() {
   const loadCleaning = async (i) => {
     await API.getProperty().then((res) => {
       setCleaningData(res.data);
-      // loadAPI();
+      console.log(res.data)
     });
   };
 
@@ -70,6 +70,7 @@ export default function Home() {
   };
 
   const loadAPI = async (i) => {
+    console.log(cleaningData)
     cleaningData.map((x) => {
       const newArr = x.employee;
       for (i = 0; i < newArr.length; i++) {
@@ -92,14 +93,14 @@ export default function Home() {
               }
               const nice = help;
               setEmployeesArr(nice);
-              setLoad(true);
-              setLoading(false);
-              setLoadClean(false);
-              handleShow();
-          });
+            });
+          }
         }
-      }
-    });
+      });
+      setLoad(true);
+      setLoading(false);
+      setLoadClean(false);
+      handleShow();
   };
 
   // console.log(cleaningData, cleanings, employeeArr);

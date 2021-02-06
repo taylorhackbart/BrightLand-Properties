@@ -1,10 +1,8 @@
 import React, { useRef } from "react";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDrop} from "react-dnd";
 import {BsTrash} from "react-icons/bs"
-
-
 import "./adding.css";
-// import Column from "./Column"
+
 
 const type = "Image"; // Need to pass which type element can be draggable
 
@@ -28,7 +26,9 @@ const Image = ({ image, index, moveImage }) => {
       // Update the index for dragged item directly to avoid flickering when half dragged
       item.index = hoverIndex;
     },
+
   });
+
 
   const [{ isDragging }, drag] = useDrag({
     item: { type, id: image.id, index },
@@ -40,27 +40,23 @@ const Image = ({ image, index, moveImage }) => {
   drag(drop(ref));
 
   return (
-    <div
+      <img
       ref={ref}
       style={{ opacity: isDragging ? 0 : 1 }}
-      className="file-item"
-      direction="horizontal"
-    >
-
-      <img
         alt={`img - ${image.id}`}
         src={image.src}
         className="file-img"
-
       />
-    </div>
+
   );
 };
 
-const Delete = ({ image, index, moveImage, removeItem }) => {
+const Delete = ({ image, index, moveImage, removeItem}) => {
   const newRef = useRef();
-
-  const setRemove = (e) => {
+  const sourceId = image.id
+  const targetId = image.id
+  
+  const setRemove = () => {
     removeItem(index);
   };
 
@@ -68,18 +64,19 @@ const Delete = ({ image, index, moveImage, removeItem }) => {
     <>
       <div
       className="remove-me-button"
-        id={image.id}
         onClick={setRemove}
         value={image.id}
         ref={newRef}
-        removeItem={removeItem}
       >
         {" "}
         <BsTrash/>
         <Image
+          sourceId={sourceId}
+          targetId={targetId}
           image={image}
           index={index}
-          key={image.src}
+          key={image.id.toString()}
+          value={image.id}
           moveImage={moveImage}
           removeItem={removeItem}
         />
@@ -93,6 +90,7 @@ const ImageList = ({ images, moveImage, removeItem }) => {
     return (
       <div key={image.id}>
         <Delete
+          id={image.id}
           image={image}
           index={index}
           key={image.src}

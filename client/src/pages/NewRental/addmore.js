@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { DndProvider } from "react-dnd";
+import { DndProvider, DropTarget } from "react-dnd";
 import { useParams, useHistory } from "react-router-dom";
 import Dropzone from "../../components/FileInput/Dropzone";
 import ImageList from "../../components/FileInput/ImageList";
@@ -26,6 +26,7 @@ function AddMore() {
   const [property, setProperty] = useState({});
   const params = useParams();
   const history = useHistory();
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     loadPropertyInfo();
@@ -54,6 +55,7 @@ function AddMore() {
   const onDrop = useCallback((acceptedFiles) => {
     // Loop through accepted files
     console.log(acceptedFiles);
+    try {
     acceptedFiles.map((file) => {
       // Initialize FileReader browser API
       const reader = new FileReader();
@@ -69,12 +71,18 @@ function AddMore() {
       reader.readAsDataURL(file);
       // console.log(reader.readAsDataURL(file))
       return file;
+
     });
+  }
+  catch (err) {
+    console.log(err)
+  }
   }, []);
 
   const onSend = () => {
     console.log(property, rental);
     setProperty({ ...property, imageUrl: rental });
+    setDone(true)
   };
 
   const onSubmit = async () => {
@@ -118,13 +126,23 @@ function AddMore() {
           <DndProvider backend={backendForDND}>
             <ImageList
               images={rental}
+              // key = {}
               moveImage={moveImage}
               removeItem={removeItem}
             />
           </DndProvider>
-
-          <button onClick={onSend}> Save </button>
-          <button onClick={onSubmit}> Submit </button>
+          {done === false && (
+            <>
+            <button onClick={onSend}> Save </button>
+            <button onClick={onSubmit} style={{display: "none"}}> Submit </button>
+</>
+          )}
+           {done === true && (
+            <>
+            <button onClick={onSend} style={{display: "none"}}> Save </button>
+            <button onClick={onSubmit}> Submit </button>
+</>
+          )}
         </main>
       )}
     </>

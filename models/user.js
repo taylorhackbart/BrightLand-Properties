@@ -48,6 +48,7 @@ const rentalSchema = new Schema({
   link: {type: String},
   homeImage: [{type: String}],
   imageUrl: [{
+    _id: {type: String},
     id: {type: String},
     src: {type: String}
   }],

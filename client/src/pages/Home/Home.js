@@ -15,11 +15,11 @@ function HomePage() {
         if (counter >= state.length-1 || index >= state.length-1 ) {
           setIndex(0);
           setCounter(1);
-        // console.log(index, counter);
+        console.log(index, counter, state.length);
       } else {
         setIndex(index + 1);
         setCounter(index);
-        // console.log(index, counter);
+        console.log(index, counter);
       }
     }, 5000);
   }, [counter]);
@@ -27,6 +27,7 @@ function HomePage() {
   const loadProperties = () => {
     API.getProperty().then((res) => {
       setState(res.data);
+      // console.log(res.data)
       setLoading(false);
     });
   };
