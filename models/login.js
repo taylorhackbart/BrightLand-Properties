@@ -39,6 +39,7 @@ const LoginSchema = new Schema({
       },
       images: [
         {
+          _id: {type: String},
           id: { type: String },
           src: { type: String },
         },

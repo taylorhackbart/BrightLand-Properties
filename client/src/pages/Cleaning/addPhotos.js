@@ -22,8 +22,10 @@ const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 
 function AddMore() {
   const [loading, setLoading] = useState(true);
-  const [rental, setRental] = useState([]);
+  const [rental, setRental] = useState({});
+  const [user, setUser] = useState({})
   const [property, setProperty] = useState({});
+  const [cleaning, setCleaning] = useState([])
   const params = useParams();
   const history = useHistory();
 
@@ -34,8 +36,11 @@ function AddMore() {
 
     const loadUserInfo = async () => {
       await API.getUserById(params.id).then((res) => {
-        setRental(res.data.cleaning[0].images);
+        setRental(res.data.cleaning[0].images[0]);
         setProperty(res.data.cleaning[0]);
+        setCleaning(res.data.cleaning)
+        console.log(res.data)
+        setUser(res.data)
         setLoading(false)
       });
     };
@@ -62,13 +67,39 @@ function AddMore() {
   }, []);
 
   const onSend = () => {
-    console.log(property, rental);
-    setProperty({ ...property, images: rental });
-  };
+    console.log( user, cleaning, rental);
+    setProperty({...property, images: rental})
 
-  const onSubmit = async () => {
-    await API.updateUser(property._id, property).then((res) => {
-      setProperty({ ...property, images: rental });
+    const index = cleaning.findIndex((e) => e._id === property._id);
+      if (index === -1) {
+        console.log( "new item");
+      } else {
+        console.log("matched", index, cleaning[index]);
+        const updatedArr = cleaning[index].images;
+        // console.log(updatedArr)
+        updatedArr.push(rental)
+        console.log(updatedArr)
+        setCleaning({...cleaning})
+        setUser({...user, cleaning: cleaning})
+      }
+    //then property into cleaning
+    //then cleaning into user
+    // cleaning.push(property)
+    // const newArr = cleaning[0]
+    // newArr.splice(0, 1, property)
+    // console.log(newArr)
+    // setCleaning({...cleaning})
+
+    
+    // setProperty({ ...property, images: rental });
+    // setUser({...user, cleaning: })
+    // setProperty({ ...property, images: rental });
+  };
+  console.log(cleaning, user)
+
+  const onSubmit =  () => {
+    setProperty({ ...property});
+     API.updateUser(user._id, user).then((res) => {
       console.log(res);
       // history.push("/cleaning/" + property._id);
     });
@@ -93,7 +124,7 @@ function AddMore() {
       })
     );
   };
-  console.log(property, rental);
+  // console.log(property, rental);
   return (
     <>
       {loading === false && (
@@ -105,14 +136,16 @@ function AddMore() {
             <h3 className="text-center">Drag the Images to change positions</h3>
           )}
           <DndProvider backend={backendForDND}>
-            <ImageList
+            {/* <ImageList
               images={rental}
               moveImage={moveImage}
               removeItem={removeItem}
-            />
+              // onChange={setCleaning}
+            /> */}
           </DndProvider>
 
           <button onClick={onSend}> Save </button>
+          {console.log(cleaning[0])}
           <button onClick={onSubmit}> Submit </button>
         </main>
       )}

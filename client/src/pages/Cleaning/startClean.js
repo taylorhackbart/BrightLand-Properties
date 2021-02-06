@@ -16,8 +16,10 @@ function StartClean() {
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
   const [state, setState] = useState({});
+  const [newArr, setNewArr] = useState({})
   const params = useParams();
   const [load, setLoad] = useState(true);
+  const [done, setDone] = useState(false)
 
   useEffect(async () => {
     await loadUserInfo();
@@ -33,23 +35,24 @@ function StartClean() {
     });
   };
 console.log(state, rental)
-  const submitForm = async () => {
-    const newArr = new Array()
-    newArr.unshift(state);
-    console.log(newArr)
-    setRental({ ...rental, cleaning: newArr });
-    // await API.updateUser(rental._id, rental)
-    //   .then((res) => {
-    //     console.log(res, state);
-    //   })
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+
+  const onSave = async () => {
+    const updatedArr = state
+    updatedArr.unshift(newArr);
+    console.log( newArr, updatedArr)
+    setRental({ ...rental});
+
+    setDone(true)
   };
- 
+ const submitForm = () => {
+   API.updateUser(rental._id, rental)
+   .then(res => {
+     console.log(res)
+   })
+ }
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRental({ ...rental, [name]: value });
+    setNewArr({ ...newArr, [name]: value });
   };
   return (
     <>
@@ -95,17 +98,38 @@ console.log(state, rental)
                     </div>
 
                     {load === false && (
-                      // <Link to={"/addPhotos/" + rental._id}>
                       <>
+                      {done === false && (
+
+                        <>
                         <button
                           className="cleaning-submit"
-                          onClick={submitForm}
-                        >
+                          onClick={onSave}
+                          >
                           {" "}
-                          Submit (Enviar)
+                          Save
                         </button>
+                        <button className="cleaning-submit"
+                        style={{display:"none"}}> Submit (Enviar)</button>
                         </>
-                      // </Link> 
+                          )}
+                        {done === true && (
+                          
+                          <>
+                         <button
+                         style={{display:"none"}}
+                           className="cleaning-submit"
+                           
+                           >
+                           {" "}
+                           Save
+                         </button>
+                          <Link to={"/addPhotos/" + rental._id}>
+                         <button className="cleaning-submit" onClick={submitForm}> Submit (Enviar)</button>
+                       </Link> 
+                         </>
+                           )}
+                      </>
                     )}
                   </div>
                 </div>
