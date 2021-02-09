@@ -27,10 +27,10 @@ export default function AuthOptions() {
     <nav className="auth-options">
       {userData.user ? (
         <div className="align-me">
-          <div className="row">
+          <div className="row-employee">
         <button className="employee-button" onClick={home}> PORTAL </button>
         </div>
-        <div className="row">
+        <div className="row-logout">
         <button className="logout-button" onClick={logout}>LOGOUT</button>
         </div>
         </div>
@@ -38,7 +38,7 @@ export default function AuthOptions() {
         <>
         <div className="align-me">
           <button className="login-button" onClick={login}>LOGIN</button>
-          <AiOutlineUserAdd className="register-button" 
+          <AiOutlineUserAdd className="register-button" style={{display: "none"}}
           onClick={register}
           >Register</AiOutlineUserAdd>
           </div>

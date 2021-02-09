@@ -1,16 +1,17 @@
 .admin-register{
-  height: 40px;
-  width: 40px;
+  height: 80px;
+  width: 80px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  color: black;
   text-align: center;
-  color: black
 }
+
 .home-screen{
   margin-top: 3%;
 }
-h1, p, h5{
+h1, p, h5.card-title.card-title-home{
   text-align: center;
 }

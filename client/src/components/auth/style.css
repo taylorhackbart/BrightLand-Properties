@@ -10,15 +10,14 @@ h2.register-title, h2.login-title{
   justify-content: center;
   margin-bottom: 3px;
 }
+
 ul{
   list-style-type: none;
 }
 .register-container{
   margin-top: 6%;
 }
-.register-button{
-  display: none;
-}
+
 .register-btn, .login-btn{
   display: block;
   margin: auto;

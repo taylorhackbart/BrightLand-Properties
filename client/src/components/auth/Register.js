@@ -55,7 +55,7 @@ export default function Register() {
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
         )}
-        {/* {userData.user && userData.user.jobType === "Admin" ? ( */}
+        {userData.user && userData.user.jobType === "Admin" ? (
       <form className="form register-form" onSubmit={submit}>
         <div className="row register-row">
           <label htmlFor="register-username">Username</label>
@@ -88,7 +88,7 @@ export default function Register() {
             onChange={(e) => setPasswordCheck(e.target.value)}
           />
         </div>
-        <div className="row" register-row>
+        <div className="row register-row">
           <label htmlFor="register-display-name">Display name</label>
         </div>
         <div className="row register-row">
@@ -155,7 +155,7 @@ export default function Register() {
       </form> 
        ) : (
       <NoMatch />
-       {/* )} */}
+       )} 
       </UserContext.Provider>
     </div>
   );

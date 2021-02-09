@@ -16,6 +16,7 @@ nav.navbar {
   float: left;
   display: block;
 }
+
 a.home-button.nav-link {
   margin-right: 35px;
   color: black;
@@ -34,16 +35,13 @@ a.home-button.nav-link {
 .collapse {
   border: none;
 }
-/* .auth-row{
-  display: block;
-  margin-left: 0;
-  margin-right: 0;
-} */
+
 button.navbar-toggler {
   margin-left: 90%;
   margin-top: -6%;
   display: block;
   float: right;
+  z-index: 100;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -69,29 +67,34 @@ a.auth-option-nav.nav-link {
   font-size: 17px;
   padding-top: 0;
 }
-.employee-button {
-  margin-top: -9%;
+.row-employee {
+  margin-top: -23%;
   background-color: transparent;
-  margin-right: -160%;
+  margin-right: 3%;
   border: none;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 17px;
 }
+.employee-button, .login-button, .logout-button{
+  border: none;
+  background: transparent;
 
-.logout-button {
+}
+.row-logout {
   background: transparent;
   border: none;
-  margin-top: -20%;
-  margin-right: -60%;
+  /* margin-bottom: -10px; */
+  /* margin-top: -25%; */
+  margin-right: 3%;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 17px;
 }
-.align-me-auth {
-  text-align: right;
+.auth-options {
+  margin-right: 4%;
   /* bottom: 0; */
-  /* margin-top: -10%; */
+  margin-top: -40%;
 }
 a.btn.btn-primary,
 .btn-group > .btn:not(:first-child),
@@ -109,48 +112,54 @@ a.btn.btn-primary,
     width: 100%;
   }
   .login-button {
-    margin-top: -80%;
+    margin-top: 25%;
     background: transparent;
     border: none;
     display: flex;
     float: right;
     cursor: pointer;
-    /* margin-right: 250%; */
     font-family: "Roboto", sans-serif;
     font-size: 17px;
   }
-  nav.auth-options {
-    margin-top: -37%;
+  .row-logout {
+    /* margin-top: -6%; */
     background: transparent;
     border: none;
-    margin-right: -20%;
+    margin-right: 40%;
     cursor: pointer;
     font-family: "Roboto", sans-serif;
-    font-size: 17px;
+    font-size: 13px;
   }
-  .employee-button {
-    margin-top: -80%;
-    background: transparent;
-    border: none;
-    display: flex;
-    float: right;
+  
+  .row-employee {
+    margin-bottom: -10px;
+    display: block;
     cursor: pointer;
-    margin-right: 150%;
+    padding-bottom: 5px;
+    margin-right: 80%;
+    margin-top: 20px;
     font-family: "Roboto", sans-serif;
-    font-size: 17px;
+    font-size: 13px;
   }
  
   .btn-group > .btn:not(:first-child),
   .btn-group > .btn-group:not(:first-child) > .btn {
-    display: block;
+    /* display: block; */
     margin-left: -5%;
+    display: none;
 
   }
-  .align-me-auth {
+  .navbar-nav .nav-link{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+  .align-me {
     text-align: right;
     /* bottom: 0; */
     /* margin-top: -10%; */
-    display: inline-block;
+    /* display: inline-block; */
   }
   .nav-bar-buttons {
     z-index: 100;
@@ -171,6 +180,7 @@ a.btn.btn-primary,
 
   div.navbar-dropdown.dropdown.btn-group {
     margin-top: 2%;
+    /* display: none; */
     float: right;
     text-align: right;
     margin-left: auto;
@@ -183,7 +193,6 @@ a.btn.btn-primary,
   .navbar-expand-xl .navbar-nav .dropdown-menu {
     position: relative;
     margin-left: 20%;
-    /* margin-top: 10%; */
   }
   .home-button {
     z-index: 100;
@@ -197,20 +206,15 @@ a.btn.btn-primary,
   a.dropdown-item {
     background-color: white;
     margin-top: -15%;
+    display: none;
   }
-  /* .auth-row{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  } */
+ 
   .logo {
     position: absolute;
     margin-top: -75px;
     float: left;
     display: block;
-    /* www
-metric-falcon-c6b7mb9lrtym2q7psv105a1y.herokudns.com
-4 Hours */
+
   }
   a.btn.btn-primary {
     color: black;

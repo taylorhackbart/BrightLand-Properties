@@ -50,7 +50,7 @@ export default function Login() {
           placeholder="janedoe"
         />
 </div>
-<div className="row">
+<div className="row register-row">
         <label htmlFor="login-password">Password (Contraseña)</label>
         </div>
         <div className="row register-row">

@@ -32,27 +32,25 @@ export default function Home() {
   const body1 = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
- 
+
   useEffect(async () => {
-     userData
-     loadCleaning();
-     try {
-        const id = userData.user.id
-        await API.getUserById(id).then((res) => {
-          setUser(res.data);
-          setLoading(false);
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
+    userData;
+    loadCleaning();
+    try {
+      const id = userData.user.id;
+      await API.getUserById(id).then((res) => {
+        setUser(res.data);
+        setLoading(false);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }, [userData]);
-
 
   const loadCleaning = async (i) => {
     await API.getProperty().then((res) => {
       setCleaningData(res.data);
-      console.log(res.data)
+      console.log(res.data);
     });
   };
 
@@ -70,15 +68,15 @@ export default function Home() {
   };
 
   const loadAPI = async (i) => {
-    console.log(cleaningData)
+    console.log(cleaningData);
     cleaningData.map((x) => {
       const newArr = x.employee;
       for (i = 0; i < newArr.length; i++) {
         if (newArr.length > 0) {
-          newArr.map((baby)=> {
+          newArr.map((baby) => {
             const help = baby.cleaning;
             if (help.length > 0) {
-              help.map( o => {
+              help.map((o) => {
                 function pushToArray() {
                   const index = employeeArr.findIndex((e) => e._id === o._id);
                   if (index === -1) {
@@ -88,27 +86,27 @@ export default function Home() {
                     console.log("matched", index, employeeArr);
                   }
                 }
-                pushToArray() 
-              })
-              }
-              const nice = help;
-              setEmployeesArr(nice);
-            });
-          }
+                pushToArray();
+              });
+            }
+            const nice = help;
+            setEmployeesArr(nice);
+          });
         }
-      });
-      setLoad(true);
-      setLoading(false);
-      setLoadClean(false);
-      handleShow();
+      }
+    });
+    setLoad(true);
+    setLoading(false);
+    setLoadClean(false);
+    handleShow();
   };
 
   // console.log(cleaningData, cleanings, employeeArr);
 
   return (
     <>
-        <UserContext.Provider value={{ userData }}>
-      <div className="container home-screen">
+      <UserContext.Provider value={{ userData }}>
+        <div className="container home-screen">
           {loading === false && (
             <div className="page">
               {userData.user && userData.user.jobType === "Admin" ? (
@@ -118,28 +116,32 @@ export default function Home() {
                   <div className="row">
                     <div className="card w-50 col-12 col-md-6 ">
                       <div className="card-body">
-                        <h5 className="card-title">Add an Employee</h5>
+                        <h5 className="card-title card-title-home">Add an Employee</h5>
                         <p className="card-text">
                           Add a new employee. You will choose their job type by
                           clicking the button below
                         </p>
-                        <Link to="/register">
-                          <AiOutlineUserAdd className="admin-register" />
-                        </Link>
+                        <div className="admin-register">
+                          <Link to="/register">
+                            <AiOutlineUserAdd className="admin-register" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">View all Employees</h5>
+                        <h5 className="card-title card-title-home">View all Employees</h5>
                         <p className="card-text">
                           Click the link below to view all employees
                         </p>
                         {loading === false && (
-                          <FiUsers
-                            className="admin-register"
-                            onClick={loadEmployees}
-                            onChange={handleShow}
-                          />
+                          <div className="admin-register">
+                            <FiUsers
+                              className="admin-register"
+                              onClick={loadEmployees}
+                              onChange={handleShow}
+                            />
+                          </div>
                         )}
                       </div>
                     </div>
@@ -179,16 +181,18 @@ export default function Home() {
                   <div className="row">
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">View Recent Cleanings</h5>
+                        <h5 className="card-title card-title-home">View Recent Cleanings</h5>
                         <p className="card-text">
                           Click below to view recent cleanings
                         </p>
                         {loading === false && (
-                          <AiOutlineClear
-                            className="admin-register"
-                            onClick={loadAPI}
-                            onChange={handleShow}
-                          />
+                          <div className="admin-register">
+                            <AiOutlineClear
+                              className="admin-register"
+                              onClick={loadAPI}
+                              onChange={handleShow}
+                            />
+                          </div>
                         )}
                       </div>
                     </div>
@@ -205,12 +209,10 @@ export default function Home() {
                           </Modal.Header>
                           <Modal.Body ref={body1}>
                             {employeeArr.map((cleaning) => (
-                              <div
-                              key={cleaning._id}
-                              >
+                              <div key={cleaning._id}>
                                 {/* <h4>{cleaning.property}</h4> */}
                                 <ul>
-                                {/* {console.log(cleaning)} */}
+                                  {/* {console.log(cleaning)} */}
                                   <strong>Date: </strong>{" "}
                                   {moment(cleaning.startClean).format(
                                     "DD/MM/YYYY"
@@ -237,14 +239,16 @@ export default function Home() {
                     </div>
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">Manage Properties</h5>
+                        <h5 className="card-title card-title-home">Manage Properties</h5>
                         <p className="card-text">
                           Click below to add or edit properties
                         </p>
                         {loading === false && (
-                          <Link to="/manage">
-                            <BsHouse className="admin-register" />
-                          </Link>
+                          <div className="admin-register">
+                            <Link to="/manage">
+                              <BsHouse className="admin-register" />
+                            </Link>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -252,26 +256,30 @@ export default function Home() {
                   <div className="row">
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">Log a Clean</h5>
+                        <h5 className="card-title card-title-home">Log a Clean</h5>
                         <p className="card-text">
                           Click the button below to log a new cleaning
                         </p>
-                        <Link to={"/startclean/" + user._id}>
-                          <AiOutlineClear className="admin-register"></AiOutlineClear>
-                        </Link>
+                        <div className="admin-register">
+                          <Link to={"/startclean/" + user._id}>
+                            <AiOutlineClear className="admin-register" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                    <div className="card w-50 col-12 col-md-6">
+                    {/* <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">Edit a Rental</h5>
+                        <h5 className="card-title card-title-home">Edit a Rental</h5>
                         <p className="card-text">
                           Click the button below to edit a rental
                         </p>
                         <Link to={"/startclean/" + user._id}>
-                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                          <div className="admin-register">
+                            <AiOutlineClear className="admin-register"></AiOutlineClear>
+                          </div>
                         </Link>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ) : userData.user && userData.user.jobType === "Employee" ? (
@@ -280,13 +288,15 @@ export default function Home() {
                   <p> Job Title: {userData.user.jobType}</p>
                   <div className="card w-50">
                     <div className="card-body">
-                      <h5 className="card-title">Log a Clean</h5>
+                      <h5 className="card-title card-title-home">Log a Clean</h5>
                       <p className="card-text">
-                          Click the button below to log a new cleaning:
-                        </p>
+                        Click the button below to log a new cleaning:
+                      </p>
+                      <div className="admin-register">
                         <Link to={"/startclean/" + user._id}>
-                          <AiOutlineClear className="admin-register"></AiOutlineClear>
+                          <AiOutlineClear />
                         </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -297,7 +307,7 @@ export default function Home() {
                   <div className="row">
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
-                        <h5 className="card-title">View Recent Cleanings</h5>
+                        <h5 className="card-title card-title-home">View Recent Cleanings</h5>
                         <p className="card-text">
                           Click the button below to log a new cleaning:
                         </p>
@@ -363,8 +373,8 @@ export default function Home() {
               )}
             </div>
           )}
-      </div>
-          </UserContext.Provider>
+        </div>
+      </UserContext.Provider>
     </>
   );
 }

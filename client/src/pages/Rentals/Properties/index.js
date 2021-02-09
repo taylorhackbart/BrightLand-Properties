@@ -11,8 +11,6 @@ function Properties() {
   const [index, setIndex] = useState(0);
   const [rental, setRental] = useState({});
   const [loading, setLoading] = useState(true);
-  const [check, setCheck] = useState(false);
-  const [check1, setCheck1] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -55,17 +53,7 @@ function Properties() {
       return checkNumber(newIndex);
     });
   };
-  const handleCheck = () => {
-    setCheck(true);
-    if (setCheck === true) {
-      setCheck(false);
-    }
-    // setCheck1(false)
-  };
-  const handleAnother = () => {
-    // setCheck1(true);
-    setCheck(false);
-  };
+
   return (
     <div className="container-fluid">
       <div className="card mb-3">
@@ -145,20 +133,6 @@ function Properties() {
             <a href={rental.link} target="_blank">
               <button className="book-btns">Book</button>
             </a>
-            <input
-              type="checkbox"
-              value="check"
-              onChange={(event) => setCheck(event.currentTarget.checked)}
-              checked={check}
-            />
-            {/* this is the input button label: */}
-            Are you an Admin?
-            {/* this toggles it:  */}
-            {check ? (
-            <div className="row">No</div> 
-            ):(
-             <div className="row">Yes</div>
-            )}
           </div>
         </div>
       </div>

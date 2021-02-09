@@ -58,7 +58,7 @@ function NavBar() {
                   ))}
                   <NavDropdown.Item href="/">Home</NavDropdown.Item>
                 </SplitButton>
-                <Nav.Link className="auth-option-nav">
+                <Nav.Link>
                   <AuthOptions />
                 </Nav.Link>
             </Navbar.Collapse>
