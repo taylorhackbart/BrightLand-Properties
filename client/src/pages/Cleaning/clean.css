@@ -1,41 +1,87 @@
-button.cleaning-submit{
+button.cleaning-submit {
   display: block;
-  margin: auto;
+  margin-top: 35%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.notes-area{
-  height: 290%;
+.notes-area {
+  height: 100px;
   width: 50%;
-  padding: 3%;
+  display: block;
+  margin-right: auto;
+  margin-left: 25%;
+  justify-content: center;
 }
-.cleaning-row{
-margin: 1%;
-margin-left: auto;
-margin-right: auto;
-}
-.page-adjustment{
+.add-photos-app{
   margin-top: 5%;
 }
-.cleaning-title{
+.cleaning-row {
+  margin: 1%;
+  display: block;
+  text-align: center;
+}
+.page-adjustment {
+  margin-top: 5%;
+}
+.view-all-contain{
+  margin-top: 5%;
+  display: block;
+  margin-left:auto;
+  margin-right: auto;
+}
+.view-all-img{
+ height: 60px;
+ width: 60px;
+}
+.page-adjustment-property {
+  margin-top: 5%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cleaning-title {
   text-align: center;
   margin-bottom: 2%;
 }
-li{
+li {
   margin-bottom: 2%;
 }
-.cleaning-next{
+.cleaning-next {
   margin-top: 20%;
 }
-.new-form-element{
+.new-form-element {
   border: 1px solid grey;
   margin-left: 4%;
   margin-right: 4%;
-  padding-bottom: 2%;;
+  padding-bottom: 2%;
 }
-#file-upload-button{
+#file-upload-button {
   /* margin: 1%; */
   display: block;
   margin-left: 40%;
   margin-right: auto;
+}
+p.dropzone-content{
+  height: 100px;
+  width: 75%;
+  border: 1px dotted grey;
+  display: block;
+  margin: auto;
+  margin-top: 4%;
+  padding-top: 3%;
+ 
 
+}
+.text-center{
+  vertical-align: middle;
+}
+.send-cleaning{
+  display: block;
+  margin-top: 50px;
+  margin: auto;
+}
+.cleaning-buttons-send{
+  margin-top: 5%;
+  margin-bottom: 10%;
 }

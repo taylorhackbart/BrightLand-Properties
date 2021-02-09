@@ -73,10 +73,10 @@ export default function Home() {
       const newArr = x.employee;
       for (i = 0; i < newArr.length; i++) {
         if (newArr.length > 0) {
-          newArr.map((baby) => {
-            const help = baby.cleaning;
-            if (help.length > 0) {
-              help.map((o) => {
+          newArr.map((child) => {
+            const grandChild = child.cleaning;
+            if (grandChild.length > 0) {
+              grandChild.map((o) => {
                 function pushToArray() {
                   const index = employeeArr.findIndex((e) => e._id === o._id);
                   if (index === -1) {
@@ -89,7 +89,7 @@ export default function Home() {
                 pushToArray();
               });
             }
-            const nice = help;
+            const nice = grandChild;
             setEmployeesArr(nice);
           });
         }
@@ -254,6 +254,19 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="row">
+                  <div className="card w-50 col-12 col-md-6 ">
+                      <div className="card-body">
+                        <h5 className="card-title card-title-home">View All CLeanings</h5>
+                        <p className="card-text">
+                          Click to direct to all cleaning info:
+                        </p>
+                        <div className="admin-register">
+                          <Link to="/viewcleanings">
+                          <AiOutlineClear className="admin-register" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                     <div className="card w-50 col-12 col-md-6">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">Log a Clean</h5>

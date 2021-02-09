@@ -17,7 +17,7 @@ import EditPhotos from "./pages/NewRental/editphotos"
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
 import AddPhotos from "./pages/Cleaning/addPhotos";
-// import previewCleaning from "./pages/Cleaning/preview";
+import ViewCleanings from "./pages/Cleaning/viewall";
 import Manage from "./pages/NewRental/manage"
 import "./app.css";
 import API from "./utils/API";
@@ -88,7 +88,7 @@ function App() {
               <Route path="/login" component={Login} />
               {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
-              {/* <Route exact path={"/preview/:id"} component={previewPhotos} /> */}
+              <Route exact path={"/viewcleanings"} component={ViewCleanings} />
               <Route exact path={"/editphotos/:id"} component={EditPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path={["/addmore/:id", "/addmore/name/:name"]} component={AddMore} />

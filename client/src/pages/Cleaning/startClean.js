@@ -1,25 +1,19 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useRef
-} from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import API from "../../utils/API";
 import { useParams, useHistory, Link } from "react-router-dom";
 import "./clean.css";
 import NoMatch from "../NoMatch";
 
-
 function StartClean() {
   const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
   const [state, setState] = useState({});
-  const [newArr, setNewArr] = useState({})
+  const [newArr, setNewArr] = useState({});
   const params = useParams();
   const [load, setLoad] = useState(true);
-  const [done, setDone] = useState(false)
+  const [done, setDone] = useState(false);
 
   useEffect(async () => {
     await loadUserInfo();
@@ -29,27 +23,26 @@ function StartClean() {
 
   const loadUserInfo = async () => {
     await API.getUserById(params.id).then((res) => {
-      console.log(res.data)
+      console.log(res.data);
       setState(res.data.cleaning);
       setRental(res.data);
     });
   };
-console.log(state, rental)
+  console.log(state, rental);
 
   const onSave = async () => {
-    const updatedArr = state
+    const updatedArr = state;
     updatedArr.unshift(newArr);
-    console.log( newArr, updatedArr)
-    setRental({ ...rental});
+    console.log(newArr, updatedArr);
+    setRental({ ...rental });
 
-    setDone(true)
+    setDone(true);
   };
- const submitForm = () => {
-   API.updateUser(rental._id, rental)
-   .then(res => {
-     console.log(res)
-   })
- }
+  const submitForm = () => {
+    API.updateUser(rental._id, rental).then((res) => {
+      console.log(res);
+    });
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewArr({ ...newArr, [name]: value });
@@ -62,10 +55,10 @@ console.log(state, rental)
             {userData.user ? (
               <>
                 <div className="page-adjustment">
+                  <div className="cleaning-container">
                   <h2 className="cleaning-title row cleaning-row">
                     Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                   </h2>
-                  <div className="container">
                     <div className="row cleaning-row">
                       Enter Your Name (Introduzca su Nombre):
                     </div>
@@ -97,41 +90,49 @@ console.log(state, rental)
                       />{" "}
                     </div>
 
+                    </div>
                     {load === false && (
                       <>
-                      {done === false && (
-
-                        <>
-                        <button
-                          className="cleaning-submit"
-                          onClick={onSave}
-                          >
-                          {" "}
-                          Save
-                        </button>
-                        <button className="cleaning-submit"
-                        style={{display:"none"}}> Submit (Enviar)</button>
-                        </>
-                          )}
+                        {done === false && (
+                          <div className="row cleaning-row">
+                            <button
+                              className="cleaning-submit"
+                              onClick={onSave}
+                            >
+                              {" "}
+                              Save
+                            </button>
+                            <button
+                              className="cleaning-submit"
+                              style={{ display: "none" }}
+                            >
+                              {" "}
+                              Submit (Enviar)
+                            </button>
+                          </div>
+                        )}
                         {done === true && (
-                          
-                          <>
-                         <button
-                         style={{display:"none"}}
-                           className="cleaning-submit"
-                           
-                           >
-                           {" "}
-                           Save
-                         </button>
-                          <Link to={"/addPhotos/" + rental._id}>
-                         <button className="cleaning-submit" onClick={submitForm}> Submit (Enviar)</button>
-                       </Link> 
-                         </>
-                           )}
+                          < div className="row cleaning-row">
+                            <button
+                              style={{ display: "none" }}
+                              className="cleaning-submit"
+                            >
+                              {" "}
+                              Save
+                            </button>
+                            <Link to={"/addPhotos/" + rental._id}>
+                              <button
+                                className="cleaning-submit"
+                                onClick={submitForm}
+                              >
+                                {" "}
+                                Submit (Enviar)
+                              </button>
+                            </Link>
+                          </div>
+                        )}
                       </>
                     )}
-                  </div>
                 </div>
               </>
             ) : (

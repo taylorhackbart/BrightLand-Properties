@@ -37,9 +37,13 @@ const rentalSchema = new Schema({
       notes: {
         type: String
       },
-      images: [{
-        type: String
-      }]
+      images:  [
+        {
+          _id: {type: String},
+          id: { type: String },
+          src: { type: String },
+        },
+      ],
     }],
   }],
   description: { type: String },

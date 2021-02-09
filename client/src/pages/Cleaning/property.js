@@ -22,14 +22,14 @@ function Cleaning() {
   const loadProperty = () => {
     API.getProperty().then((res) => {
       setState(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       setLoading(false);
     });
   };
 
   const loadUser = () => {
     API.getUserById(params.id).then((res) => {
-      // console.log(res.data);
+      // console.log(res);
       setUser(res.data);
     });
   };
@@ -50,24 +50,24 @@ function Cleaning() {
         updatedArr.push(user.cleaning[0]);
       }
       setPropertyType({ ...property });
+      const updateProp = async () => {
+        await API.updateProperty(property._id, property).then((res) => {
+          console.log(res);
+        });
+      };
       updateProp();
     }
     pushToArray();
   };
-  // console.log(user, property);
+  console.log(user, property);
 
-  const updateProp = async () => {
-    await API.updateProperty(property._id, property).then((res) => {
-      console.log(res);
-    });
-  };
 
   return (
     <>
       {loading === false && (
         <UserContext.Provider value={{ userData }}>
           {userData.user ? (
-            <form className="page-adjustment">
+            <form className="page-adjustment-property">
               <label htmlFor="property-name">
                 Choose the Property (Elija Propiedad):{" "}
               </label>
@@ -86,12 +86,12 @@ function Cleaning() {
                     </ul>
                   </div>
                 ))}
-                {/* <Link to = "/home" > */}
+                <Link to = "/home" >
                 <button className="cleaning-next" onClick={onSend} >
                   {" "}
                   Next (Próximo)
                 </button>
-                {/* </Link> */}
+                </Link>
               </div>
             </form>
           ) : (
