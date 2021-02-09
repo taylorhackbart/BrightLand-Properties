@@ -121,7 +121,7 @@ function AddMore() {
 
           <Dropzone onDrop={onDrop} accept={"image/*"} />
           {rental && rental.length > 0 && (
-            <h3 className="text-center">Drag the Images to change positions</h3>
+            <h3 className="text-center">Drag the Images to change positions (first photo will always be main photo)</h3>
           )}
           <DndProvider backend={backendForDND}>
             <ImageList

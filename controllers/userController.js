@@ -28,7 +28,11 @@ module.exports = {
         description: req.body.description,
         activities: req.body.activities,
         link: req.body.link,
-        location: req.body.location
+        location: req.body.location,
+        descriptionSpan: req.body.descriptionSpan,
+        activitiesSpan: req.body.activitiesSpan,
+        bedCount: req.body.bedCount,
+        bathCount: req.body.bathCount
        } },
       { new: true }
     )

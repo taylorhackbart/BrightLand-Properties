@@ -57,10 +57,10 @@ export default function Register() {
         )}
         {/* {userData.user && userData.user.jobType === "Admin" ? ( */}
       <form className="form register-form" onSubmit={submit}>
-        <div className="row">
+        <div className="row register-row">
           <label htmlFor="register-username">Username</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
           <input
             id="register-username"
             type="text"
@@ -69,10 +69,10 @@ export default function Register() {
           />
         </div>
 
-        <div className="row">
+        <div className="row register-row">
           <label htmlFor="register-password">Password</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
           <input
             id="register-password"
             type="password"
@@ -81,17 +81,17 @@ export default function Register() {
           />
         </div>
 
-        <div className="row">
+        <div className="row register-row">
           <input
             type="password"
             placeholder="xxxxxx"
             onChange={(e) => setPasswordCheck(e.target.value)}
           />
         </div>
-        <div className="row">
+        <div className="row" register-row>
           <label htmlFor="register-display-name">Display name</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
           <input
             id="register-display-name"
             type="text"
@@ -99,10 +99,10 @@ export default function Register() {
             placeholder="Jane Doe"
           />
         </div>
-        <div className="row">
+        <div className="row register-row">
           <label htmlFor="register-phone-number">Phone Number</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
           <input
             id="register-phone-number"
             type="text"
@@ -110,12 +110,12 @@ export default function Register() {
             placeholder="(555)555-555"
           />
         </div>
-        <div className="row">
-          <div className="row">
+        <div className="row register-row">
+          <div className="row register-row">
             <label htmlFor="register-job-type">Employee Role</label>
           </div>
         </div>
-        <div className="row">
+        <div className="row register-row">
           <ul>
             <li>
               <input

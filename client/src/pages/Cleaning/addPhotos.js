@@ -23,9 +23,9 @@ const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 function AddMore() {
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
-  const [user, setUser] = useState({})
-  const [property, setProperty] = useState({});
-  const [cleaning, setCleaning] = useState([])
+  const [user, setUser] = useState({});
+  const [property, setProperty] = useState([]);
+  const [cleaning, setCleaning] = useState([]);
   const params = useParams();
   const history = useHistory();
 
@@ -33,73 +33,65 @@ function AddMore() {
     loadUserInfo();
   }, []);
 
+  const loadUserInfo = async () => {
+    await API.getUserById(params.id).then((res) => {
+      setRental(res.data.cleaning[0].images);
+      setProperty(res.data.cleaning[0]);
+      setCleaning(res.data.cleaning);
+      setUser(res.data);
+      setLoading(false);
+    });
+  };
 
-    const loadUserInfo = async () => {
-      await API.getUserById(params.id).then((res) => {
-        setRental(res.data.cleaning[0].images[0]);
-        setProperty(res.data.cleaning[0]);
-        setCleaning(res.data.cleaning)
-        console.log(res.data)
-        setUser(res.data)
-        setLoading(false)
-      });
-    };
-  
   const onDrop = useCallback((acceptedFiles) => {
-    // Loop through accepted files
-    console.log(acceptedFiles);
     acceptedFiles.map((file) => {
       // Initialize FileReader browser API
       const reader = new FileReader();
       // onload callback gets called after the reader reads the file data
       reader.onload = function (e) {
-        // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it.
         setRental((prevState) => [
           ...prevState,
           { id: cuid(), src: e.target.result },
         ]);
       };
+      // setProperty({ ...property, images: rental });
+      // setCleaning({ ...cleaning, 0: property });
+      // setUser({ ...user, cleaning: cleaning });
       // Read the file as Data URL (since we accept only images)
       reader.readAsDataURL(file);
-      // console.log(reader.readAsDataURL(file))
       return file;
     });
   }, []);
 
   const onSend = () => {
-    console.log( user, cleaning, rental);
-    setProperty({...property, images: rental})
-
-    const index = cleaning.findIndex((e) => e._id === property._id);
-      if (index === -1) {
-        console.log( "new item");
-      } else {
-        console.log("matched", index, cleaning[index]);
-        const updatedArr = cleaning[index].images;
-        // console.log(updatedArr)
-        updatedArr.push(rental)
-        console.log(updatedArr)
-        setCleaning({...cleaning})
-        setUser({...user, cleaning: cleaning})
-      }
-    //then property into cleaning
-    //then cleaning into user
-    // cleaning.push(property)
-    // const newArr = cleaning[0]
-    // newArr.splice(0, 1, property)
-    // console.log(newArr)
-    // setCleaning({...cleaning})
-
-    
-    // setProperty({ ...property, images: rental });
-    // setUser({...user, cleaning: })
-    // setProperty({ ...property, images: rental });
+    setProperty({ ...property, images: rental });
+    // const index = cleaning.findIndex((e) => e._id === property._id);
+    // if (index === -1) {
+      //   console.log("new item");
+      // } else {
+        // console.log("matched", index, cleaning[index]);
+        if (user.cleaning[0].images.length === 0){
+          // console.log(property);
+          console.log("i am empty")
+          // return setUser({ ...user, cleaning: cleaning });
+          updateUserFunc();
+          
+          // setUser({ ...user, cleaning: cleaning });÷
+        } else {
+          console.log("i am full")
+        }
+        // }
+      };
+      
+      const updateUserFunc = () => {
+    setCleaning({ ...cleaning, 0: property });
   };
-  console.log(cleaning, user)
-
-  const onSubmit =  () => {
-    setProperty({ ...property});
-     API.updateUser(user._id, user).then((res) => {
+  console.log(cleaning, property);
+  
+  const onSubmit = () => {
+    // setUser({...user, cleaning: cleaning})
+    API.updateUser(user._id, user).then((res) => {
+      setUser({ ...user, cleaning: cleaning });
       console.log(res);
       // history.push("/cleaning/" + property._id);
     });
@@ -124,7 +116,7 @@ function AddMore() {
       })
     );
   };
-  // console.log(property, rental);
+
   return (
     <>
       {loading === false && (
@@ -136,16 +128,14 @@ function AddMore() {
             <h3 className="text-center">Drag the Images to change positions</h3>
           )}
           <DndProvider backend={backendForDND}>
-            {/* <ImageList
+            <ImageList
               images={rental}
               moveImage={moveImage}
               removeItem={removeItem}
-              // onChange={setCleaning}
-            /> */}
+            />
           </DndProvider>
 
           <button onClick={onSend}> Save </button>
-          {console.log(cleaning[0])}
           <button onClick={onSubmit}> Submit </button>
         </main>
       )}

@@ -34,7 +34,11 @@ a.home-button.nav-link {
 .collapse {
   border: none;
 }
-
+/* .auth-row{
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+} */
 button.navbar-toggler {
   margin-left: 90%;
   margin-top: -6%;
@@ -56,7 +60,7 @@ a.auth-option-nav.nav-link {
   display: none;
 }
 .login-button {
-  margin-top: -200px;
+  margin-top: -10%;
   background-color: transparent;
   margin-right: 5%;
   border: none;
@@ -68,7 +72,7 @@ a.auth-option-nav.nav-link {
 .employee-button {
   margin-top: -9%;
   background-color: transparent;
-  margin-right: -60%;
+  margin-right: -160%;
   border: none;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
@@ -78,16 +82,16 @@ a.auth-option-nav.nav-link {
 .logout-button {
   background: transparent;
   border: none;
-  margin-top: -2%;
+  margin-top: -20%;
   margin-right: -60%;
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 17px;
 }
-.align-me {
+.align-me-auth {
   text-align: right;
   /* bottom: 0; */
-  margin-top: -10%;
+  /* margin-top: -10%; */
 }
 a.btn.btn-primary,
 .btn-group > .btn:not(:first-child),
@@ -115,37 +119,38 @@ a.btn.btn-primary,
     font-family: "Roboto", sans-serif;
     font-size: 17px;
   }
-  .logout-button {
-    margin-top: -90%;
+  nav.auth-options {
+    margin-top: -37%;
     background: transparent;
     border: none;
-    margin-right: 20%;
+    margin-right: -20%;
     cursor: pointer;
     font-family: "Roboto", sans-serif;
     font-size: 17px;
   }
   .employee-button {
-    margin-top: -60%;
+    margin-top: -80%;
     background: transparent;
     border: none;
     display: flex;
     float: right;
     cursor: pointer;
-    margin-right: 250%;
+    margin-right: 150%;
     font-family: "Roboto", sans-serif;
     font-size: 17px;
   }
-  .align-me {
-    display: inline;
-    text-align: right;
-    margin-top: -120%;
-    bottom: 0;
-    /* margin-right: -300%; */
-  }
+ 
   .btn-group > .btn:not(:first-child),
   .btn-group > .btn-group:not(:first-child) > .btn {
     display: block;
     margin-left: -5%;
+
+  }
+  .align-me-auth {
+    text-align: right;
+    /* bottom: 0; */
+    /* margin-top: -10%; */
+    display: inline-block;
   }
   .nav-bar-buttons {
     z-index: 100;
@@ -165,7 +170,7 @@ a.btn.btn-primary,
   }
 
   div.navbar-dropdown.dropdown.btn-group {
-    margin-top: 0%;
+    margin-top: 2%;
     float: right;
     text-align: right;
     margin-left: auto;
@@ -183,7 +188,7 @@ a.btn.btn-primary,
   .home-button {
     z-index: 100;
     float: left;
-    margin-top: -1%;
+    margin-top: -2px;
     margin-left: 1%;
     color: black;
     font-family: "Roboto", sans-serif;
@@ -193,6 +198,11 @@ a.btn.btn-primary,
     background-color: white;
     margin-top: -15%;
   }
+  /* .auth-row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  } */
   .logo {
     position: absolute;
     margin-top: -75px;

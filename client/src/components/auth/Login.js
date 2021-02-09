@@ -39,10 +39,10 @@ export default function Login() {
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
       <form className="form login-form" onSubmit={submit}>
-        <div className="row">
+        <div className="row register-row">
         <label htmlFor="login-username">Username (Nombre de Usuario)</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
         <input
           id="login-username"
           type="username"
@@ -53,7 +53,7 @@ export default function Login() {
 <div className="row">
         <label htmlFor="login-password">Password (Contraseña)</label>
         </div>
-        <div className="row">
+        <div className="row register-row">
         <input
           id="login-password"
           type="password"

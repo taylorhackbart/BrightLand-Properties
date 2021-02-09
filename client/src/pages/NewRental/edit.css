@@ -6,7 +6,7 @@
   width: 60px;
   float: right;
 }
-.edit-container{
+.edit-container, .manage-container{
   margin-top: 70px;
 }
 .edit-button{

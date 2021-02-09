@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import NavBar from "./components/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Properties from "./pages/Rentals/Properties";
-import NewRental from "./pages/NewRental/images.js";
+// import NewRental from "./pages/NewRental/images.js";
 import Base from "./pages/NewRental/base.js";
-import previewPhotos from "./pages/NewRental/preview.js";
+// import previewPhotos from "./pages/NewRental/preview.js";
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
@@ -17,7 +17,7 @@ import EditPhotos from "./pages/NewRental/editphotos"
 import Cleaning from "./pages/Cleaning/property";
 import StartCleaning from "./pages/Cleaning/startClean";
 import AddPhotos from "./pages/Cleaning/addPhotos";
-import previewCleaning from "./pages/Cleaning/preview";
+// import previewCleaning from "./pages/Cleaning/preview";
 import Manage from "./pages/NewRental/manage"
 import "./app.css";
 import API from "./utils/API";
@@ -88,7 +88,7 @@ function App() {
               <Route path="/login" component={Login} />
               {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
-              <Route exact path={"/preview/:id"} component={previewPhotos} />
+              {/* <Route exact path={"/preview/:id"} component={previewPhotos} /> */}
               <Route exact path={"/editphotos/:id"} component={EditPhotos} />
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path={["/addmore/:id", "/addmore/name/:name"]} component={AddMore} />
@@ -99,16 +99,16 @@ function App() {
               <Route exact path="/cleaning/:id" component={Cleaning} />
               <Route exact path="/properties" component={Rentals} />
               <Route exact path="/startclean/:id" component={StartCleaning} />
-              <Route
+              {/* <Route
                 exact
                 path="/previewclean/:id"
                 component={previewCleaning}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 exact
                 path={"/images/name/:location"}
                 component={NewRental}
-              />
+              /> */}
               <Route path="*" component={NoMatch} />
             </Switch>
           </div>

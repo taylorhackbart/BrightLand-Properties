@@ -4,18 +4,25 @@ import { Tabs, Tab } from "react-bootstrap";
 import API from "../../../utils/API";
 import { useParams } from "react-router-dom";
 import "../style.css";
+import { IoBedOutline } from "react-icons/io5";
+import { FaToilet } from "react-icons/fa";
 
 function Properties() {
   const [index, setIndex] = useState(0);
   const [rental, setRental] = useState({});
   const [loading, setLoading] = useState(true);
+  const [check, setCheck] = useState(false);
+  const [check1, setCheck1] = useState(false);
   const params = useParams();
+
   useEffect(() => {
     loadRentals();
   }, []);
   const imageRef = useRef();
   const activityRef = useRef();
   const descriptionRef = useRef();
+  const activityRefSpan = useRef();
+  const descriptionRefSpan = useRef();
   const loadRentals = async () => {
     await API.getPropertiesByName(params.location)
       .then((resp) => {
@@ -48,9 +55,17 @@ function Properties() {
       return checkNumber(newIndex);
     });
   };
- 
-
-
+  const handleCheck = () => {
+    setCheck(true);
+    if (setCheck === true) {
+      setCheck(false);
+    }
+    // setCheck1(false)
+  };
+  const handleAnother = () => {
+    // setCheck1(true);
+    setCheck(false);
+  };
   return (
     <div className="container-fluid">
       <div className="card mb-3">
@@ -100,8 +115,11 @@ function Properties() {
 
         <div className="card-body">
           <h5 className="card-title">{rental.location}</h5>
-
-          <div className="card-text">
+          {/* <div className = "row icon-rows"> */}
+          <IoBedOutline className="bed-icon" /> {rental.bedCount}
+          <FaToilet className="bath-icon" /> {rental.bathCount}
+          {/* </div> */}
+          <div className="card-text card-text-rental">
             <Tabs defaultActiveKey="space" id="noanim-tab-example">
               <Tab eventKey="space" title="The Space" ref={descriptionRef}>
                 {rental.description}
@@ -109,13 +127,38 @@ function Properties() {
               <Tab eventKey="activities" title="Activities" ref={activityRef}>
                 {rental.activities}
               </Tab>
+              <Tab
+                eventKey="spaceSpan"
+                title="Espacio"
+                ref={descriptionRefSpan}
+              >
+                {rental.descriptionSpan}
+              </Tab>
+              <Tab
+                eventKey="activitySpan"
+                title="Ocupaciones"
+                ref={activityRefSpan}
+              >
+                {rental.activitiesSpan}
+              </Tab>
             </Tabs>
-            <a href={rental.link} target="_blank">
-              <button className="contact-btns">Contact</button>
-            </a>
             <a href={rental.link} target="_blank">
               <button className="book-btns">Book</button>
             </a>
+            <input
+              type="checkbox"
+              value="check"
+              onChange={(event) => setCheck(event.currentTarget.checked)}
+              checked={check}
+            />
+            {/* this is the input button label: */}
+            Are you an Admin?
+            {/* this toggles it:  */}
+            {check ? (
+            <div className="row">No</div> 
+            ):(
+             <div className="row">Yes</div>
+            )}
           </div>
         </div>
       </div>

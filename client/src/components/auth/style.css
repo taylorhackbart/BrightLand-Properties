@@ -6,7 +6,7 @@ form.register-form, form.login-form{
 h2.register-title, h2.login-title{
   text-align: center;
 }
-.row{
+.register-row{
   justify-content: center;
   margin-bottom: 3px;
 }
@@ -15,6 +15,9 @@ ul{
 }
 .register-container{
   margin-top: 6%;
+}
+.register-button{
+  display: none;
 }
 .register-btn, .login-btn{
   display: block;

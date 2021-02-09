@@ -7,6 +7,11 @@
   margin-right: auto;
  
 }
+svg.bed-icon, svg.bath-icon{
+  margin-left: 2%;
+  height: 200%;
+  width: 100px;
+}
 
 h5.card-title{
   font-family: 'Roboto', sans-serif;
@@ -60,6 +65,9 @@ h5.card-title{
   width: 100%;
   border-radius: 15px;
   overflow-y: scroll;
+}
+.card-text-rental{
+  margin-top: -7%;
 }
 .center-div{
   display: block;

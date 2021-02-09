@@ -7,10 +7,6 @@ function Edit() {
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
   const params = useParams();
-  const [changeDesc, setChangeDesc] = useState("");
-  const [changeAct, setChangeAct] = useState("");
-  const [changeLocation, setChangeLocation] = useState("");
-  const [changeLink, setChangeLink] = useState("");
   const [done, setDone] = useState(false);
   const [startDelete, setStartDelete] = useState(false);
   const history = useHistory()
@@ -38,6 +34,7 @@ function Edit() {
       setDone(true);
     });
   };
+  console.log(rental)
   const confirmDelete = (e) => {
     // console.log(e.target);
     setStartDelete(true)
@@ -58,7 +55,34 @@ function Edit() {
               defaultValue={rental.location}
               onChange={handleChange}
             />
-            {/* <button className="edit-btn" onClick={saveLocation}> OK </button> */}
+        
+          </div>
+          <div className="row edit-row">
+            <h3> BED COUNT (number): </h3>
+            <label for="multiInput">
+              <textarea
+           
+                // id="multiInput"
+                className="bed-input"
+                name="bedCount"
+                defaultValue={rental.bedCount}
+                onChange={handleChange}
+              />
+
+            </label>
+          </div>
+          <div className="row edit-row">
+            <h3>BATH COUNT (number): </h3>
+            <label for="multiLineInput">
+              <textarea
+                
+                // id="multiLineInput"
+                className="bath-input"
+                name="bathCount"
+                defaultValue={rental.bathCount}
+                onChange={handleChange}
+              />
+            </label>
           </div>
           <div className="row edit-row">
             <h3> DESCRIPTION: </h3>
@@ -72,7 +96,7 @@ function Edit() {
                 defaultValue={rental.description}
                 onChange={handleChange}
               />
-              {/* <button className="edit-btn" onClick={saveDescription}> OK </button> */}
+
             </label>
           </div>
           <div className="row edit-row">
@@ -87,7 +111,35 @@ function Edit() {
                 defaultValue={rental.activities}
                 onChange={handleChange}
               />
-              {/* <button className="edit-btn" onClick={saveActivities}> OK </button> */}
+            </label>
+          </div>
+          <div className="row edit-row">
+            <h3> SPANISH DESCRIPTION TRANSLATION: </h3>
+            <label for="multiInput">
+              <textarea
+                rows="12"
+                cols="50"
+                id="multiInput"
+                className="description-input"
+                name="descriptionSpan"
+                defaultValue={rental.descriptionSpan}
+                onChange={handleChange}
+              />
+
+            </label>
+          </div>
+          <div className="row edit-row">
+            <h3>SPANISH ACTIVITIES TRANSLATION: </h3>
+            <label for="multiLineInput">
+              <textarea
+                rows="12"
+                cols="50"
+                id="multiLineInput"
+                className="activities-input"
+                name="activitiesSpan"
+                defaultValue={rental.activitiesSpan}
+                onChange={handleChange}
+              />
             </label>
           </div>
           <div className="row edit-row">

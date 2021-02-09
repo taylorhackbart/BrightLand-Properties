@@ -43,15 +43,17 @@ const rentalSchema = new Schema({
     }],
   }],
   description: { type: String },
-
   activities: {type: String},
+  descriptionSpan: { type: String },
+  activitiesSpan: {type: String},
   link: {type: String},
-  homeImage: [{type: String}],
   imageUrl: [{
     _id: {type: String},
     id: {type: String},
     src: {type: String}
   }],
+  bedCount: {type: String},
+  bathCount: {type: String},
 
   userCreated: {
     type: Date,

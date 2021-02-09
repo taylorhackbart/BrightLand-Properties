@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import "./edit.css"
 
 function Manage() {
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,7 @@ function Manage() {
  
 
   return (
-    <>
+    < div className="manage-container">
       {loading == false && (
         <>
           {rental.map((x) => (
@@ -37,7 +38,7 @@ function Manage() {
           </Link>
         </>
       )}
-    </>
+    </div>
   );
 }
 export default Manage;

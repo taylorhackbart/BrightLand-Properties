@@ -62,33 +62,33 @@ console.log(state, rental)
             {userData.user ? (
               <>
                 <div className="page-adjustment">
-                  <h2 className="cleaning-title row">
+                  <h2 className="cleaning-title row cleaning-row">
                     Enter Cleaning Details (Ingrese los Detalles de Limpieza):
                   </h2>
                   <div className="container">
-                    <div className="row">
+                    <div className="row cleaning-row">
                       Enter Your Name (Introduzca su Nombre):
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       <input onChange={handleChange} type="text" name="name" />
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       Time Finished Cleaning (HH : MM ):
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       ( Hora en que se Completó la Limpieza (HH: MM) ) :
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       <input
                         onChange={handleChange}
                         type="text"
                         name="stopClean"
                       />
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       Enter any notes necessary (Ingresar Notas de Limpieza):
                     </div>
-                    <div className="row">
+                    <div className="row cleaning-row">
                       <textarea
                         name="notes"
                         onChange={handleChange}
