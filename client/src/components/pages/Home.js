@@ -106,15 +106,15 @@ export default function Home() {
   return (
     <>
       <UserContext.Provider value={{ userData }}>
-        <div className="container home-screen">
+        <div className="home-screen">
           {loading === false && (
             <div className="page">
               {userData.user && userData.user.jobType === "Admin" ? (
-                <div className="container">
+                <div className="container-fluid">
                   <h1>Welcome {userData.user.displayName}</h1>
                   <p> Job Title: {userData.user.jobType}</p>
-                  <div className="row">
-                    <div className="card w-50 col-12 col-md-6 ">
+                  <div className="row home-row">
+                    <div className="card w-50 col-12 col-md-6 card-home ">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">Add an Employee</h5>
                         <p className="card-text">
@@ -128,7 +128,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <div className="card w-50 col-12 col-md-6">
+                    <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">View all Employees</h5>
                         <p className="card-text">
@@ -178,8 +178,8 @@ export default function Home() {
                       </Modal>
                     )}
                   </div>
-                  <div className="row">
-                    <div className="card w-50 col-12 col-md-6">
+                  <div className="row home-row">
+                    <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">View Recent Cleanings</h5>
                         <p className="card-text">
@@ -237,7 +237,7 @@ export default function Home() {
                         </Modal>
                       )}
                     </div>
-                    <div className="card w-50 col-12 col-md-6">
+                    <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">Manage Properties</h5>
                         <p className="card-text">
@@ -253,8 +253,8 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="row">
-                  <div className="card w-50 col-12 col-md-6 ">
+                  <div className="row home-row">
+                  <div className="card w-50 col-12 col-md-6 card-home ">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">View All CLeanings</h5>
                         <p className="card-text">
@@ -267,7 +267,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <div className="card w-50 col-12 col-md-6">
+                    <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">Log a Clean</h5>
                         <p className="card-text">
@@ -280,7 +280,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="card w-50 col-12 col-md-6">
+                    {/* <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">Edit a Rental</h5>
                         <p className="card-text">
@@ -317,8 +317,8 @@ export default function Home() {
                 <div>
                   <h1>Welcome {userData.user.displayName}</h1>
                   <p> Job Title: {userData.user.jobType}</p>
-                  <div className="row">
-                    <div className="card w-50 col-12 col-md-6">
+                  <div className="row home-row">
+                    <div className="card w-50 col-12 col-md-6 card-home">
                       <div className="card-body">
                         <h5 className="card-title card-title-home">View Recent Cleanings</h5>
                         <p className="card-text">

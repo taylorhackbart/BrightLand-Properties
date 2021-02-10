@@ -1,5 +1,5 @@
 .admin-register{
-  height: 80px;
+  height: 60px;
   width: 80px;
   display: block;
   margin-left: auto;
@@ -14,4 +14,17 @@
 }
 h1, p, h5.card-title.card-title-home{
   text-align: center;
+  margin-top: 1%;
+}
+svg:not(:root){
+  height: 40px;
+}
+.card-home{
+  margin: 3%;
+  max-width: 500px;
+ background-color: rgb(243, 243, 243);
+  filter: drop-shadow(30px 10px 4px grey)
+}
+div.row.home-row{
+  justify-content: center;
 }

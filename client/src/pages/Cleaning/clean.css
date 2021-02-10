@@ -13,7 +13,7 @@ button.cleaning-submit {
   margin-left: 25%;
   justify-content: center;
 }
-.add-photos-app{
+.add-photos-app {
   margin-top: 5%;
 }
 .cleaning-row {
@@ -24,15 +24,20 @@ button.cleaning-submit {
 .page-adjustment {
   margin-top: 5%;
 }
-.view-all-contain{
-  margin-top: 5%;
-  display: block;
-  margin-left:auto;
-  margin-right: auto;
+@media (min-width: 1200px) {
+  .view-all-contain {
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 0;
+    min-height: 50%;
+  }
 }
-.view-all-img{
- height: 60px;
- width: 60px;
+
+.view-all-img {
+  height: 60px;
+  width: 60px;
 }
 .page-adjustment-property {
   margin-top: 5%;
@@ -62,7 +67,7 @@ li {
   margin-left: 40%;
   margin-right: auto;
 }
-p.dropzone-content{
+p.dropzone-content {
   height: 100px;
   width: 75%;
   border: 1px dotted grey;
@@ -70,18 +75,22 @@ p.dropzone-content{
   margin: auto;
   margin-top: 4%;
   padding-top: 3%;
- 
-
 }
-.text-center{
+.text-center {
   vertical-align: middle;
 }
-.send-cleaning{
+.send-cleaning {
   display: block;
   margin-top: 50px;
   margin: auto;
 }
-.cleaning-buttons-send{
+.cleaning-buttons-send {
   margin-top: 5%;
   margin-bottom: 10%;
+}
+.view-all-card {
+  border: 1px solid grey;
+  height: 300px;
+  width: 300px;
+  margin: 2%;
 }

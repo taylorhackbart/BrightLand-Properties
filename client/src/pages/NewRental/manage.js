@@ -24,19 +24,19 @@ function Manage() {
   return (
     < div className="manage-container">
       {loading == false && (
-        <>
+        < div className="manage-row">
           {rental.map((x) => (
-            <div key={x._id} className="row manage-row">
-              <Link to={"/edit/" + x._id}>
-                <ul>{x.location}</ul>
+
+              <Link to={"/edit/" + x._id} key={x._id}>
+                <ul className="ul-manage">{x.location}</ul>
               </Link>
               
-            </div>
+
           ))}
           <Link to={"/new"}>
-            <ul>Add New Property</ul>
+            <ul className="ul-manage">* Add New Property</ul>
           </Link>
-        </>
+        </div>
       )}
     </div>
   );
