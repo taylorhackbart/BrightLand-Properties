@@ -52,6 +52,8 @@ function Cleaning() {
       }
       setPropertyType({ ...property });
       const updateProp = async () => {
+        //TODO
+        //THIS IS THROWING A NEW ERROR
         await API.updateProperty(property._id, property).then((res) => {
           console.log(res);
         });
