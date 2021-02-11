@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import "./preview.css";
+import UserContext from "../../contexts/UserContext";
 
 function Base() {
+  const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState({});
   useEffect(async () => {
@@ -31,6 +33,8 @@ function Base() {
   };
 
   return (
+    <>
+    {userData.user ? (
     <div className="container">
       <form className="new-page-form">
         <p className="row"> Name or Location of New Rental </p>
@@ -100,6 +104,12 @@ function Base() {
         </Link>
       </form>
     </div>
+    ):(
+      <>
+    <NoMatch/>
+      </>
+    )}
+    </>
   );
 }
 

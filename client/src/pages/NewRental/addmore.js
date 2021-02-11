@@ -1,5 +1,6 @@
-import React, { useCallback, useState, useEffect } from "react";
-import { DndProvider, DropTarget } from "react-dnd";
+import React, { useCallback, useState, useEffect, useContext } from "react";
+import { DndProvider } from "react-dnd";
+import UserContext from "../../contexts/UserContext";
 import { useParams, useHistory } from "react-router-dom";
 import Dropzone from "../../components/FileInput/Dropzone";
 import ImageList from "../../components/FileInput/ImageList";
@@ -21,6 +22,7 @@ const isTouchDevice = () => {
 const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 
 function AddMore() {
+  const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState([]);
   const [property, setProperty] = useState({});
@@ -56,33 +58,31 @@ function AddMore() {
     // Loop through accepted files
     console.log(acceptedFiles);
     try {
-    acceptedFiles.map((file) => {
-      // Initialize FileReader browser API
-      const reader = new FileReader();
-      // onload callback gets called after the reader reads the file data
-      reader.onload = function (e) {
-        // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it.
-        setRental((prevState) => [
-          ...prevState,
-          { id: cuid(), src: e.target.result },
-        ]);
-      };
-      // Read the file as Data URL (since we accept only images)
-      reader.readAsDataURL(file);
-      // console.log(reader.readAsDataURL(file))
-      return file;
-
-    });
-  }
-  catch (err) {
-    console.log(err)
-  }
+      acceptedFiles.map((file) => {
+        // Initialize FileReader browser API
+        const reader = new FileReader();
+        // onload callback gets called after the reader reads the file data
+        reader.onload = function (e) {
+          // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it.
+          setRental((prevState) => [
+            ...prevState,
+            { id: cuid(), src: e.target.result },
+          ]);
+        };
+        // Read the file as Data URL (since we accept only images)
+        reader.readAsDataURL(file);
+        // console.log(reader.readAsDataURL(file))
+        return file;
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   const onSend = () => {
     console.log(property, rental);
     setProperty({ ...property, imageUrl: rental });
-    setDone(true)
+    setDone(true);
   };
 
   const onSubmit = async () => {
@@ -116,34 +116,51 @@ function AddMore() {
   return (
     <>
       {loading === false && (
-        <main className="App">
-          <h1 className="text-center">Drag and Drop </h1>
+        <>
+          {userData.user ? (
+            <main className="App">
+              <h1 className="text-center">Drag and Drop </h1>
 
-          <Dropzone onDrop={onDrop} accept={"image/*"} />
-          {rental && rental.length > 0 && (
-            <h3 className="text-center">Drag the Images to change positions (first photo will always be main photo)</h3>
-          )}
-          <DndProvider backend={backendForDND}>
-            <ImageList
-              images={rental}
-              // key = {}
-              moveImage={moveImage}
-              removeItem={removeItem}
-            />
-          </DndProvider>
-          {done === false && (
+              <Dropzone onDrop={onDrop} accept={"image/*"} />
+              {rental && rental.length > 0 && (
+                <h3 className="text-center">
+                  Drag the Images to change positions (first photo will always
+                  be main photo)
+                </h3>
+              )}
+              <DndProvider backend={backendForDND}>
+                <ImageList
+                  images={rental}
+                  // key = {}
+                  moveImage={moveImage}
+                  removeItem={removeItem}
+                />
+              </DndProvider>
+              {done === false && (
+                <>
+                  <button onClick={onSend}> Save </button>
+                  <button onClick={onSubmit} style={{ display: "none" }}>
+                    {" "}
+                    Submit{" "}
+                  </button>
+                </>
+              )}
+              {done === true && (
+                <>
+                  <button onClick={onSend} style={{ display: "none" }}>
+                    {" "}
+                    Save{" "}
+                  </button>
+                  <button onClick={onSubmit}> Submit </button>
+                </>
+              )}
+            </main>
+          ) : (
             <>
-            <button onClick={onSend}> Save </button>
-            <button onClick={onSubmit} style={{display: "none"}}> Submit </button>
-</>
+              <NoMatch />
+            </>
           )}
-           {done === true && (
-            <>
-            <button onClick={onSend} style={{display: "none"}}> Save </button>
-            <button onClick={onSubmit}> Submit </button>
-</>
-          )}
-        </main>
+        </>
       )}
     </>
   );

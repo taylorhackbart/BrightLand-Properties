@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import API from "../../utils/API";
 import "./clean.css";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
+import NoMatch from "../NoMatch"
 
 function ViewCleanings() {
-  const [cleaningArr, setCleaningArr] = useState([]);
+  const { userData } = useContext(UserContext);
   const [load, setLoad] = useState(true);
   const [loading, setLoading] = useState(true);
   const [cleaningData, setCleaningData] = useState({});
@@ -16,35 +18,9 @@ function ViewCleanings() {
     loadCleaning();
   }, [load, loading]);
 
-  // const loadUserInfo = () => {
-  //   API.getUser().then((res) => {
-  //     const data = res.data;
-  //     data.map((x) => {
-  //       const newArr = x.cleaning;
-  //       newArr.map((o) => {
-  //         function pushToArray() {
-  //           const index = cleaningArr.findIndex((e) => e._id === o._id);
-  //           if (index === -1) {
-  //             cleaningArr.unshift(o);
-  //             console.log("new item");
-  //           } else {
-  //             console.log("matched");
-  //           }
-  //         }
-  //         pushToArray();
-  //       });
-  //     });
-  //     console.log(cleaningArr);
-  //   });
-  // };
-
   const loadCleaning = async (i) => {
     await API.getProperty().then((res) => {
       setCleaningData(res.data);
-      // const data = res.data
-      // data.map(x => {
-      //   console.log(x.location)
-      // })
       setLoad(false);
       loadAPI();
     });
@@ -85,9 +61,11 @@ function ViewCleanings() {
   };
 
   return (
-    <div className="view-all-contain">
+    <div >
       {loading === false && (
         <>
+        {userData.user ? (
+          <div className="view-all-contain">
           {employeeArr.map((x) => (
             <div className="card view-all-card">
               <div className="card-body">
@@ -103,6 +81,10 @@ function ViewCleanings() {
               </div>
             </div>
           ))}
+          </div>
+        ) :(
+          <NoMatch />
+        )}
         </>
       )}
     </div>

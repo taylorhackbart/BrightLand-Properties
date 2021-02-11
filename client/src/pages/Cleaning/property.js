@@ -13,6 +13,7 @@ function Cleaning() {
   const [state, setState] = useState({});
   const [property, setPropertyType] = useState({});
   const params = useParams();
+  const history = useHistory()
 
   useEffect(async () => {
     loadProperty();
@@ -54,6 +55,7 @@ function Cleaning() {
         await API.updateProperty(property._id, property).then((res) => {
           console.log(res);
         });
+        // history.push("/home")
       };
       updateProp();
     }
@@ -86,12 +88,12 @@ function Cleaning() {
                     </ul>
                   </div>
                 ))}
-                <Link to = "/home" >
+                {/* <Link to = "/home" > */}
                 <button className="cleaning-next" onClick={onSend} >
                   {" "}
                   Next (Próximo)
                 </button>
-                </Link>
+                {/* </Link> */}
               </div>
             </form>
           ) : (

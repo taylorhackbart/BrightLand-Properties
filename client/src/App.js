@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./components/Nav";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Properties from "./pages/Rentals/Properties";
-// import NewRental from "./pages/NewRental/images.js";
-import Base from "./pages/NewRental/base.js";
-// import previewPhotos from "./pages/NewRental/preview.js";
-import Home from "./components/pages/Home";
-import Login from "./components/auth/Login.js";
-import Register from "./components/auth/Register.js";
-import PropertyType from "./components/auth/PropertyType.js";
 import UserContext from "./contexts/UserContext";
-import HomePage from "./pages/Home/Home.js";
-import AddMore from "./pages/NewRental/addmore"
-import Edit from "./pages/NewRental/edit"
-import EditPhotos from "./pages/NewRental/editphotos"
-import Cleaning from "./pages/Cleaning/property";
-import StartCleaning from "./pages/Cleaning/startClean";
-import AddPhotos from "./pages/Cleaning/addPhotos";
-import ViewCleanings from "./pages/Cleaning/viewall";
-import Manage from "./pages/NewRental/manage"
-import "./app.css";
 import API from "./utils/API";
-import NoMatch from "./pages/NoMatch";
-import Rentals from "./pages/Rentals/Rentals";
 import  SimpleReactLightbox  from "simple-react-lightbox";
 import {DndProvider} from "react-dnd"
-import { DragDropContext} from "react-beautiful-dnd"
+import {DragDropContext} from "react-beautiful-dnd"
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {TouchBackend} from "react-dnd-touch-backend";
+import "./app.css";
+
+//PUBLIC ROUTES
+import Properties from "./pages/Rentals/Properties";
+import HomePage from "./pages/Home/Home.js";
+import NoMatch from "./pages/NoMatch";
+import Rentals from "./pages/Rentals/Rentals";
+
+//AUTH IMPORTS
+import Home from "./components/pages/Home";
+import {Login, Register, PropertyType} from "./components/auth";
+
+//NEW RENTAL IMPORTS
+import {Base, AddMore, Edit, Manage} from "./pages/NewRental";
+
+//CLEANING IMPORTS
+import {Cleaning, StartCleaning, AddPhotos, ViewCleanings} from "./pages/Cleaning";
 
 const isTouchDevice = () => {
   if ("ontouchstart" in window) {
@@ -72,7 +69,7 @@ function App() {
     <DragDropContext>
     <div className="page-container">
       <DndProvider backend={backendForDND}>
-      <SimpleReactLightbox>
+      {/* <SimpleReactLightbox> */}
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
         <NavBar />
@@ -81,7 +78,7 @@ function App() {
               <Route exact path="/" component={HomePage} />
               <Route
                 exact
-                path="/properties/name/:location"
+                path="/properties/name/:location" 
                 component={Properties}
               />
               <Route exact path="/home" component={Home} />
@@ -89,7 +86,7 @@ function App() {
               {/* <Route path="/propertyroutes/:id" component={Property} /> */}
               <Route path="/register" component={Register} />
               <Route exact path={"/viewcleanings"} component={ViewCleanings} />
-              <Route exact path={"/editphotos/:id"} component={EditPhotos} />
+              {/* <Route exact path={"/editphotos/:id"} component={EditPhotos} /> */}
               <Route exact path={"/addphotos/:id"} component={AddPhotos} />
               <Route exact path={["/addmore/:id", "/addmore/name/:name"]} component={AddMore} />
               <Route exact path="/new" component={Base} />
@@ -115,7 +112,7 @@ function App() {
           {/* <Footer /> */}
         </UserContext.Provider>
       </BrowserRouter>
-      </SimpleReactLightbox>
+      {/* </SimpleReactLightbox> */}
       </DndProvider>
     </div>
     </DragDropContext>

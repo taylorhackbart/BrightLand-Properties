@@ -1,5 +1,6 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useContext } from "react";
 import { DndProvider } from "react-dnd";
+import UserContext from "../../contexts/UserContext";
 import { useParams, useHistory } from "react-router-dom";
 import Dropzone from "../../components/FileInput/Dropzone";
 import ImageList from "../../components/FileInput/ImageList";
@@ -9,6 +10,7 @@ import cuid from "cuid";
 import "./clean.css";
 import API from "../../utils/API";
 import update from "immutability-helper";
+import NoMatch from "../NoMatch"
 
 const isTouchDevice = () => {
   if ("ontouchstart" in window) {
@@ -21,7 +23,8 @@ const isTouchDevice = () => {
 
 const backendForDND = isTouchDevice() ? TouchBackend : HTML5Backend;
 
-function AddMore() {
+function AddPhotos() {
+  const { userData } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [rental, setRental] = useState({});
   const [user, setUser] = useState({});
@@ -33,6 +36,7 @@ function AddMore() {
 
   useEffect(() => {
     loadUserInfo();
+    console.log(userData)
   }, []);
 
   const loadUserInfo = async () => {
@@ -126,10 +130,15 @@ function AddMore() {
       })
     );
   };
-
+  // http://localhost:3000/startclean/60144b93bc6dabffe3a86e39
+  // http://localhost:3000/addPhotos/60144b93bc6dabffe3a86e39
   return (
     <>
-      {loading === false && (
+     <UserContext.Provider value={{ userData }}>
+       {loading === false && (
+         <>
+         {userData.user ? (
+        
         <main className="add-photos-app">
           <h1 className="text-center">Drag and Drop </h1>
 
@@ -177,10 +186,19 @@ function AddMore() {
               </button>
             </div>
           )}
+      
         </main>
-      )}
+       ):(
+         <>
+       <NoMatch/>
+         </>
+       )}
+         </>
+       
+       )}
+      </UserContext.Provider>
     </>
   );
 }
 
-export default AddMore;
+export default AddPhotos;

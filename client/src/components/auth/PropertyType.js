@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import API from "../../utils/API";
 import { useParams, useHistory } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
+import NoMatch from "../../pages/NoMatch";
 
 function PropertyType() {
+  const { userData } = useContext(UserContext);
   const history = useHistory();
   const [rental, setRental] = useState({});
   const [user, setUser] = useState({})
   const [property, setProperty] = useState({});
   const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(true);
+
   const params = useParams();
   useEffect(async () => {
     loadUser();
@@ -50,6 +54,8 @@ function PropertyType() {
         <div>
           {load == false && (
             <>
+             {userData.user ? (
+               <>
               <h2> Choose Property Location for Employee: </h2>
               {rental.map((type) => (
                 <div key={type._id}>
@@ -61,6 +67,10 @@ function PropertyType() {
                 </div>
               ))}
               <button onClick={onSend}> Submit</button>
+              </>
+             ) : (
+               <NoMatch/>
+             )}
             </>
           )}
         </div>
