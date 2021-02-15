@@ -53,7 +53,7 @@ function Edit() {
           {userData.user ? (
             < div className="container edit-contain">
               <div className="row edit-row">
-                <h3> LOCATION: </h3>
+                <h6> LOCATION: </h6>
                 <textarea
                   className="location-input"
                   name="location"
@@ -62,8 +62,9 @@ function Edit() {
                 />
               </div>
               <div className="row edit-row">
-                <h3> BED COUNT (number): </h3>
+                <h6> BED COUNT (number): </h6>
                 <label for="multiInput">
+                 
                   <textarea
                     // id="multiInput"
                     className="bed-input"
@@ -71,10 +72,11 @@ function Edit() {
                     defaultValue={rental.bedCount}
                     onChange={handleChange}
                   />
+              
                 </label>
               </div>
               <div className="row edit-row">
-                <h3>BATH COUNT (number): </h3>
+                <h6>BATH COUNT (number): </h6>
                 <label for="multiLineInput">
                   <textarea
                     // id="multiLineInput"
@@ -86,7 +88,7 @@ function Edit() {
                 </label>
               </div>
               <div className="row edit-row">
-                <h3> DESCRIPTION: </h3>
+                <h6> DESCRIPTION: </h6>
                 <label for="multiInput">
                   <textarea
                     rows="12"
@@ -100,7 +102,7 @@ function Edit() {
                 </label>
               </div>
               <div className="row edit-row">
-                <h3>ACTIVITIES: </h3>
+                <h6>ACTIVITIES: </h6>
                 <label for="multiLineInput">
                   <textarea
                     rows="12"
@@ -114,7 +116,7 @@ function Edit() {
                 </label>
               </div>
               <div className="row edit-row">
-                <h3> SPANISH DESCRIPTION TRANSLATION: </h3>
+                <h6> SPANISH DESCRIPTION TRANSLATION: </h6>
                 <label for="multiInput">
                   <textarea
                     rows="12"
@@ -128,7 +130,7 @@ function Edit() {
                 </label>
               </div>
               <div className="row edit-row">
-                <h3>SPANISH ACTIVITIES TRANSLATION: </h3>
+                <h6>SPANISH ACTIVITIES TRANSLATION: </h6>
                 <label for="multiLineInput">
                   <textarea
                     rows="12"
@@ -142,7 +144,7 @@ function Edit() {
                 </label>
               </div>
               <div className="row edit-row">
-                <h3> LINK: </h3>
+                <h6> LINK: </h6>
                 <textarea
                   className="link-input"
                   name="link"

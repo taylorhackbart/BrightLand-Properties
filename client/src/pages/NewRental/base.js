@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import "./preview.css";
 import UserContext from "../../contexts/UserContext";
+import NoMatch from "../NoMatch"
 
 function Base() {
   const { userData } = useContext(UserContext);
