@@ -103,10 +103,10 @@ function Properties() {
 
         <div className="card-body">
           <h5 className="card-title">{rental.location}</h5>
-          {/* <div className = "row icon-rows"> */}
+          <div className = "icon-rows">
           <IoBedOutline className="bed-icon" /> {rental.bedCount}
           <FaToilet className="bath-icon" /> {rental.bathCount}
-          {/* </div> */}
+          </div>
           <div className="card-text card-text-rental">
             <Tabs defaultActiveKey="space" id="noanim-tab-example">
               <Tab eventKey="space" title="The Space" ref={descriptionRef}>
@@ -130,10 +130,10 @@ function Properties() {
                 {rental.activitiesSpan}
               </Tab>
             </Tabs>
+          </div>
             <a href={rental.link} target="_blank">
               <button className="book-btns">Book</button>
             </a>
-          </div>
         </div>
       </div>
     </div>

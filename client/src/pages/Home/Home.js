@@ -27,7 +27,13 @@ function HomePage() {
   const loadProperties = () => {
     API.getProperty().then((res) => {
       setState(res.data);
-      // console.log(res.data)
+      if (res === undefined){
+        return(
+          <div>
+            No properties have been uploaded
+          </div>
+        )
+      }
       setLoading(false);
     });
   };
@@ -54,7 +60,8 @@ function HomePage() {
       return checkNumber(newIndex);
     });
   };
-
+ 
+ 
   return (
     <>
       {load === false && (

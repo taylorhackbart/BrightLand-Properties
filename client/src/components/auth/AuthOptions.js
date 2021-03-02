@@ -27,12 +27,12 @@ export default function AuthOptions() {
           <div className="row-employee">
             <button className="employee-button" onClick={home}>
               {" "}
-              PORTAL{" "}
+              Portal{" "}
             </button>
           </div>
           <div className="row-logout">
             <button className="logout-button" onClick={logout}>
-              LOGOUT
+              Logout
             </button>
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function AuthOptions() {
         <>
           <div className="align-me">
             <button className="login-button" onClick={login}>
-              LOGIN
+              L
             </button>
             <AiOutlineUserAdd
               className="register-button"

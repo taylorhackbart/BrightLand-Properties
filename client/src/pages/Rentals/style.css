@@ -7,6 +7,10 @@
   margin-right: auto;
  
 }
+.show{
+  display: block;
+
+}
 svg.bed-icon, svg.bath-icon{
   margin-left: 2%;
   height: 200%;
@@ -68,6 +72,7 @@ h5.card-title{
 }
 .card-text-rental{
   margin-top: -7%;
+  float: left;
 }
 .center-div{
   display: block;
@@ -94,19 +99,6 @@ div.col-md-6.col-sm-12{
 .mb-3{
   margin-bottom: 100px !important;
 }
-.contact-btns{
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.849);
-  margin-bottom: 20px;
-  padding: 1%;
-  margin-top: 10px;
-  cursor: pointer;
-  border: 1px solid white;
-  border-radius: 70px 70px;
-  box-shadow: 5px 5px 5px 1px grey;
-  font-family: 'Roboto', sans-serif;
-  font-size: 17px;
-}
 .book-btns{
   border-radius: 30px;
   float: right;
@@ -115,10 +107,14 @@ div.col-md-6.col-sm-12{
   font-size: 17px;
   border: none;
   padding: 1% 2%;
-  margin-top: 10px;
+  margin-top: 10%;
+  margin-bottom: 2%;
   cursor: pointer;
   box-shadow: 5px 5px 5px 1px grey;
   font-family: 'Roboto', sans-serif;
+}
+.icon-rows{
+  margin-bottom: 8%;
 }
 ul{
   padding-left: 25px;

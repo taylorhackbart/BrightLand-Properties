@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./nav.css";
 import logo from "./logo.png";
 import API from "../../utils/API";
-import { Navbar, Nav, NavDropdown, SplitButton } from "react-bootstrap";
-import AuthOptions from "../auth/AuthOptions"
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  SplitButton,
+  Dropdown,
+} from "react-bootstrap";
+import AuthOptions from "../auth/AuthOptions";
+import { BiMenu } from "react-icons/bi";
 
 function NavBar() {
   const [state, setState] = useState({});
@@ -24,49 +31,37 @@ function NavBar() {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="xl" bg="light" variant="light">
-        <Navbar.Brand className="logo-button" href="/">
-          <img className="logo" src={logo}></img>
-        </Navbar.Brand>
 
-        {load === false && (
-          <>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav container-fluid" />
-              <Nav className="nav-bar-buttons">
-              {/* <div > */}
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <div className="home-button">
-                  <Nav.Link className="home-button" href="/">HOME</Nav.Link>
+      {load === false && (
+        <nav className="container">
+          <div className="row navbar-row">
+      <Navbar.Brand className="logo-button" href="/">
+        <img className="logo" src={logo}></img>
+      </Navbar.Brand>
+          <Dropdown >
+            <Dropdown.Toggle className="container-fluid" variant="light" id="dropdown-basic" >
+              <BiMenu/>
+              </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/">Home</Dropdown.Item>
+              <Dropdown.Item href="/properties">
+                All Properties
+              </Dropdown.Item>
+              {state.map((links) => (
+                <div key={links._id}>
+                  <Dropdown.Item href={"/properties/name/" + links.location}>
+                    {links.location}{" "}
+                  </Dropdown.Item>
                 </div>
-                <SplitButton
-                  title="Dropdown"
-                  id="collapsible-nav-dropdown"
-                  className="navbar-dropdown"
-                  href="/properties"
-                  variant="primary"
-                  title="LOCATIONS (ALQUILER DE PROPIEDAD)"
-                  style={{ fontFamily: "Futura" }}
-                >
-                  {state.map((links) => (
-                    <div key={links._id}>
-                      <NavDropdown.Item
-                        href={"/properties/name/" + links.location}
-                      >
-                        {links.location}
-                      </NavDropdown.Item>
-                    </div>
-                  ))}
-                  <NavDropdown.Item href="/">Home</NavDropdown.Item>
-                </SplitButton>
-                <Nav.Link>
-                  <AuthOptions />
-                </Nav.Link>
-            </Navbar.Collapse>
-                {/* </div> */}
-              </Nav>
-          </>
-        )}
-      </Navbar>
+              ))}
+              <Dropdown.Item href="#/action-3">
+                <AuthOptions />
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          </div>
+      </nav>
+      )}
     </>
   );
 }
