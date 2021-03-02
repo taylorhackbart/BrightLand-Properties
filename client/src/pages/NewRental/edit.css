@@ -1,6 +1,9 @@
 .description-input, .activities-input {
   width: 100%;
 }
+.link-input{
+  margin-bottom: 5%;
+}
 .edit-btn{
   height: 50px;
   width: 60px;
@@ -9,10 +12,10 @@
 .edit-contain, .manage-container{
   margin-top: 70px;
 }
-.edit-button{
+/* button{
   border: none;
   background: transparent;
-}
+} */
 textarea{
   float: left;
   width: 39%;

@@ -40,7 +40,7 @@ export default function AuthOptions() {
         <>
           <div className="align-me">
             <button className="login-button" onClick={login}>
-              L
+              Login
             </button>
             <AiOutlineUserAdd
               className="register-button"

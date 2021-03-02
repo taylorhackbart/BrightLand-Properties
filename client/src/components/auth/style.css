@@ -32,7 +32,7 @@ ul{
 li{
   margin-left: -30px;
 }
-.employee-button, .logout-button{
+.employee-button, .logout-button, .login-btn{
   border: none;
   background-color: transparent;
 }

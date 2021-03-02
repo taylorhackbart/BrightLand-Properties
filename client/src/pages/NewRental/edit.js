@@ -21,7 +21,7 @@ function Edit() {
   const loadRental = () => {
     API.getProperties(params.id).then((res) => {
       setRental(res.data);
-      console.log(res);
+      // console.log(res);
       setLoading(false);
     });
   };
@@ -37,7 +37,7 @@ function Edit() {
       setDone(true);
     });
   };
-  console.log(rental);
+  // console.log(rental);
   const confirmDelete = (e) => {
     // console.log(e.target);
     setStartDelete(true);
@@ -51,9 +51,11 @@ function Edit() {
       {loading == false && (
         <>
           {userData.user ? (
-            < div className="container edit-contain">
+            <div className="container edit-contain">
               <div className="row edit-row">
                 <h6> LOCATION: </h6>
+              </div>
+              <div>
                 <textarea
                   className="location-input"
                   name="location"
@@ -61,10 +63,14 @@ function Edit() {
                   onChange={handleChange}
                 />
               </div>
+              <br/>
+              <br/>
+              <br/>
               <div className="row edit-row">
-                <h6> BED COUNT (number): </h6>
+                <h6 > BED COUNT (number): </h6>
+              </div>
+              <div >
                 <label for="multiInput">
-                 
                   <textarea
                     // id="multiInput"
                     className="bed-input"
@@ -72,11 +78,12 @@ function Edit() {
                     defaultValue={rental.bedCount}
                     onChange={handleChange}
                   />
-              
                 </label>
               </div>
               <div className="row edit-row">
                 <h6>BATH COUNT (number): </h6>
+              </div>
+              <div>
                 <label for="multiLineInput">
                   <textarea
                     // id="multiLineInput"
@@ -89,6 +96,8 @@ function Edit() {
               </div>
               <div className="row edit-row">
                 <h6> DESCRIPTION: </h6>
+              </div>
+              <div>
                 <label for="multiInput">
                   <textarea
                     rows="12"
@@ -103,6 +112,8 @@ function Edit() {
               </div>
               <div className="row edit-row">
                 <h6>ACTIVITIES: </h6>
+              </div>
+              <div>
                 <label for="multiLineInput">
                   <textarea
                     rows="12"
@@ -117,6 +128,8 @@ function Edit() {
               </div>
               <div className="row edit-row">
                 <h6> SPANISH DESCRIPTION TRANSLATION: </h6>
+              </div>
+              <div>
                 <label for="multiInput">
                   <textarea
                     rows="12"
@@ -131,6 +144,8 @@ function Edit() {
               </div>
               <div className="row edit-row">
                 <h6>SPANISH ACTIVITIES TRANSLATION: </h6>
+              </div>
+              <div>
                 <label for="multiLineInput">
                   <textarea
                     rows="12"
@@ -145,22 +160,23 @@ function Edit() {
               </div>
               <div className="row edit-row">
                 <h6> LINK: </h6>
+              </div>
+              <div>
                 <textarea
                   className="link-input"
                   name="link"
                   defaultValue={rental.link}
                   onChange={handleChange}
                 />
-                {/* <button className="edit-btn" onClick={saveLink}> OK </button> */}
               </div>
+              <div className="row" style={{marginTop: "15%"}}>
               {startDelete === false && (
                 <>
                   <button className="delete-property" onClick={confirmDelete}>
                     DELETE THIS PROPERTY
                   </button>
                   <button
-                    style={{ display: "none" }}
-                    // onClick={deleteProperty}
+                    style={{ display: "none", float: "left" }}
                   >
                     {" "}
                     Delete{" "}
@@ -213,6 +229,7 @@ function Edit() {
                   </a>
                 </>
               )}
+              </div>
             </div>
           ) : (
             <>
