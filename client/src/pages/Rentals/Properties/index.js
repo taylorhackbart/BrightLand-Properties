@@ -61,14 +61,17 @@ function Properties() {
           <div className="center-me">
             <div className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
+                
                 <div className="carousel-item active rental-photo">
-                  {loading === false && (
+                  {loading === false && rental.imageUrl.length > 0 && (
+                    <>
                     <img
                       src={rental.imageUrl[index].src}
                       className="d-block w-100 large-rental-photo"
                       alt="..."
                       ref={imageRef}
                     />
+                    </>
                   )}
                 </div>
               </div>
