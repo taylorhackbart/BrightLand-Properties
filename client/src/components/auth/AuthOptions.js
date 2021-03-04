@@ -23,11 +23,11 @@ export default function AuthOptions() {
   return (
     <nav className="auth-options">
       {userData.user ? (
-        <div className="align-me">
+        <div>
           <div className="row-employee">
             <button className="employee-button" onClick={home}>
               {" "}
-              Portal{" "}
+              Manage{" "}
             </button>
           </div>
           <div className="row-logout">

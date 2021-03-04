@@ -68,7 +68,6 @@ export default function Home() {
   };
 
   const loadAPI = async (i) => {
-    console.log(cleaningData);
     cleaningData.map((x) => {
       const newArr = x.employee;
       for (i = 0; i < newArr.length; i++) {

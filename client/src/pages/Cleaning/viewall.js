@@ -14,7 +14,6 @@ function ViewCleanings() {
   const [employeeArr, setEmployeesArr] = useState([]);
 
   useEffect(() => {
-    // loadUserInfo();
     loadCleaning();
   }, [load, loading]);
 
@@ -62,7 +61,7 @@ function ViewCleanings() {
 
   return (
     <div >
-      {loading === false && (
+      {loading === false && employeeArr.length > 0 (
         <>
         {userData.user ? (
           <div className="view-all-contain">
@@ -87,6 +86,13 @@ function ViewCleanings() {
         )}
         </>
       )}
+      <>
+      {employeeArr.length === 0 && (
+        <div>
+          <h3 className="no-data" style={{textAlign: "center"}}> No cleaning data to display </h3>
+        </div>
+      )}
+      </>
     </div>
   );
 }

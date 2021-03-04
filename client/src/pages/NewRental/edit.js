@@ -47,7 +47,7 @@ function Edit() {
     history.push("/manage");
   };
   return (
-    <div>
+    <div className="container">
       {loading == false && (
         <>
           {userData.user ? (
@@ -63,13 +63,13 @@ function Edit() {
                   onChange={handleChange}
                 />
               </div>
-              <br/>
-              <br/>
-              <br/>
+              <br />
+              <br />
+              <br />
               <div className="row edit-row">
-                <h6 > BED COUNT (number): </h6>
+                <h6> BED COUNT (number): </h6>
               </div>
-              <div >
+              <div>
                 <label for="multiInput">
                   <textarea
                     // id="multiInput"
@@ -169,66 +169,72 @@ function Edit() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="row" style={{marginTop: "15%"}}>
-              {startDelete === false && (
-                <>
-                  <button className="delete-property" onClick={confirmDelete}>
-                    DELETE THIS PROPERTY
-                  </button>
-                  <button
-                    style={{ display: "none", float: "left" }}
-                  >
-                    {" "}
-                    Delete{" "}
-                  </button>
-                  <button style={{ display: "none" }}> Cancel </button>
-                </>
-              )}
-              {startDelete === true && (
-                <>
-                  <button
-                    className="delete-property"
-                    style={{ display: "none" }}
-                    onClick={confirmDelete}
-                  >
-                    X
-                  </button>
-                  <button onClick={deleteProperty}> Delete </button>
-                  <button onClick={(e) => setStartDelete(false)}>
-                    {" "}
-                    Cancel{" "}
-                  </button>
-                </>
-              )}
-              {done === false && (
-                <>
-                  <button className="edit-btn" onClick={onSave}>
-                    {" "}
-                    DONE{" "}
-                  </button>
-                  <a href={"/addmore/" + rental._id}>
-                    <button className="edit-btn" style={{ display: "none" }}>
+              <div className="row" style={{ marginTop: "15%" }}>
+                {done === false && (
+                  <>
+                    <button className="edit-btn" onClick={onSave}>
                       {" "}
-                      NEXT{" "}
+                      DONE{" "}
                     </button>
-                  </a>
-                </>
-              )}
-              {done === true && (
-                <>
-                  <button
-                    className="edit-btn"
-                    onClick={onSave}
-                    style={{ display: "none" }}
-                  >
-                    {" "}
-                    DONE{" "}
-                  </button>
-                  <a href={"/addmore/" + rental._id}>
-                    <button className="edit-btn"> NEXT </button>
-                  </a>
-                </>
-              )}
+                    <a href={"/addmore/" + rental._id}>
+                      <button className="edit-btn" style={{ display: "none" }}>
+                        {" "}
+                        EDIT IMAGES{" "}
+                      </button>
+                    </a>
+                  </>
+                )}
+                {done === true && (
+                  <>
+                    <button
+                      className="edit-btn"
+                      onClick={onSave}
+                      style={{ display: "none" }}
+                    >
+                      {" "}
+                      DONE{" "}
+                    </button>
+                    <a href={"/addmore/" + rental._id}>
+                      <button className="edit-btn"> EDIT IMAGES </button>
+                    </a>
+                  </>
+                )}
+                {startDelete === false && (
+                  <>
+                  <div className="delete-property">
+
+                    <button
+                     
+                      onClick={confirmDelete}
+                    >
+                      DELETE THIS PROPERTY
+                    </button>
+                  </div>
+                    <button style={{ display: "none"}}>
+                      {" "}
+                      Delete{" "}
+                    </button>
+                    <button style={{ display: "none" }}> Cancel </button>
+                  </>
+                )}
+                {startDelete === true && (
+                  <>
+                    <button
+                      className="delete-property"
+                      style={{ display: "none" }}
+                      onClick={confirmDelete}
+                    >
+                      X
+                    </button>
+                    <div className="delete-property">
+                    <button onClick={deleteProperty}> Delete </button>
+                    <button onClick={(e) => setStartDelete(false)}>
+                      {" "}
+                      Cancel{" "}
+                    </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ) : (

@@ -6,16 +6,12 @@
 }
 .edit-btn{
   height: 50px;
-  width: 60px;
   float: right;
 }
 .edit-contain, .manage-container{
   margin-top: 70px;
 }
-/* button{
-  border: none;
-  background: transparent;
-} */
+
 textarea{
   float: left;
   width: 39%;
@@ -54,4 +50,9 @@ ul{
 }
 .manage-container, .manage-row{
   text-align: center;
+}
+.delete-property{
+  display: block;
+  margin: auto; 
+
 }

@@ -18,27 +18,26 @@ function Manage() {
   const loadRentals = () => {
     API.getProperty().then((res) => {
       setRental(res.data);
-      console.log(res);
       setLoading(false);
     });
   };
 
   return (
-    <div >
+    <div>
       {loading == false && (
         <div>
           {userData.user ? (
-             <div className="manage-container">
-            <div className="manage-row">
-              {rental.map((x) => (
-                <Link to={"/edit/" + x._id} key={x._id}>
-                  <ul className="ul-manage">{x.location}</ul>
+            <div className="manage-container">
+              <div className="manage-row">
+                {rental.map((x) => (
+                  <Link to={"/edit/" + x._id} key={x._id}>
+                    <ul className="ul-manage">{x.location}</ul>
+                  </Link>
+                ))}
+                <Link to={"/new"}>
+                  <ul className="ul-manage">* Add New Property</ul>
                 </Link>
-              ))}
-              <Link to={"/new"}>
-                <ul className="ul-manage">* Add New Property</ul>
-              </Link>
-            </div>
+              </div>
             </div>
           ) : (
             <>

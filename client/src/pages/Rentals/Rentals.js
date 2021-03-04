@@ -3,25 +3,25 @@ import API from "../../utils/API";
 import "./style.css";
 
 function Rentals() {
-  const [rental, setRental] = useState([]);
   const [newRental, setNewRental] = useState([]);
-  const [evenRental, setEvenRental] = useState([]);
-  const [oddRental, setOddRental] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     loadRentals();
-    // setLoading(false)
   }, []);
 
-  const loadRentals = async () => {
+  const loadRentals = async (i) => {
     await API.getProperty()
       .then((resp) => {
-        // console.log(resp.data)
-        setEvenRental(resp.data.slice(5, 10));
-        setOddRental(resp.data.slice(0, 5));
-        setRental(resp.data.slice(10, 15));
-        console.log(rental);
-        setNewRental(resp.data.slice(15, 20));
+        const data = resp.data;
+        data.map((x) => {
+          if (x.imageUrl.length > 0) {
+            const locationArr = newRental;
+            const index1 = locationArr.findIndex((e) => e._id === x._id);
+            if (index1 === -1) {
+              locationArr.push(x);
+            }
+          }
+        });
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -34,68 +34,21 @@ function Rentals() {
           <div className="card-img-top">
             <div className="center-me">
               <div className="row">
-                <div className="col-md-6 col-sm-12 ">
-                  {oddRental.map((col) => (
-                    <div className="center-div" key={col._id}>
-                      <a href={"/properties/name/" + col.location}>
-                        <ul className="descriptionArr">{col.location}</ul>
-                        <ul>
-                          <img
-                            className="home-image"
-                            src={col.imageUrl[0].src}
-                          />
-                        </ul>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-                <div className="col-md-6 col-sm-12 ">
-                  {evenRental.map((col) => (
-                    <div className="center-div" key={col._id}>
-                      <a href={"/properties/name/" + col.location}>
-                        <ul className="descriptionArr">{col.location}</ul>
-                        <ul>
-                          <img
-                            className="home-image"
-                            src={col.imageUrl[0].src}
-                          />
-                        </ul>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-md-6 col-sm-12 ">
-                  {rental.map((col) => (
-                    <div key={col._id}>
-                      <a href={"/properties/name/" + col.location}>
-                        <ul className="descriptionArr">{col.location}</ul>
-                        <ul>
-                          <img
-                            className="home-image"
-                            src={col.imageUrl[0].src}
-                          />
-                        </ul>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-                <div className="col-md-6 col-sm-12 ">
-                  {newRental.map((col) => (
-                    <div key={col._id}>
-                      <a href={"/properties/name/" + col.location}>
-                        <ul className="descriptionArr">{col.location}</ul>
-                        <ul>
-                          <img
-                            className="home-image"
-                            src={col.imageUrl[0].src}
-                          />
-                        </ul>
-                      </a>
-                    </div>
-                  ))}
+                <div>
+                  < div className="rental-mapping">
+                    {newRental.map((o) => (
+                      <>
+                        <div className="center-div" key={o._id}>
+                          <a key={o.location} href={"/properties/name/" + o.location}>
+                            <ul className="descriptionArr" key={o.location}>{o.location}</ul>
+                            <ul key={o.imageUrl[0].src}>
+                                <img className="home-image" src={o.imageUrl[0].src} />
+                            </ul>
+                          </a>
+                        </div>
+                      </>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

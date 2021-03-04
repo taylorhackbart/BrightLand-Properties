@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
-import "./home.css"
+import "./home.css";
 function HomePage() {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,28 +11,31 @@ function HomePage() {
   useEffect(() => {
     loadProperties();
     setLoad(false);
-      setTimeout(() => {
-        if (counter >= state.length-1 || index >= state.length-1 ) {
-          setIndex(0);
-          setCounter(1);
-        console.log(index, counter, state.length);
+    setTimeout(() => {
+      if (counter >= state.length - 1 || index >= state.length - 1) {
+        setIndex(0);
+        setCounter(1);
       } else {
         setIndex(index + 1);
         setCounter(index);
-        console.log(index, counter);
       }
     }, 5000);
   }, [counter]);
 
   const loadProperties = () => {
     API.getProperty().then((res) => {
-      setState(res.data);
-      if (res === undefined){
-        return(
-          <div>
-            No properties have been uploaded
-          </div>
-        )
+      const data = res.data;
+      data.map((x) => {
+        if (x.imageUrl.length > 0) {
+          const newArr = state;
+          const index = newArr.findIndex((e) => e._id === state._id);
+          if (index === -1) {
+            newArr.push(x);
+          }
+        }
+      });
+      if (res === undefined) {
+        return <div>No properties have been uploaded</div>;
       }
       setLoading(false);
     });
@@ -60,12 +63,11 @@ function HomePage() {
       return checkNumber(newIndex);
     });
   };
- 
- 
+
   return (
     <>
       {load === false && (
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-md-12 center-me">
               <div
@@ -80,17 +82,25 @@ function HomePage() {
                         <></>
                       ) : (
                         <>
-                          <a href={"/properties/name/" + state[index].location}>
-                            <img
-                              src={state[index].imageUrl[0].src}
-                              className="d-block w-100 large-photo"
-                              alt="..."
-                            />
-                          </a>
-                          <h2 className="descriptionArr">
-                            {" "}
-                            {state[index].location}
-                          </h2>
+                          {state[index].imageUrl.length > 0 && (
+                            <>
+                              <a
+                                href={
+                                  "/properties/name/" + state[index].location
+                                }
+                              >
+                                <img
+                                  src={state[index].imageUrl[0].src}
+                                  className="d-block w-100 large-photo"
+                                  alt="..."
+                                />
+                              </a>
+                              <h2 className="descriptionArr">
+                                {" "}
+                                {state[index].location}
+                              </h2>
+                            </>
+                          )}
                         </>
                       )}
                     </>

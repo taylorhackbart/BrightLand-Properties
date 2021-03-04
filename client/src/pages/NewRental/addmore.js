@@ -9,7 +9,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import cuid from "cuid";
 import API from "../../utils/API";
 import update from "immutability-helper";
-import NoMatch from "../NoMatch"
+import NoMatch from "../NoMatch";
 
 const isTouchDevice = () => {
   if ("ontouchstart" in window) {
@@ -139,7 +139,9 @@ function AddMore() {
               </DndProvider>
               {done === false && (
                 <>
-                  <button onClick={onSend}> Save </button>
+                  <div className="save-me-button" >
+                    <button onClick={onSend} style={{ display: "block", margin: "auto" }}> Save Images </button>
+                  </div>
                   <button onClick={onSubmit} style={{ display: "none" }}>
                     {" "}
                     Submit{" "}
@@ -152,7 +154,9 @@ function AddMore() {
                     {" "}
                     Save{" "}
                   </button>
-                  <button onClick={onSubmit}> Submit </button>
+                  <div className="save-me-button" >
+                    <button onClick={onSubmit} style={{ display: "block", margin: "auto" }}> View Rental </button>
+                  </div>
                 </>
               )}
             </main>
