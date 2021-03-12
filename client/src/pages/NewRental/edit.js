@@ -11,6 +11,7 @@ function Edit() {
   const [rental, setRental] = useState({});
   const params = useParams();
   const [done, setDone] = useState(false);
+  const [wait, setWait] = useState(false);
   const [startDelete, setStartDelete] = useState(false);
   const history = useHistory();
 
@@ -21,25 +22,22 @@ function Edit() {
   const loadRental = () => {
     API.getProperties(params.id).then((res) => {
       setRental(res.data);
-      // console.log(res);
       setLoading(false);
     });
   };
-  // console.log(rental)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRental({ ...rental, [name]: value });
-    // console.log(e.target.value, e.target.name);
   };
   const onSave = () => {
+    setWait(true);
     API.updateProperty(rental._id, rental).then((res) => {
-      console.log(res);
       setDone(true);
     });
   };
-  // console.log(rental);
+
   const confirmDelete = (e) => {
-    // console.log(e.target);
     setStartDelete(true);
   };
   const deleteProperty = () => {
@@ -169,69 +167,59 @@ function Edit() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="row" style={{ marginTop: "15%" }}>
+              <div
+                className="row buttons-row-edit"
+                style={{ marginTop: "15%" }}
+              >
                 {done === false && (
                   <>
                     <button className="edit-btn" onClick={onSave}>
                       {" "}
                       DONE{" "}
                     </button>
-                    <a href={"/addmore/" + rental._id}>
-                      <button className="edit-btn" style={{ display: "none" }}>
-                        {" "}
-                        EDIT IMAGES{" "}
-                      </button>
-                    </a>
+                    <br/>
+                    {wait === true && <p>Loading....</p>}
                   </>
                 )}
                 {done === true && (
                   <>
-                    <button
-                      className="edit-btn"
-                      onClick={onSave}
-                      style={{ display: "none" }}
-                    >
-                      {" "}
-                      DONE{" "}
-                    </button>
                     <a href={"/addmore/" + rental._id}>
                       <button className="edit-btn"> EDIT IMAGES </button>
+                    </a>
+                    <a href={"/manage"}>
+                      <button className="edit-btn"> BACK TO MANAGE </button>
                     </a>
                   </>
                 )}
                 {startDelete === false && (
                   <>
-                  <div className="delete-property">
-
-                    <button
-                     
-                      onClick={confirmDelete}
-                    >
-                      DELETE THIS PROPERTY
-                    </button>
-                  </div>
-                    <button style={{ display: "none"}}>
-                      {" "}
-                      Delete{" "}
-                    </button>
-                    <button style={{ display: "none" }}> Cancel </button>
+                    <div className="delete-property">
+                      <button
+                        className="delete-property-button"
+                        onClick={confirmDelete}
+                      >
+                        DELETE THIS PROPERTY
+                      </button>
+                    </div>
                   </>
                 )}
                 {startDelete === true && (
                   <>
-                    <button
-                      className="delete-property"
-                      style={{ display: "none" }}
-                      onClick={confirmDelete}
-                    >
-                      X
-                    </button>
                     <div className="delete-property">
-                    <button onClick={deleteProperty}> Delete </button>
-                    <button onClick={(e) => setStartDelete(false)}>
-                      {" "}
-                      Cancel{" "}
-                    </button>
+                      <button
+                        className="delete-property-button"
+                        onClick={deleteProperty}
+                      >
+                        {" "}
+                        Delete{" "}
+                      </button>
+                      <button
+                        className="delete-property-button"
+                        onClick={(e) => setStartDelete(false)}
+                      >
+                        {" "}
+                        Cancel{" "}
+                      </button>
                     </div>
                   </>
                 )}

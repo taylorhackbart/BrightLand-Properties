@@ -20,20 +20,21 @@ module.exports = {
   update: function (req, res) {
     db.Rental.findOneAndUpdate(
       { _id: req.params.id } || { location: req.params.location },
-      { $set: {
-        imageUrl: req.body.imageUrl,
-        homeImage: req.body.homeImage,
-        employee: req.body.employee,
-        cleaning: req.body.cleaning,
-        description: req.body.description,
-        activities: req.body.activities,
-        link: req.body.link,
-        location: req.body.location,
-        descriptionSpan: req.body.descriptionSpan,
-        activitiesSpan: req.body.activitiesSpan,
-        bedCount: req.body.bedCount,
-        bathCount: req.body.bathCount
-       } },
+      {
+        $set: {
+          imageUrl: req.body.imageUrl,
+          employee: req.body.employee,
+          cleaning: req.body.cleaning,
+          description: req.body.description,
+          activities: req.body.activities,
+          link: req.body.link,
+          location: req.body.location,
+          descriptionSpan: req.body.descriptionSpan,
+          activitiesSpan: req.body.activitiesSpan,
+          bedCount: req.body.bedCount,
+          bathCount: req.body.bathCount,
+        },
+      },
       { new: true }
     )
       .then((dbModel) => res.json(dbModel))

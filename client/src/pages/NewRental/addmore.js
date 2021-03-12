@@ -28,7 +28,7 @@ function AddMore() {
   const [rental, setRental] = useState([]);
   const [property, setProperty] = useState({});
   const params = useParams();
-  const history = useHistory();
+  const [wait, setWait] = useState(false);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,9 @@ function AddMore() {
     if (params.name) {
       API.getPropertiesByName(params.name)
         .then((res) => {
-          setRental(res.data[0].imageUrl);
+          if (res.data[0].imageUrl.length > 0) {
+            setRental(res.data[0].imageUrl);
+          }
           setProperty(res.data[0]);
           setLoading(false);
         })
@@ -80,22 +82,7 @@ function AddMore() {
     }
   }, []);
 
-  const onSend = () => {
-    console.log(property, rental);
-    setProperty({ ...property, imageUrl: rental });
-    setDone(true);
-  };
-
-  const onSubmit = async () => {
-    await API.updateProperty(property._id, property).then((res) => {
-      setProperty({ ...property, imageUrl: rental });
-      console.log(res);
-      history.push("/properties/name/" + property.location);
-    });
-  };
-
   const moveImage = (dragIndex, hoverIndex) => {
-    console.log("click");
     const draggedImage = rental[dragIndex];
     setRental(
       update(rental, {
@@ -113,7 +100,21 @@ function AddMore() {
       })
     );
   };
-  console.log(property, rental);
+  const onSend = async () => {
+    setWait(true);
+    setProperty({ ...property, imageUrl: rental });
+    setDone(true);
+  };
+  const onSubmit = async () => {
+    setProperty({ ...property, imageUrl: rental });
+    const updateFunc = async () => {
+      await API.updateProperty(property._id, property).then((res) => {
+        console.log(res.data.imageUrl);
+        // setDone(true);
+      });
+    }
+   await updateFunc()
+  };
   return (
     <>
       {loading === false && (
@@ -132,30 +133,41 @@ function AddMore() {
               <DndProvider backend={backendForDND}>
                 <ImageList
                   images={rental}
-                  // key = {}
                   moveImage={moveImage}
                   removeItem={removeItem}
                 />
               </DndProvider>
               {done === false && (
                 <>
-                  <div className="save-me-button" >
-                    <button onClick={onSend} style={{ display: "block", margin: "auto" }}> Save Images </button>
+                  {wait === true && (
+                    <p className="loading-marker"> Loading... </p>
+                  )}
+                  <div className="save-me-div">
+                    <button className="save-me-button" onClick={onSend}>
+                      {" "}
+                      Save Images{" "}
+                    </button>
                   </div>
-                  <button onClick={onSubmit} style={{ display: "none" }}>
-                    {" "}
-                    Submit{" "}
-                  </button>
                 </>
               )}
               {done === true && (
                 <>
-                  <button onClick={onSend} style={{ display: "none" }}>
-                    {" "}
-                    Save{" "}
-                  </button>
-                  <div className="save-me-button" >
-                    <button onClick={onSubmit} style={{ display: "block", margin: "auto" }}> View Rental </button>
+                  <div className="save-me-div">
+                    <a href={"/properties/name/" + property.location}>
+                      <button
+                        className="save-me-button"
+                        onClick={onSubmit}
+                      >
+                        {" "}
+                        View Rental{" "}
+                      </button>
+                    </a>
+                    <a href="/manage">
+                      <button className="save-me-button">
+                        {" "}
+                        Manage Another Rental{" "}
+                      </button>
+                    </a>
                   </div>
                 </>
               )}
