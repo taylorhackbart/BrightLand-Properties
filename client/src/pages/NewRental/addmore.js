@@ -30,6 +30,8 @@ function AddMore() {
   const params = useParams();
   const [wait, setWait] = useState(false);
   const [done, setDone] = useState(false);
+  const [updated, setUpdated] = useState(false);
+  const [complete, setComplete] = useState(false)
 
   useEffect(() => {
     loadPropertyInfo();
@@ -71,6 +73,7 @@ function AddMore() {
             ...prevState,
             { id: cuid(), src: e.target.result },
           ]);
+          // setProperty({...property, imageUrl: rental})
         };
         // Read the file as Data URL (since we accept only images)
         reader.readAsDataURL(file);
@@ -92,6 +95,7 @@ function AddMore() {
         ],
       })
     );
+    // setProperty({...property, imageUrl: rental})
   };
   const removeItem = (id) => {
     setRental(
@@ -99,21 +103,25 @@ function AddMore() {
         $splice: [[id, 1]],
       })
     );
+    // setProperty({...property, imageUrl: rental})
   };
   const onSend = async () => {
     setWait(true);
     setProperty({ ...property, imageUrl: rental });
-    setDone(true);
+    setUpdated(true);
+    setDone(true)
+  };
+
+  const updateFunc = async () => {
+    await API.updateProperty(property._id, property).then((res) => {
+      console.log(res.data.imageUrl);
+      // setDone(true);
+      setComplete(true)
+      setUpdated(false)
+    });
   };
   const onSubmit = async () => {
-    setProperty({ ...property, imageUrl: rental });
-    const updateFunc = async () => {
-      await API.updateProperty(property._id, property).then((res) => {
-        console.log(res.data.imageUrl);
-        // setDone(true);
-      });
-    }
-   await updateFunc()
+    console.log(property, rental);
   };
   return (
     <>
@@ -152,15 +160,22 @@ function AddMore() {
               )}
               {done === true && (
                 <>
+                {updated === true && (
+                  <div className="save-me-div">
+                    <p>Done uploading?</p>
+                    <button className="save-me-button" onClick={updateFunc}>
+                      {" "}
+                      DONE{" "}
+                    </button>
+                  </div>
+                )}
+                {complete === true && (
                   <div className="save-me-div">
                     <a href={"/properties/name/" + property.location}>
-                      <button
-                        className="save-me-button"
-                        onClick={onSubmit}
-                      >
-                        {" "}
-                        View Rental{" "}
-                      </button>
+                    <button className="save-me-button" onClick={onSubmit}>
+                      {" "}
+                      View Rental{" "}
+                    </button>
                     </a>
                     <a href="/manage">
                       <button className="save-me-button">
@@ -169,6 +184,8 @@ function AddMore() {
                       </button>
                     </a>
                   </div>
+
+                )}
                 </>
               )}
             </main>

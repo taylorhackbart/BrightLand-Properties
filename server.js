@@ -33,20 +33,20 @@ const options = {
   useFindAndModify: false
 }
 // Connect to the Mongo DB
-mongoose.connect( 
-  process.env.MONGODB_CONNECTION_STRING 
-  || "mongodb://localhost/brightland"
-  , options, (err)  => { 
-    if (err) throw err;
-    console.log("DB connection established")
-}
-);
-// mongoose.connect(
-//   process.env.MONGODB_URI || "mongodb://localhost/brightland", options, (err)  => { 
+// mongoose.connect( 
+//   process.env.MONGODB_CONNECTION_STRING 
+//   || "mongodb://localhost/brightland"
+//   , options, (err)  => { 
 //     if (err) throw err;
 //     console.log("DB connection established")
 // }
 // );
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/brightland", options, (err)  => { 
+    if (err) throw err;
+    console.log("DB connection established")
+}
+);
 
 // Start the API server
 app.listen(PORT, function() {
